@@ -1,0 +1,22 @@
+# Dependency directories
+node_modules/
+dist/
+build/
+
+# Logs
+*.log
+
+# Environment files
+.env*
+
+# Cache directories
+.cache/
+.bolt/
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Generated files
+coverage/
