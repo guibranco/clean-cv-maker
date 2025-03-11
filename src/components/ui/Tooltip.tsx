@@ -1,14 +1,5 @@
 import { useState } from 'react';
 import { Info } from 'lucide-react';
-
-interface TooltipProps {
-  content: string;
-  importance?: string;
-  tips?: string;
-}
-
-import { useState } from 'react';
-import { Info } from 'lucide-react';
 import { useRef } from 'react';
 
 interface TooltipProps {
