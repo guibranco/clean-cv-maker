@@ -42,11 +42,17 @@ export function generateHTML(data: PersonalInfoFormData) {
       <h1>${data.fullName}</h1>
       <h2>${data.title}</h2>
       <div class="contact">📍 ${data.location}${data.willRelocate ? ' • Available for relocation' : ''}</div>
-      <div class="contact">📧 ${formatLink(data.email)} • 📱 ${data.phone}</div>
       <div class="contact">
-        🔗 ${formatLink(data.githubUrl)} •
-        ${formatLink(data.linkedinUrl)}
-        ${data.portfolioUrl ? ` • ${formatLink(data.portfolioUrl)}` : ''}
+        ${data.email ? `📧 ${formatLink(data.email)}` : ''}
+        ${data.email && data.phone ? ' • ' : ''}
+        ${data.phone ? `📱 ${data.phone}` : ''}
+      </div>
+      <div class="contact">
+        ${data.githubUrl ? `🔗 ${formatLink(data.githubUrl)}` : ''}
+        ${data.githubUrl && data.linkedinUrl ? ' • ' : ''}
+        ${data.linkedinUrl ? formatLink(data.linkedinUrl) : ''}
+        ${(data.githubUrl || data.linkedinUrl) && data.portfolioUrl ? ' • ' : ''}
+        ${data.portfolioUrl ? formatLink(data.portfolioUrl) : ''}
       </div>
 
       <div class="section">
