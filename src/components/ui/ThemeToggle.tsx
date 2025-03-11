@@ -46,6 +46,7 @@ export function ThemeToggle() {
       size="sm"
       onClick={toggleTheme}
       className="fixed bottom-4 left-4 z-50 bg-white dark:bg-gray-800"
+      aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
     >
       {isDark ? (
         <Sun className="h-4 w-4" />
