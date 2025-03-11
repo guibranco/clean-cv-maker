@@ -11,10 +11,14 @@ import type { CVVersion } from './lib/versioning';
  * The main application component that manages the display of the Clean CV Maker.
  * It handles theme settings, version selection, and initial data loading.
  *
- * @function App
+ * @component
  * @returns {JSX.Element} The rendered application component.
  *
- * @throws {Error} Throws an error if there is an issue with loading the version data.
+ * @example
+ * // Usage in a React application
+ * <App />
+ *
+ * @throws {Error} Throws an error if there is an issue retrieving the version data.
  */
 function App() {
   const [showVersions, setShowVersions] = useState(false);
@@ -47,13 +51,12 @@ function App() {
   }, []);
 
   /**
-   * Updates the current URL to reflect the selected version and sets the initial data.
+   * Updates the current URL to include the selected version's ID as a query parameter,
+   * updates the initial data based on the selected version, and hides the version selection.
    *
-   * This function modifies the browser's history state by adding a new entry with the selected version's ID as a query parameter.
-   * It also updates the application state with the corresponding data for the selected version and hides the version selection UI.
-   *
-   * @param {CVVersion} version - The version object containing the ID and associated data to be set.
-   * @throws {Error} Throws an error if the version parameter is invalid or if there is an issue updating the URL.
+   * @param {CVVersion} version - The version object containing the ID and associated data.
+   * @throws {Error} Throws an error if the version parameter is invalid or if there is an issue
+   *                 with updating the URL or state.
    */
   const handleVersionSelect = (version: CVVersion) => {
     const url = new URL(window.location.href);
