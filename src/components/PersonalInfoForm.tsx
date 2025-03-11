@@ -147,7 +147,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
     mode: 'onChange',
   });
 
-  const { handleSubmit, watch, reset, setValue, formState: { errors, isValid } } = methods;
+  const { handleSubmit, watch, reset, setValue, formState: { errors } } = methods;
   const [lastSaveTime, setLastSaveTime] = useState<number>(0);
   const [showAutoSaveTooltip, setShowAutoSaveTooltip] = useState(false);
   const [tooltipMessage, setTooltipMessage] = useState('');
