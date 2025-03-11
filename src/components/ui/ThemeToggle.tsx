@@ -3,8 +3,15 @@ import { useEffect, useState } from 'react';
 import { Button } from './Button';
 
 export function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false);
-
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return document.documentElement.classList.contains('dark');
+    }
+    return false;
+  });
+  
+  // ...rest of your component code...
+}
   useEffect(() => {
     const isDarkMode = document.documentElement.classList.contains('dark');
     setIsDark(isDarkMode);
