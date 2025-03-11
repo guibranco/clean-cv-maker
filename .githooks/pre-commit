@@ -31,7 +31,7 @@ if ! command -v npm >/dev/null 2>&1; then
 fi
 
 # Run lint with error handling
-if ! npm run lint --check; then
+if ! npm run lint -- --check; then
     echo "Linting failed"
     exit 1
 fi
