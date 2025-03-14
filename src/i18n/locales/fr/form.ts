@@ -13,7 +13,7 @@ export const form = {
           tips: "Utilisez votre nom légal ou un nom professionnel cohérent.",
         },
       },
-      title: {
+      professionalTitle: {
         label: 'Titre Professionnel',
         placeholder: 'ex., Ingénieur Logiciel Senior',
         tooltip: {
