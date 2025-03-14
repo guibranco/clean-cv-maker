@@ -18,4 +18,9 @@ export const common = {
     error: 'Une erreur est survenue',
     confirmDelete: 'Êtes-vous sûr de vouloir supprimer cet élément ?',
   },
+  footer: {
+    developedBy: 'Développé par',
+    repository: 'Dépôt',
+    copyright: 'Tous droits réservés.',
+  },
 };
