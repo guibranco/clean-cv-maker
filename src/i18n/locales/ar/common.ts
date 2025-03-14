@@ -18,4 +18,9 @@ export const common = {
     error: 'حدث خطأ',
     confirmDelete: 'هل أنت متأكد أنك تريد حذف هذا العنصر؟',
   },
+  footer: {
+    developedBy: 'طورت بواسطة',
+    repository: 'المستودع',
+    copyright: 'جميع الحقوق محفوظة.',
+  },
 };
