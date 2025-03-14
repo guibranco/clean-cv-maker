@@ -1,7 +1,10 @@
 export const form = {
   sections: {
     personalInfo: {
-      title: 'Informazioni Personali',
+export const form = {
+  sections: {
+    personalInfo: {
+      sectionTitle: 'Informazioni Personali',
       fullName: {
         label: 'Nome Completo',
         placeholder: 'Inserisci il tuo nome completo',
@@ -20,6 +23,9 @@ export const form = {
           tips: "Usa titoli standard del settore invece di titoli creativi.",
         },
       },
+    },
+  },
+};
     },
     experience: {
       title: 'Esperienza Lavorativa',
