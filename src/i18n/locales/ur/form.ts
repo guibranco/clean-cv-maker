@@ -1,7 +1,10 @@
 export const form = {
   sections: {
     personalInfo: {
-      title: 'ذاتی معلومات',
+export const form = {
+  sections: {
+    personalInfo: {
+      sectionTitle: 'ذاتی معلومات',
       fullName: {
         label: 'مکمل نام',
         placeholder: 'اپنا مکمل نام درج کریں',
@@ -20,6 +23,9 @@ export const form = {
           tips: "تخلیقی عنوانات کی بجائے صنعت کے معیاری عنوانات استعمال کریں۔",
         },
       },
+    },
+  },
+};
     },
     experience: {
       title: 'کام کا تجربہ',
