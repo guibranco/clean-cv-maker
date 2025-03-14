@@ -18,4 +18,9 @@ export const common = {
     error: 'ایک خرابی پیش آ گئی',
     confirmDelete: 'کیا آپ واقعی اس آئٹم کو حذف کرنا چاہتے ہیں؟',
   },
+  footer: {
+    developedBy: 'تیار کردہ',
+    repository: 'ریپوزٹری',
+    copyright: 'جملہ حقوق محفوظ ہیں۔',
+  },
 };
