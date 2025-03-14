@@ -1,9 +1,6 @@
 export const form = {
   sections: {
     personalInfo: {
-export const form = {
-  sections: {
-    personalInfo: {
       title: 'व्यक्तिगत जानकारी',
       fullName: {
         label: 'पूरा नाम',
@@ -24,8 +21,6 @@ export const form = {
         },
       },
     },
-  },
-};
     experience: {
       title: 'कार्य अनुभव',
       addButton: 'अनुभव जोड़ें',
