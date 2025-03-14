@@ -1,7 +1,9 @@
 export const form = {
   sections: {
+export const form = {
+  sections: {
     personalInfo: {
-      title: 'Informations Personnelles',
+      sectionTitle: 'Informations Personnelles',
       fullName: {
         label: 'Nom Complet',
         placeholder: 'Entrez votre nom complet',
@@ -21,6 +23,8 @@ export const form = {
         },
       },
     },
+  },
+};
     experience: {
       sectionTitle: 'Expérience Professionnelle',
       addButton: 'Ajouter une Expérience',
