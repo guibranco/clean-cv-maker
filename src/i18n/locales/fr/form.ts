@@ -22,11 +22,11 @@ export const form = {
       },
     },
     experience: {
-      title: 'Expérience Professionnelle',
+      sectionTitle: 'Expérience Professionnelle',
       addButton: 'Ajouter une Expérience',
     },
     education: {
-      title: 'Formation',
+      sectionTitle: 'Formation',
       addButton: 'Ajouter une Formation',
     },
   },
