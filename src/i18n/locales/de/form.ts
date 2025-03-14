@@ -1,7 +1,7 @@
 export const form = {
   sections: {
     personalInfo: {
-      title: 'Persönliche Informationen',
+      sectionTitle: 'Persönliche Informationen',
       fullName: {
         label: 'Vollständiger Name',
         placeholder: 'Geben Sie Ihren vollständigen Namen ein',
