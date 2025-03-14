@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useForm, FormProvider } from 'react-hook-form';
 import { pdf } from '@react-pdf/renderer';
 import { CVDocument } from './CVDocument';
@@ -7,6 +8,7 @@ import { ProjectsForm } from './ProjectsForm';
 import { EducationForm } from './EducationForm';
 import { CertificatesForm } from './CertificatesForm';
 import { saveVersion } from '@/lib/versioning';
+import { generateHTML } from '@/lib/html-generator';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { PersonalInfoSection } from './form/PersonalInfoSection';
@@ -147,7 +149,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
     mode: 'onChange',
   });
 
-  const { handleSubmit, watch, reset, setValue, formState: { errors } } = methods;
+  const { handleSubmit, watch, reset, setValue, formState: { errors, isValid } } = methods;
   const [lastSaveTime, setLastSaveTime] = useState<number>(0);
   const [showAutoSaveTooltip, setShowAutoSaveTooltip] = useState(false);
   const [tooltipMessage, setTooltipMessage] = useState('');
@@ -157,7 +159,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
   const hasEducation = watch('hasEducation');
   const hasCertificates = watch('hasCertificates');
 
-  const hasData = formData.fullName || formData.title || formData.bio || 
+  const hasData = formData.fullName || formData.title || formData.bio ||
     (formData.experiences?.some(exp => exp.companyName)) ||
     (formData.education?.some(edu => edu.institution)) ||
     (formData.projects?.some(proj => proj.name));
@@ -189,16 +191,16 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
     try {
       const doc = <CVDocument data={data} />;
       const blob = await pdf(doc).toBlob();
-      
+
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
       link.download = `${data.fullName.replace(/\s+/g, '-').toLowerCase()}-cv.pdf`;
-      
+
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      
+
       URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Error generating PDF:', error);
@@ -216,7 +218,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
       console.error('Validation errors:', errorMessages);
       return;
     }
-    
+
     const versionId = saveVersion(formData, 'completed');
     if (versionId) {
       setLastSaveTime(Date.now());
@@ -308,7 +310,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-8">
             <PersonalInfoSection />
-            
+
             <div className="flex items-center space-x-4">
               <Switch
                 id="hasExperience"

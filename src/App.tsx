@@ -4,8 +4,11 @@ import { VersionPanel } from './components/VersionPanel';
 import { GraduationCap, History } from 'lucide-react';
 import { Button } from './components/ui/Button';
 import { ThemeToggle } from './components/ui/ThemeToggle';
+import { LanguageSelector } from './components/ui/LanguageSelector';
+import { Footer } from './components/ui/Footer';
 import { getVersion, getCurrentVersion } from './lib/versioning';
 import type { CVVersion } from './lib/versioning';
+import { useTranslation } from 'react-i18next';
 
 /**
  * The main application component that manages the display of the Clean CV Maker.
@@ -23,6 +26,7 @@ import type { CVVersion } from './lib/versioning';
 function App() {
   const [showVersions, setShowVersions] = useState(false);
   const [initialData, setInitialData] = useState<CVVersion['data'] | undefined>();
+  const { t } = useTranslation(['common']);
 
   useEffect(() => {
     // Set initial theme
@@ -67,26 +71,31 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
       <header className="bg-white shadow dark:bg-gray-800">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <GraduationCap className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-              <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Clean CV Maker</h1>
+              <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                {t('common:title')}
+              </h1>
             </div>
-            <Button
-              variant="outline"
-              onClick={() => setShowVersions(!showVersions)}
-              className="gap-2"
-            >
-              <History className="h-4 w-4" />
-              Version History
-            </Button>
+            <div className="flex items-center space-x-4">
+              <LanguageSelector />
+              <Button
+                variant="outline"
+                onClick={() => setShowVersions(!showVersions)}
+                className="gap-2"
+              >
+                <History className="h-4 w-4" />
+                {t('common:actions.history')}
+              </Button>
+            </div>
           </div>
         </div>
       </header>
-      <main>
+      <main className="flex-1">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="bg-white shadow sm:rounded-lg dark:bg-gray-800">
             <div className="px-4 py-5 sm:p-6">
@@ -102,6 +111,7 @@ function App() {
         />
       )}
       <ThemeToggle />
+      <Footer />
     </div>
   );
 }
