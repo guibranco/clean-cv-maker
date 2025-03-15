@@ -94,6 +94,17 @@ interface PersonalInfoFormProps {
   initialData?: PersonalInfoFormData;
 }
 
+/**
+ * A functional component that renders a personal information form for users to input their CV details.
+ * It utilizes React Hook Form for form management and Zod for schema validation.
+ *
+ * @param {Object} props - The component props.
+ * @param {PersonalInfoFormProps} props.initialData - Initial data to populate the form fields.
+ *
+ * @returns {JSX.Element} The rendered form component.
+ *
+ * @throws {Error} Throws an error if PDF generation fails during form submission.
+ */
 export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
   const methods = useForm<PersonalInfoFormData>({
     resolver: zodResolver(personalInfoSchema),
@@ -187,6 +198,22 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
     }
   };
 
+  /**
+   * Handles the submission of personal information form data and generates a CV in PDF format.
+   *
+   * This asynchronous function takes the form data, creates a CV document, converts it to a Blob,
+   * and triggers a download of the generated PDF file. It also manages the creation and cleanup of
+   * the object URL used for the download link.
+   *
+   * @param {PersonalInfoFormData} data - The personal information form data used to generate the CV.
+   * @throws {Error} Throws an error if the PDF generation fails, which is caught and logged.
+   * @returns {Promise<void>} A promise that resolves when the PDF has been successfully generated and downloaded.
+   *
+   * @example
+   * // Example usage:
+   * const formData = { fullName: 'John Doe', ... };
+   * onSubmit(formData);
+   */
   const onSubmit = async (data: PersonalInfoFormData) => {
     try {
       const doc = <CVDocument data={data} />;
@@ -208,6 +235,22 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
     }
   };
 
+  /**
+   * Handles the completion of a save operation.
+   * This asynchronous function triggers a validation check and processes the form data.
+   * If validation fails, it displays an error message and logs the validation errors to the console.
+   * If validation succeeds, it saves the version of the form data and updates the last save time.
+   *
+   * @async
+   * @function handleSaveCompleted
+   * @returns {Promise<void>} A promise that resolves when the save operation is complete.
+   *
+   * @throws {Error} Throws an error if the save operation fails due to unexpected reasons.
+   *
+   * @example
+   * // To use this function, simply call it when you want to handle the save completion.
+   * await handleSaveCompleted();
+   */
   const handleSaveCompleted = async () => {
     const result = await methods.trigger();
     if (!result) {

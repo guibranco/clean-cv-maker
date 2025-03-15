@@ -169,6 +169,16 @@ function isEducationEmpty(education: Education): boolean {
   return !education.institution && !education.degree;
 }
 
+/**
+ * Renders a role item component displaying the title, dates, description, and achievements of a role.
+ *
+ * @param {Object} props - The properties for the RoleItem component.
+ * @param {Role} props.role - The role object containing details such as title, description, start date, end date, and achievements.
+ *
+ * @returns {JSX.Element|null} Returns a JSX element representing the role item if the title or description is present; otherwise, returns null.
+ *
+ * @throws {Error} Throws an error if the role object is not provided or is invalid.
+ */
 function RoleItem({ role }: { role: Role }) {
   if (!role.title && !role.description) return null;
 
@@ -195,6 +205,19 @@ function RoleItem({ role }: { role: Role }) {
   );
 }
 
+/**
+ * Renders a CV document using the provided data.
+ *
+ * This function takes in a set of properties that include personal information,
+ * work experience, education, and social links, and formats them into a structured
+ * document layout.
+ *
+ * @param {Object} props - The properties for the CV document.
+ * @param {CVDocumentProps} props.data - The data object containing the CV details.
+ * @returns {JSX.Element} The rendered CV document.
+ *
+ * @throws {Error} Throws an error if the data provided is invalid or incomplete.
+ */
 export function CVDocument({ data }: CVDocumentProps) {
   const nonEmptyExperiences = data.experiences?.filter(exp => !isExperienceEmpty(exp)) || [];
   const nonEmptyEducation = data.education?.filter(edu => !isEducationEmpty(edu)) || [];
