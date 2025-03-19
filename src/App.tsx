@@ -72,7 +72,7 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
-      <header className="bg-white shadow dark:bg-gray-800">
+      <header className="bg-white shadow-sm dark:bg-gray-800">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -97,7 +97,7 @@ function App() {
       </header>
       <main className="flex-1">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <div className="bg-white shadow sm:rounded-lg dark:bg-gray-800">
+          <div className="bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
             <div className="px-4 py-5 sm:p-6">
               <PersonalInfoForm initialData={initialData} />
             </div>
