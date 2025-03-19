@@ -17,7 +17,7 @@ export function Tooltip({ content, importance, tips }: TooltipProps) {
       <button
         type="button"
         ref={buttonRef}
-        className="ml-1.5 text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 focus:outline-none"
+        className="ml-1.5 text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 focus:outline-hidden"
         aria-label="More information"
         aria-expanded={show}
         aria-describedby="tooltip-content"
