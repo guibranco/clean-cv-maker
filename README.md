@@ -1,6 +1,37 @@
 # Clean CV Maker
 
-📝✨ **Clean CV Maker** is a sleek and efficient tool for easily generating professional, minimalist CVs. Built with **React (Vite), Tailwind CSS, and Lucide icons**, it provides a modern user experience with dynamic forms, **LinkedIn integration**, and **PDF export**.
+📝✨ **Clean CV Maker** is a sleek and efficient tool for easily generating professional, minimalist CVs. Built with **React (Vite)**, **Tailwind CSS**, and **Lucide icons**, it delivers a modern, responsive user experience.
+
+📄 **Export Options**  
+Generate your CV with flexibility — export to:
+
+- PDF 🧾 for easy sharing or printing.
+- HTML 🌐 for custom styling or embedding into websites.
+- JSON 🧬 to save your data structure, re-import later, or share with others.
+
+🗂️ **Version Management**  
+Craft and manage **multiple versions** of your CV effortlessly. Each version is saved locally using `localStorage` and supports two distinct stages:
+- **Draft** 📝: For ongoing edits and previews.
+- **Complete** ✅: Finalized versions ready for export.
+
+🌍 **Multilingual Support**  
+Clean CV Maker is designed with global users in mind. It currently includes support for the following languages:
+
+- 🇸🇦 **AR** (Arabic) — 🛠️ Needs improvements  
+- 🇩🇪 **DE** (German) — 🛠️ Needs improvements  
+- 🇺🇸 **EN-US** (English - US) — ✅ Default language  
+- 🇪🇸 **ES-ES** (Spanish - Spain) — 🛠️ Needs improvements  
+- 🇫🇷 **FR** (French) — 🛠️ Needs improvements  
+- 🇮🇳 **HI** (Hindi) — 🛠️ Needs improvements  
+- 🇮🇹 **IT** (Italian) — 🛠️ Needs improvements  
+- 🇯🇵 **JA** (Japanese) — 🛠️ Needs improvements  
+- 🇰🇷 **KO** (Korean) — 🛠️ Needs improvements  
+- 🇧🇷 **PT-BR** (Portuguese - Brazil) — 🛠️ Needs improvements  
+- 🇷🇺 **RU** (Russian) — 🛠️ Needs improvements  
+- 🇺🇦 **UK** (Ukrainian) — 🛠️ Needs improvements  
+- 🇵🇰 **UR** (Urdu) — 🛠️ Needs improvements  
+
+We welcome contributions to improve translations and enhance the user experience in all supported languages! 🌐✨
 
 ---
 
