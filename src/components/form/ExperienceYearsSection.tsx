@@ -41,7 +41,15 @@ export function ExperienceYearsSection() {
         <Button
           type="button"
           variant="outline"
-          onClick={() => append({ technology: '', startDate: '' })}
+<Button
+  type="button"
+  variant="outline"
+  onClick={() => append({ id: Date.now().toString(), technology: '', startDate: '' })}
+  className="gap-2"
+>
+  <Plus className="h-4 w-4" />
+  Add Experience
+</Button>
           className="gap-2"
         >
           <Plus className="h-4 w-4" />
