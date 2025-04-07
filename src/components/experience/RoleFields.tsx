@@ -124,7 +124,8 @@ export function RoleFields({ experienceIndex, roleIndex, onRemove }: RoleFieldsP
               variant="outline"
               onClick={() => appendAchievement('')}
               disabled={achievements.length >= 10}
-              className="gap-2"
+              className={`gap-2 ${achievements.length >= 10 ? "opacity-50 cursor-not-allowed" : ""}`}
+              aria-disabled={achievements.length >= 10 ? "true" : "false"}
             >
               <Plus className="h-4 w-4" />
               Add Achievement
