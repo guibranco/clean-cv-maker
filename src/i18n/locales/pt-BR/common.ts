@@ -1,5 +1,5 @@
 export const common = {
-  title: 'Criador de Currículo',
+  title: 'Clean CV Maker',
   languageSelector: 'Selecionar Idioma',
   actions: {
     save: 'Salvar',
@@ -12,15 +12,72 @@ export const common = {
     add: 'Adicionar',
     remove: 'Remover',
     history: 'Histórico de Versões',
+    saveCompleted: 'Salvar Versão Concluída',
+    downloadHTML: 'Baixar HTML',
+    downloadPDF: 'Baixar PDF',
   },
   messages: {
     saved: 'Alterações salvas com sucesso',
     error: 'Ocorreu um erro',
     confirmDelete: 'Tem certeza que deseja excluir este item?',
   },
+  tooltip: {
+    importance: 'Por que importa:',
+    tips: 'Dicas:',
+  },
   footer: {
     developedBy: 'Desenvolvido por',
     repository: 'Repositório',
     copyright: 'Todos os direitos reservados.',
+  },
+  versionPanel: {
+    title: 'Histórico de Versões',
+    noVersions: 'Nenhuma versão salva ainda.',
+    loadVersion: 'Carregar Versão',
+    status: {
+      draft: 'Rascunho',
+      completed: 'Concluído',
+    },
+    import: {
+      button: 'Importar Versão do Currículo',
+      invalidFormat: 'Formato de currículo inválido',
+      saveFailed: 'Falha ao salvar versão importada',
+      genericError: 'Falha ao importar versão do currículo',
+    },
+    rename: {
+      title: 'Renomear Versão',
+      label: 'Nome da Versão',
+      placeholder: 'Digite o nome da versão',
+    },
+  },
+  switches: {
+    experience: 'Tenho experiência profissional',
+    education: 'Quero adicionar formação acadêmica',
+    projects: 'Tenho projetos para mostrar',
+    certificates: 'Tenho certificações para adicionar',
+  },
+  cv: {
+    sections: {
+      summary: 'Resumo Profissional',
+      experienceYears: 'Experiência (em anos)',
+      projectsWorked: 'Projetos em que Trabalhei',
+      workExperience: 'Experiência Profissional',
+      education: 'Formação Acadêmica',
+      certifications: 'Certificações',
+      languages: 'Idiomas',
+    },
+    years: 'anos',
+    present: 'Presente',
+    noExpiryDate: 'Sem data de expiração',
+    viewCredential: 'Ver Credencial',
+    availableForRelocation: 'Disponível para realocação',
+    proficiencyLevels: {
+      0: 'Sem Proficiência',
+      1: 'Proficiência Básica',
+      2: 'Proficiência Limitada',
+      3: 'Proficiência Profissional',
+      4: 'Proficiência Profissional Completa',
+      5: 'Proficiência Nativa / Bilíngue',
+    },
   },
 };

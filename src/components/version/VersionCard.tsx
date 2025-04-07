@@ -3,6 +3,7 @@ import { type CVVersion } from '@/lib/versioning';
 import { Button } from '../ui/Button';
 import { Download, Trash2, Edit } from 'lucide-react';
 import { RenameDialog } from './RenameDialog';
+import { useTranslation } from 'react-i18next';
 
 interface VersionCardProps {
   version: CVVersion;
@@ -14,6 +15,7 @@ interface VersionCardProps {
 
 export function VersionCard({ version, onSelect, onDelete, onExport, onRename }: VersionCardProps) {
   const [showRenameDialog, setShowRenameDialog] = useState(false);
+  const { t } = useTranslation(['common']);
 
   const getStatusColor = (status: CVVersion['status']) => {
     return status === 'completed' 
@@ -22,7 +24,7 @@ export function VersionCard({ version, onSelect, onDelete, onExport, onRename }:
   };
 
   const displayName = version.displayName || version.name;
-  const timestamp = new Date(version.timestamp).toLocaleString('en-US', {
+  const timestamp = new Date(version.timestamp).toLocaleString(undefined, {
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',
@@ -37,7 +39,9 @@ export function VersionCard({ version, onSelect, onDelete, onExport, onRename }:
           <div>
             <h3 className="font-medium text-gray-900 dark:text-white">{displayName}</h3>
             <span className="text-xs text-gray-500 dark:text-gray-400">{timestamp}</span>
-            <div className="text-sm text-gray-600 dark:text-gray-300 capitalize">{version.status}</div>
+            <div className="text-sm text-gray-600 dark:text-gray-300 capitalize">
+              {t(`common:versionPanel.status.${version.status}`)}
+            </div>
           </div>
           <div className="flex gap-2">
             <Button
@@ -72,7 +76,7 @@ export function VersionCard({ version, onSelect, onDelete, onExport, onRename }:
           className="w-full"
           onClick={() => onSelect(version)}
         >
-          Load Version
+          {t('common:versionPanel.loadVersion')}
         </Button>
       </div>
 

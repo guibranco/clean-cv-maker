@@ -10,19 +10,6 @@ import { getVersion, getCurrentVersion } from './lib/versioning';
 import type { CVVersion } from './lib/versioning';
 import { useTranslation } from 'react-i18next';
 
-/**
- * The main application component that manages the display of the Clean CV Maker.
- * It handles theme settings, version selection, and initial data loading.
- *
- * @component
- * @returns {JSX.Element} The rendered application component.
- *
- * @example
- * // Usage in a React application
- * <App />
- *
- * @throws {Error} Throws an error if there is an issue retrieving the version data.
- */
 function App() {
   const [showVersions, setShowVersions] = useState(false);
   const [initialData, setInitialData] = useState<CVVersion['data'] | undefined>();
@@ -54,14 +41,6 @@ function App() {
     }
   }, []);
 
-  /**
-   * Updates the current URL to include the selected version's ID as a query parameter,
-   * updates the initial data based on the selected version, and hides the version selection.
-   *
-   * @param {CVVersion} version - The version object containing the ID and associated data.
-   * @throws {Error} Throws an error if the version parameter is invalid or if there is an issue
-   *                 with updating the URL or state.
-   */
   const handleVersionSelect = (version: CVVersion) => {
     const url = new URL(window.location.href);
     url.searchParams.set('version', version.id);

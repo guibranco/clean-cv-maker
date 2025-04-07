@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useForm, FormProvider } from 'react-hook-form';
 import { pdf } from '@react-pdf/renderer';
 import { CVDocument } from './CVDocument';
@@ -9,99 +8,32 @@ import { EducationForm } from './EducationForm';
 import { CertificatesForm } from './CertificatesForm';
 import { saveVersion } from '@/lib/versioning';
 import { generateHTML } from '@/lib/html-generator';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { PersonalInfoSection } from './form/PersonalInfoSection';
 import { FormActions } from './form/FormActions';
 import { PreviewSection } from './form/PreviewSection';
 import { AutoSaveTooltip } from './form/AutoSaveTooltip';
-import { Switch } from './ui/Switch';
-
-const personalInfoSchema = z.object({
-  fullName: z.string().min(1, 'Full name is required'),
-  title: z.string().min(1, 'Professional title is required'),
-  location: z.string().min(1, 'Location is required'),
-  email: z.string().email('Invalid email address').min(1, 'Email is required'),
-  phone: z.string().min(1, 'Phone number is required'),
-  githubUrl: z.string().url('Invalid GitHub URL').optional().or(z.literal('')),
-  linkedinUrl: z.string().url('Invalid LinkedIn URL').optional().or(z.literal('')),
-  portfolioUrl: z.string().url('Invalid portfolio URL').optional().or(z.literal('')),
-  willRelocate: z.boolean(),
-  bio: z.string().min(1, 'Professional bio is required'),
-  hasExperience: z.boolean().optional(),
-  hasProjects: z.boolean().optional(),
-  hasEducation: z.boolean().optional(),
-  hasCertificates: z.boolean().optional(),
-  experiences: z.array(z.object({
-    companyName: z.string().min(1, 'Company name is required'),
-    companyLogoUrl: z.string().optional(),
-    companySize: z.string().optional(),
-    companyIndustry: z.string().optional(),
-    companyDescription: z.string().optional(),
-    contractType: z.enum(['', 'full-time', 'part-time', 'freelance']),
-    workSchema: z.enum(['', 'on-site', 'remote', 'hybrid']),
-    startDate: z.string().min(1, 'Start date is required'),
-    endDate: z.string().optional(),
-    current: z.boolean(),
-    roles: z.array(z.object({
-      title: z.string().min(1, 'Role title is required'),
-      startDate: z.string().min(1, 'Role start date is required'),
-      endDate: z.string().optional(),
-      current: z.boolean(),
-      description: z.string().min(1, 'Role description is required'),
-      achievements: z.array(z.string()),
-    })).min(1, 'At least one role is required'),
-  })).optional(),
-  education: z.array(z.object({
-    institution: z.string().min(1, 'Institution name is required'),
-    institutionLogo: z.string().url('Invalid logo URL').optional().or(z.literal('')),
-    degree: z.string().min(1, 'Degree is required'),
-    startDate: z.string().min(1, 'Start date is required'),
-    endDate: z.string().optional(),
-    current: z.boolean(),
-    description: z.string().optional(),
-  })).optional(),
-  projects: z.array(z.object({
-    name: z.string().min(1, 'Project name is required'),
-    icon: z.string().url('Invalid icon URL').optional(),
-    description: z.string().min(1, 'Project description is required'),
-    sourceCodeUrl: z.string().url('Invalid source code URL').optional(),
-    isSourceOpen: z.boolean(),
-    demoUrl: z.string().url('Invalid demo URL').optional(),
-    hasDemoAvailable: z.boolean(),
-    documentationUrl: z.string().url('Invalid documentation URL').optional(),
-    hasDocumentation: z.boolean(),
-    startDate: z.string().min(1, 'Start date is required'),
-    techStack: z.array(z.string()).max(10, 'Maximum 10 technologies allowed'),
-  })).optional(),
-  certificates: z.array(z.object({
-    name: z.string().min(1, 'Certificate name is required'),
-    issuer: z.string().min(1, 'Issuer is required'),
-    issuerLogo: z.string().url('Invalid logo URL').optional().or(z.literal('')),
-    issueDate: z.string().min(1, 'Issue date is required'),
-    expiryDate: z.string().optional(),
-    neverExpires: z.boolean(),
-    credentialId: z.string().optional(),
-    credentialUrl: z.string().url('Invalid credential URL').optional().or(z.literal('')),
-    description: z.string().optional(),
-    isPaid: z.boolean(),
-  })).optional(),
-});
-
-export type PersonalInfoFormData = z.infer<typeof personalInfoSchema>;
+import { useTranslation } from 'react-i18next';
+import { CollapsibleSection } from './form/CollapsibleSection';
+import { useFormValidation } from '@/lib/hooks/useFormValidation';
+import { personalInfoSchema, type PersonalInfoFormData } from '@/lib/schemas/personal-info';
 
 interface PersonalInfoFormProps {
   initialData?: PersonalInfoFormData;
 }
 
 export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
+  const { t } = useTranslation(['common']);
   const methods = useForm<PersonalInfoFormData>({
     resolver: zodResolver(personalInfoSchema),
     defaultValues: {
-      hasExperience: true,
-      hasProjects: true,
-      hasEducation: true,
+      hasExperience: false,
+      hasProjects: false,
+      hasEducation: false,
       hasCertificates: false,
+      experienceYears: [],
+      projectsWorked: [],
+      languages: [],
       experiences: [
         {
           companyName: '',
@@ -110,7 +42,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
           startDate: '',
           endDate: '',
           current: false,
-          roles: [{ title: '', startDate: '', endDate: '', current: false, description: '', achievements: ['', '', ''] }],
+          roles: [{ title: '', startDate: '', endDate: '', current: false, description: '', achievements: [''] }],
         },
       ],
       education: [
@@ -121,7 +53,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
           startDate: '',
           endDate: '',
           current: false,
-          description: '',
+          topics: [''],
         },
       ],
       projects: [
@@ -142,6 +74,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
           issueDate: '',
           neverExpires: false,
           isPaid: true,
+          topics: [''],
         },
       ],
       ...initialData,
@@ -149,17 +82,17 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
     mode: 'onChange',
   });
 
-  const { handleSubmit, watch, reset, setValue, formState: { errors, isValid } } = methods;
+  const { handleSubmit, watch, reset, setValue, formState: { errors } } = methods;
   const [lastSaveTime, setLastSaveTime] = useState<number>(0);
-  const [showAutoSaveTooltip, setShowAutoSaveTooltip] = useState(false);
-  const [tooltipMessage, setTooltipMessage] = useState('');
   const formData = watch();
   const hasExperience = watch('hasExperience');
   const hasProjects = watch('hasProjects');
   const hasEducation = watch('hasEducation');
   const hasCertificates = watch('hasCertificates');
 
-  const hasData = formData.fullName || formData.title || formData.bio ||
+  const { showTooltip, formatValidationErrors, tooltipMessage, showAutoSaveTooltip } = useFormValidation();
+
+  const hasData = formData.fullName || formData.title || formData.bio || 
     (formData.experiences?.some(exp => exp.companyName)) ||
     (formData.education?.some(edu => edu.institution)) ||
     (formData.projects?.some(proj => proj.name));
@@ -169,12 +102,6 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
       reset(initialData);
     }
   }, [initialData, reset]);
-
-  const showTooltip = (message: string) => {
-    setTooltipMessage(message);
-    setShowAutoSaveTooltip(true);
-    setTimeout(() => setShowAutoSaveTooltip(false), 3000);
-  };
 
   const handleFieldBlur = () => {
     const now = Date.now();
@@ -191,16 +118,16 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
     try {
       const doc = <CVDocument data={data} />;
       const blob = await pdf(doc).toBlob();
-
+      
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
       link.download = `${data.fullName.replace(/\s+/g, '-').toLowerCase()}-cv.pdf`;
-
+      
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-
+      
       URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Error generating PDF:', error);
@@ -211,14 +138,11 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
   const handleSaveCompleted = async () => {
     const result = await methods.trigger();
     if (!result) {
-      const errorMessages = Object.entries(errors)
-        .map(([key, value]) => `${key}: ${value?.message}`)
-        .join('\n');
-      showTooltip('Please fill in all required fields');
-      console.error('Validation errors:', errorMessages);
+      const errorMessage = formatValidationErrors(errors);
+      showTooltip(errorMessage);
       return;
     }
-
+    
     const versionId = saveVersion(formData, 'completed');
     if (versionId) {
       setLastSaveTime(Date.now());
@@ -226,7 +150,13 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
     }
   };
 
-  const handleGenerateHTML = () => {
+  const handleGenerateHTML = async () => {
+    const result = await methods.trigger();
+    if (!result) {
+      const errorMessage = formatValidationErrors(errors);
+      showTooltip(errorMessage);
+      return;
+    }
     generateHTML(formData);
   };
 
@@ -262,7 +192,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
           startDate: '',
           endDate: '',
           current: false,
-          description: '',
+          topics: [''],
         },
       ]);
     }
@@ -299,6 +229,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
           issueDate: '',
           neverExpires: false,
           isPaid: true,
+          topics: [''],
         },
       ]);
     }
@@ -311,69 +242,37 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
           <div className="space-y-8">
             <PersonalInfoSection />
 
-            <div className="flex items-center space-x-4">
-              <Switch
-                id="hasExperience"
-                checked={hasExperience}
-                onCheckedChange={handleExperienceToggle}
-              />
-              <label
-                htmlFor="hasExperience"
-                className="text-sm font-medium text-gray-900 dark:text-gray-100 cursor-pointer select-none"
-              >
-                I have work experience
-              </label>
-            </div>
+            <CollapsibleSection
+              title={t('common:switches.experience')}
+              enabled={hasExperience}
+              onToggle={handleExperienceToggle}
+            >
+              <ExperienceForm />
+            </CollapsibleSection>
 
-            {hasExperience && <ExperienceForm />}
+            <CollapsibleSection
+              title={t('common:switches.education')}
+              enabled={hasEducation}
+              onToggle={handleEducationToggle}
+            >
+              <EducationForm />
+            </CollapsibleSection>
 
-            <div className="flex items-center space-x-4">
-              <Switch
-                id="hasEducation"
-                checked={hasEducation}
-                onCheckedChange={handleEducationToggle}
-              />
-              <label
-                htmlFor="hasEducation"
-                className="text-sm font-medium text-gray-900 dark:text-gray-100 cursor-pointer select-none"
-              >
-                I want to add education
-              </label>
-            </div>
+            <CollapsibleSection
+              title={t('common:switches.projects')}
+              enabled={hasProjects}
+              onToggle={handleProjectsToggle}
+            >
+              <ProjectsForm />
+            </CollapsibleSection>
 
-            {hasEducation && <EducationForm />}
-
-            <div className="flex items-center space-x-4">
-              <Switch
-                id="hasProjects"
-                checked={hasProjects}
-                onCheckedChange={handleProjectsToggle}
-              />
-              <label
-                htmlFor="hasProjects"
-                className="text-sm font-medium text-gray-900 dark:text-gray-100 cursor-pointer select-none"
-              >
-                I have projects to showcase
-              </label>
-            </div>
-
-            {hasProjects && <ProjectsForm />}
-
-            <div className="flex items-center space-x-4">
-              <Switch
-                id="hasCertificates"
-                checked={hasCertificates}
-                onCheckedChange={handleCertificatesToggle}
-              />
-              <label
-                htmlFor="hasCertificates"
-                className="text-sm font-medium text-gray-900 dark:text-gray-100 cursor-pointer select-none"
-              >
-                I have certifications to add
-              </label>
-            </div>
-
-            {hasCertificates && <CertificatesForm />}
+            <CollapsibleSection
+              title={t('common:switches.certificates')}
+              enabled={hasCertificates}
+              onToggle={handleCertificatesToggle}
+            >
+              <CertificatesForm />
+            </CollapsibleSection>
           </div>
 
           <FormActions

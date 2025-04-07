@@ -1,6 +1,6 @@
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, useFieldArray } from 'react-hook-form';
 import { Button } from '../ui/Button';
-import { Trash2 } from 'lucide-react';
+import { Trash2, Plus } from 'lucide-react';
 import { Tooltip } from '../ui/Tooltip';
 import { FormField } from '../form/FormField';
 
@@ -10,8 +10,13 @@ interface EducationFieldsProps {
 }
 
 export function EducationFields({ index, onRemove }: EducationFieldsProps) {
-  const { register, watch } = useFormContext();
+  const { register, watch, control } = useFormContext();
   const current = watch(`education.${index}.current`);
+
+  const { fields: topics, append: appendTopic, remove: removeTopic } = useFieldArray({
+    control,
+    name: `education.${index}.topics`,
+  });
 
   return (
     <div className="border dark:border-gray-700 rounded-lg p-6 space-y-6 bg-white dark:bg-gray-800">
@@ -108,17 +113,45 @@ export function EducationFields({ index, onRemove }: EducationFieldsProps) {
           </div>
         </div>
 
-        <div className="sm:col-span-2">
-          <FormField
-            name={`education.${index}.description`}
-            label="Description"
-            textarea
-            tooltip={{
-              content: "Additional details about your education.",
-              importance: "Provides context about your academic achievements and focus areas.",
-              tips: "Include relevant coursework, thesis topics, or notable projects."
-            }}
-          />
+        <div className="sm:col-span-2 space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-200">Topics & Skills Learned</h4>
+              <Tooltip
+                content="Key topics, courses, and skills learned during your education."
+                importance="Helps recruiters understand the specific knowledge and skills you gained."
+                tips="Include relevant coursework, major projects, and key skills acquired."
+              />
+            </div>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => appendTopic('')}
+              className="gap-2"
+            >
+              <Plus className="h-4 w-4" />
+              Add Topic
+            </Button>
+          </div>
+          {topics.map((topic, topicIndex) => (
+            <div key={topic.id} className="flex items-center gap-2">
+              <span className="text-gray-500 dark:text-gray-400">•</span>
+              <input
+                type="text"
+                {...register(`education.${index}.topics.${topicIndex}`)}
+                placeholder="Enter a topic or skill learned"
+                className="flex-1 rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              />
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => removeTopic(topicIndex)}
+                className="text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
+              >
+                <Trash2 className="h-4 w-4" />
+              </Button>
+            </div>
+          ))}
         </div>
       </div>
     </div>

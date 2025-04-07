@@ -1,6 +1,6 @@
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, useFieldArray } from 'react-hook-form';
 import { Button } from '../ui/Button';
-import { Trash2 } from 'lucide-react';
+import { Trash2, Plus } from 'lucide-react';
 import { FormField } from '../form/FormField';
 import { FormCheckbox } from '../form/FormCheckbox';
 import { Tooltip } from '../ui/Tooltip';
@@ -11,9 +11,14 @@ interface CertificateFieldsProps {
 }
 
 export function CertificateFields({ index, onRemove }: CertificateFieldsProps) {
-  const { register, watch } = useFormContext();
+  const { register, watch, control } = useFormContext();
   const neverExpires = watch(`certificates.${index}.neverExpires`);
   const isPaid = watch(`certificates.${index}.isPaid`);
+
+  const { fields: topics, append: appendTopic, remove: removeTopic } = useFieldArray({
+    control,
+    name: `certificates.${index}.topics`,
+  });
 
   return (
     <div className="border dark:border-gray-700 rounded-lg p-6 space-y-6 bg-white dark:bg-gray-800">
@@ -138,19 +143,6 @@ export function CertificateFields({ index, onRemove }: CertificateFieldsProps) {
         </div>
 
         <div className="sm:col-span-2">
-          <FormField
-            name={`certificates.${index}.description`}
-            label="Description"
-            textarea
-            tooltip={{
-              content: "Brief description of what this certification represents.",
-              importance: "Helps explain the value and scope of your certification.",
-              tips: "Focus on the skills and knowledge validated by this certification."
-            }}
-          />
-        </div>
-
-        <div className="sm:col-span-2">
           <FormCheckbox
             name={`certificates.${index}.isPaid`}
             label="This is a paid certification"
@@ -165,6 +157,47 @@ export function CertificateFields({ index, onRemove }: CertificateFieldsProps) {
               ⚠️ Free certifications may be viewed less favorably by some employers. Consider including only the most relevant ones.
             </p>
           )}
+        </div>
+
+        <div className="sm:col-span-2 space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-200">Topics & Skills Covered</h4>
+              <Tooltip
+                content="Key topics and skills covered in the certification."
+                importance="Shows the specific knowledge and competencies validated by this certification."
+                tips="Include the most relevant and valuable skills for your target roles."
+              />
+            </div>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => appendTopic('')}
+              className="gap-2"
+            >
+              <Plus className="h-4 w-4" />
+              Add Topic
+            </Button>
+          </div>
+          {topics.map((topic, topicIndex) => (
+            <div key={topic.id} className="flex items-center gap-2">
+              <span className="text-gray-500 dark:text-gray-400">•</span>
+              <input
+                type="text"
+                {...register(`certificates.${index}.topics.${topicIndex}`)}
+                placeholder="Enter a topic or skill covered"
+                className="flex-1 rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              />
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => removeTopic(topicIndex)}
+                className="text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
+              >
+                <Trash2 className="h-4 w-4" />
+              </Button>
+            </div>
+          ))}
         </div>
       </div>
     </div>
