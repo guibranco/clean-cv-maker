@@ -1,7 +1,7 @@
 export const form = {
   sections: {
     personalInfo: {
-      title: 'ذاتی معلومات',
+      sectionTitle: 'ذاتی معلومات',
       fullName: {
         label: 'مکمل نام',
         placeholder: 'اپنا مکمل نام درج کریں',
@@ -11,7 +11,7 @@ export const form = {
           tips: "تجاویز: اپنا قانونی نام یا ایک مستقل پیشہ ورانہ نام استعمال کریں۔",
         },
       },
-      title: {
+      professionalTitle: {
         label: 'پیشہ ورانہ عہدہ',
         placeholder: 'مثال، سینئر سافٹ ویئر انجینئر',
         tooltip: {

@@ -1,7 +1,7 @@
 export const form = {
   sections: {
     personalInfo: {
-      title: 'Persönliche Informationen',
+      sectionTitle: 'Persönliche Informationen',
       fullName: {
         label: 'Vollständiger Name',
         placeholder: 'Geben Sie Ihren vollständigen Namen ein',
@@ -11,7 +11,7 @@ export const form = {
           tips: "Tipps: Verwenden Sie Ihren rechtlichen Namen oder einen konsistenten professionellen Namen.",
         },
       },
-      title: {
+      professionalTitle: {
         label: 'Berufsbezeichnung',
         placeholder: 'z.B., Senior Software Entwickler',
         tooltip: {
