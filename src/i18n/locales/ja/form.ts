@@ -1,7 +1,7 @@
 export const form = {
   sections: {
     personalInfo: {
-      title: '個人情報',
+      sectionTitle: '個人情報',
       fullName: {
         label: '氏名',
         placeholder: 'フルネームを入力してください',
@@ -11,7 +11,7 @@ export const form = {
           tips: "ヒント：法的名前または一貫した専門的な名前を使用してください。",
         },
       },
-      title: {
+      professionalTitle: {
         label: '職業名',
         placeholder: '例：シニアソフトウェアエンジニア',
         tooltip: {
