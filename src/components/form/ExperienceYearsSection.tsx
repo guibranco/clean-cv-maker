@@ -26,7 +26,7 @@ export function ExperienceYearsSection() {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleDragEnd = (result: any) => {
-    if (!result.destination) return;
+    if (!result.destination) { return; }
     move(result.source.index, result.destination.index);
   };
 
@@ -72,9 +72,8 @@ export function ExperienceYearsSection() {
                         <div
                           ref={provided.innerRef}
                           {...provided.draggableProps}
-                          className={`flex items-center gap-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border dark:border-gray-700 ${
-                            snapshot.isDragging ? 'opacity-50' : ''
-                          }`}
+                          className={`flex items-center gap-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border dark:border-gray-700 ${snapshot.isDragging ? 'opacity-50' : ''
+                            }`}
                         >
                           <div
                             {...provided.dragHandleProps}
