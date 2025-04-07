@@ -4,17 +4,11 @@ import { Plus, Trash2, GripVertical } from 'lucide-react';
 import { Tooltip } from '../ui/Tooltip';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import { Collapsible } from '../ui/Collapsible';
+import { calculateYearsOfExperience } from '@/lib/utils';
 
 export interface ExperienceYear {
   technology: string;
   startDate: string;
-}
-
-function calculateYearsOfExperience(startDate: string): number {
-  const start = new Date(startDate);
-  const now = new Date();
-  const diffInMonths = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
-  return Math.floor(diffInMonths / 12);
 }
 
 export function ExperienceYearsSection() {
