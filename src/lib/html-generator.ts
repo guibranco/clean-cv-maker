@@ -219,11 +219,11 @@ export function generateHTML(data: PersonalInfoFormData) {
               <div class="education-header">
                 <div class="header-with-logo">
                   ${formatImage(edu.institutionLogo, `${edu.institution} logo`, 'logo')}
-                  <span class="institution">${edu.institution}</span>
+                  <span class="institution">${escapeHtml(edu.institution)}</span>
                 </div>
                 <span class="dates">${edu.startDate} - ${edu.current ? 'Present' : edu.endDate}</span>
               </div>
-              <div class="degree">${edu.degree}</div>
+              <div class="degree">${escapeHtml(edu.degree)}</div>
               ${
                 edu.topics.filter(Boolean).length > 0
                   ? `
