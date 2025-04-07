@@ -160,7 +160,7 @@ export function generateHTML(data: PersonalInfoFormData) {
               <div class="company-header">
                 <div class="header-with-logo">
                   ${formatImage(exp.companyLogoUrl, `${exp.companyName} logo`, 'logo')}
-                  <span class="company-name">${exp.companyName}</span>
+                  <span class="company-name">${escapeHtml(exp.companyName)}</span>
                 </div>
                 <span class="company-dates">${exp.startDate} - ${exp.current ? 'Present' : exp.endDate}</span>
               </div>
