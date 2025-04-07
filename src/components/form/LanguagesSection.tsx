@@ -46,15 +46,7 @@ export function LanguagesSection() {
         <Button
           type="button"
           variant="outline"
-<Button
-  type="button"
-  variant="outline"
-  onClick={() => append({ id: Date.now().toString(), language: '', proficiency: 0 })}
-  className="gap-2"
->
-  <Plus className="h-4 w-4" />
-  Add Language
-</Button>
+          onClick={() => append({ id: Date.now().toString(), language: '', proficiency: 0 })}
           className="gap-2"
         >
           <Plus className="h-4 w-4" />
