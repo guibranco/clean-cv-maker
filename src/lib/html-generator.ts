@@ -307,7 +307,9 @@ export function generateHTML(data: PersonalInfoFormData) {
                 cert.topics.filter(Boolean).length > 0
                   ? `
                 <ul class="description">
-                  ${formatList(cert.topics)}
+<ul class="description">
+  ${formatList(cert.topics.map(topic => escapeHtml(topic)))}
+</ul>
                 </ul>
               `
                   : ''
