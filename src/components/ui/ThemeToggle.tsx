@@ -3,7 +3,14 @@ import { useEffect, useState } from 'react';
 import { Button } from './Button';
 
 export function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('theme');
+      return savedTheme === 'dark' ||
+        (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
+    return false;
+  });
 
   useEffect(() => {
     const isDarkMode = document.documentElement.classList.contains('dark');
