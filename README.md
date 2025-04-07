@@ -17,21 +17,21 @@ Craft and manage **multiple versions** of your CV effortlessly. Each version is 
 🌍 **Multilingual Support**  
 Clean CV Maker is designed with global users in mind. It currently includes support for the following languages:
 
-- 🇸🇦 **AR** (Arabic) — 🛠️ Needs improvements  
-- 🇩🇪 **DE** (German) — 🛠️ Needs improvements  
-- 🇺🇸 **EN-US** (English - US) — ✅ Default language  
-- 🇪🇸 **ES-ES** (Spanish - Spain) — 🛠️ Needs improvements  
-- 🇫🇷 **FR** (French) — 🛠️ Needs improvements  
-- 🇮🇳 **HI** (Hindi) — 🛠️ Needs improvements  
-- 🇮🇹 **IT** (Italian) — 🛠️ Needs improvements  
-- 🇯🇵 **JA** (Japanese) — 🛠️ Needs improvements  
-- 🇰🇷 **KO** (Korean) — 🛠️ Needs improvements  
-- 🇧🇷 **PT-BR** (Portuguese - Brazil) — 🛠️ Needs improvements  
-- 🇷🇺 **RU** (Russian) — 🛠️ Needs improvements  
-- 🇺🇦 **UK** (Ukrainian) — 🛠️ Needs improvements  
-- 🇵🇰 **UR** (Urdu) — 🛠️ Needs improvements  
+- 🇸🇦 **AR** (Arabic) — 🛠️ Needs improvements ![35% translated](https://progress-bar.xyz/35)  
+- 🇩🇪 **DE** (German) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45)  
+- 🇺🇸 **EN-US** (English - US) — ✅ Default language ![100% translated](https://progress-bar.xyz/100) 
+- 🇪🇸 **ES-ES** (Spanish - Spain) — 🛠️ Needs improvements ![65% translated](https://progress-bar.xyz/65) 
+- 🇫🇷 **FR** (French) — 🛠️ Needs improvements ![40% translated](https://progress-bar.xyz/40) 
+- 🇮🇳 **HI** (Hindi) — 🛠️ Needs improvements ![35% translated](https://progress-bar.xyz/35) 
+- 🇮🇹 **IT** (Italian) — 🛠️ Needs improvements ![40% translated](https://progress-bar.xyz/40) 
+- 🇯🇵 **JA** (Japanese) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45) 
+- 🇰🇷 **KO** (Korean) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45) 
+- 🇧🇷 **PT-BR** (Portuguese - Brazil) — 🛠️ Needs improvements ![85% translated](https://progress-bar.xyz/85) 
+- 🇷🇺 **RU** (Russian) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45) 
+- 🇺🇦 **UK** (Ukrainian) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45) 
+- 🇵🇰 **UR** (Urdu) — 🛠️ Needs improvements ![35% translated](https://progress-bar.xyz/35) 
 
-We welcome contributions to improve translations and enhance the user experience in all supported languages! 🌐✨
+Want to help improve translations? Check our [contribution guidelines](CONTRIBUTING.md) and help make Clean CV Maker more accessible to users worldwide!🌐✨
 
 ---
 
