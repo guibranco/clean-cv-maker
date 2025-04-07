@@ -260,15 +260,15 @@ export function generateHTML(data: PersonalInfoFormData) {
               <div class="company-header">
                 <div class="header-with-logo">
                   ${formatImage(project.icon, `${project.name} icon`, 'project-icon')}
-                  <span class="company-name">${project.name}</span>
+                  <span class="company-name">${escapeHtml(project.name)}</span>
                 </div>
                 <span class="company-dates">${project.startDate}</span>
               </div>
-              <p>${formatText(project.description)}</p>
+              <p>${formatText(escapeHtml(project.description))}</p>
               ${
                 project.techStack.length > 0
                   ? `
-                <p class="description">Technologies: ${project.techStack.join(', ')}</p>
+                <p class="description">Technologies: ${project.techStack.map(tech => escapeHtml(tech)).join(', ')}</p>
               `
                   : ''
               }
