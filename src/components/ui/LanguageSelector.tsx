@@ -27,7 +27,7 @@ export function LanguageSelector() {
         <img
           src={currentLanguage.flag}
           alt={`${currentLanguage.name} flag`}
-          className="h-4 w-6 object-cover rounded-sm"
+          className="h-4 w-6 object-cover rounded"
         />
         <span>{currentLanguage.name}</span>
         <ChevronDown className="h-4 w-4" />
@@ -49,7 +49,7 @@ export function LanguageSelector() {
                 <img
                   src={language.flag}
                   alt={`${language.name} flag`}
-                  className="h-4 w-6 object-cover rounded-sm mr-2"
+                  className="h-4 w-6 object-cover rounded mr-2"
                 />
                 <span>{language.name}</span>
               </button>

@@ -10,19 +10,6 @@ import { getVersion, getCurrentVersion } from './lib/versioning';
 import type { CVVersion } from './lib/versioning';
 import { useTranslation } from 'react-i18next';
 
-/**
- * The main application component that manages the display of the Clean CV Maker.
- * It handles theme settings, version selection, and initial data loading.
- *
- * @component
- * @returns {JSX.Element} The rendered application component.
- *
- * @example
- * // Usage in a React application
- * <App />
- *
- * @throws {Error} Throws an error if there is an issue retrieving the version data.
- */
 function App() {
   const [showVersions, setShowVersions] = useState(false);
   const [initialData, setInitialData] = useState<CVVersion['data'] | undefined>();
@@ -54,14 +41,6 @@ function App() {
     }
   }, []);
 
-  /**
-   * Updates the current URL to include the selected version's ID as a query parameter,
-   * updates the initial data based on the selected version, and hides the version selection.
-   *
-   * @param {CVVersion} version - The version object containing the ID and associated data.
-   * @throws {Error} Throws an error if the version parameter is invalid or if there is an issue
-   *                 with updating the URL or state.
-   */
   const handleVersionSelect = (version: CVVersion) => {
     const url = new URL(window.location.href);
     url.searchParams.set('version', version.id);
@@ -72,7 +51,7 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
-      <header className="bg-white shadow-sm dark:bg-gray-800">
+      <header className="bg-white shadow dark:bg-gray-800">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -97,7 +76,7 @@ function App() {
       </header>
       <main className="flex-1">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <div className="bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
+          <div className="bg-white shadow sm:rounded-lg dark:bg-gray-800">
             <div className="px-4 py-5 sm:p-6">
               <PersonalInfoForm initialData={initialData} />
             </div>

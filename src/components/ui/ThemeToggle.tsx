@@ -3,14 +3,12 @@ import { useEffect, useState } from 'react';
 import { Button } from './Button';
 
 export function ThemeToggle() {
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return document.documentElement.classList.contains('dark');
-    }
-    return false;
-  });
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
+    const isDarkMode = document.documentElement.classList.contains('dark');
+    setIsDark(isDarkMode);
+
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.attributeName === 'class') {
@@ -41,7 +39,6 @@ export function ThemeToggle() {
       size="sm"
       onClick={toggleTheme}
       className="fixed bottom-4 left-4 z-50 bg-white dark:bg-gray-800"
-      aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
     >
       {isDark ? (
         <Sun className="h-4 w-4" />

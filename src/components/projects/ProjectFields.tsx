@@ -1,6 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 import { Button } from '../ui/Button';
 import { Trash2 } from 'lucide-react';
+import { Tooltip } from '../ui/Tooltip';
 import { FormField } from '../form/FormField';
 import { FormCheckbox } from '../form/FormCheckbox';
 import { TechStackSelect } from './TechStackSelect';
