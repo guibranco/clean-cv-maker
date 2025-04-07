@@ -1,7 +1,7 @@
 export const form = {
   sections: {
     personalInfo: {
-      title: '개인 정보',
+      sectionTitle: '개인 정보',
       fullName: {
         label: '성명',
         placeholder: '전체 이름을 입력하세요',
@@ -11,7 +11,7 @@ export const form = {
           tips: "팁: 법적 이름 또는 일관된 전문적인 이름을 사용하세요.",
         },
       },
-      title: {
+      professionalTitle: {
         label: '직함',
         placeholder: '예: 시니어 소프트웨어 엔지니어',
         tooltip: {
