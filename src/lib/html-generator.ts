@@ -295,7 +295,7 @@ export function generateHTML(data: PersonalInfoFormData) {
                   <span class="certificate-name">${cert.name}</span>
                 </div>
                 <span class="certificate-details">
-                  ${cert.issueDate}${!cert.neverExpires && cert.expiryDate ? ` - ${cert.expiryDate}` : ''}
+                  ${escapeHtml(cert.issueDate)}${!cert.neverExpires && cert.expiryDate ? ` - ${escapeHtml(cert.expiryDate)}` : ''}
                 </span>
               </div>
               <div class="certificate-details">
