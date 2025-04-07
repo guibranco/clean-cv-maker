@@ -333,7 +333,7 @@ export function generateHTML(data: PersonalInfoFormData) {
               (lang) => `
             <div class="language-section">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div class="language-name">${lang.language}</div>
+                <div class="language-name">${escapeHtml(lang.language)}</div>
                 <div style="color: #666; font-size: 0.875rem;">${getProficiencyLabel(lang.proficiency)}</div>
               </div>
               <div class="proficiency-bar">
