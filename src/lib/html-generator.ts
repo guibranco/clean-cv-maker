@@ -174,7 +174,7 @@ export function generateHTML(data: PersonalInfoFormData) {
                   .filter(Boolean)
                   .join(' • ')}
               </div>
-              ${exp.companyDescription ? `<p>${formatText(exp.companyDescription)}</p>` : ''}
+              ${exp.companyDescription ? `<p>${formatText(escapeHtml(exp.companyDescription))}</p>` : ''}
               ${exp.roles
                 .filter((role) => role.title || role.description)
                 .map(
