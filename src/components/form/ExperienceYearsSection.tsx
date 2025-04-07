@@ -24,6 +24,7 @@ export function ExperienceYearsSection() {
     name: 'experienceYears',
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleDragEnd = (result: any) => {
     if (!result.destination) return;
     move(result.source.index, result.destination.index);
