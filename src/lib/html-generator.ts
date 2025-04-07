@@ -28,7 +28,7 @@ function formatImage(url: string, alt: string, className: string = ''): string {
   if (!url) {
     return '';
   }
-  return `<img src="${url}" alt="${alt}" class="${className}" loading="lazy" onerror="this.style.display='none'" />`;
+  return `<img src="${escapeHtml(url)}" alt="${escapeHtml(alt)}" class="${className}" loading="lazy" onerror="this.style.display='none'" />`;
 }
 
 const icons = {
