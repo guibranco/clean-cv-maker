@@ -104,13 +104,13 @@ export function CertificateFields({ index, onRemove }: CertificateFieldsProps) {
               type="month"
               {...register(`certificates.${index}.expiryDate` as const)}
               disabled={neverExpires}
-              className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-800"
+              className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-800"
             />
             <label className="flex items-center space-x-2">
               <input
                 type="checkbox"
                 {...register(`certificates.${index}.neverExpires` as const)}
-                className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:checked:bg-blue-500"
+                className="h-4 w-4 rounded-sm border-gray-300 text-blue-600 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:checked:bg-blue-500"
               />
               <span className="text-sm text-gray-700 dark:text-gray-200">Never expires</span>
             </label>
@@ -186,7 +186,7 @@ export function CertificateFields({ index, onRemove }: CertificateFieldsProps) {
                 type="text"
                 {...register(`certificates.${index}.topics.${topicIndex}`)}
                 placeholder="Enter a topic or skill covered"
-                className="flex-1 rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="flex-1 rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               />
               <Button
                 type="button"

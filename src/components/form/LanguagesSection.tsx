@@ -81,7 +81,7 @@ export function LanguagesSection() {
                             type="text"
                             {...control.register(`languages.${index}.language`)}
                             placeholder="Language name"
-                            className="w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                            className="w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                           />
                         </div>
                         <div className="flex-1">
@@ -89,7 +89,7 @@ export function LanguagesSection() {
                             {...control.register(`languages.${index}.proficiency`, {
                               valueAsNumber: true
                             })}
-                            className="w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                            className="w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                           >
                             {PROFICIENCY_LEVELS.map((level) => (
                               <option key={level.value} value={level.value}>

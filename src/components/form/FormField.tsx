@@ -31,7 +31,7 @@ export function FormField({
   const error = errors[name];
 
   const inputClassName = cn(
-    'mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:outline-none focus:ring-1',
+    'mt-1 block w-full rounded-md border px-3 py-2 shadow-xs focus:outline-hidden focus:ring-1',
     'bg-white dark:bg-gray-700 dark:text-white',
     error
       ? 'border-red-300 focus:border-red-500 focus:ring-red-500 dark:border-red-500'

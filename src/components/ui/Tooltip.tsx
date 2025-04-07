@@ -16,7 +16,7 @@ export function Tooltip({ content, importance, tips }: TooltipProps) {
     <div className="relative inline-block">
       <button
         type="button"
-        className="ml-1.5 text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 focus:outline-none"
+        className="ml-1.5 text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 focus:outline-hidden"
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
         onClick={() => setShow(!show)}
