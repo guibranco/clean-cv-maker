@@ -141,13 +141,7 @@ export function generateHTML(data: PersonalInfoFormData) {
         <div class="section">
           <h3 class="section-title">Projects I Worked On</h3>
           <ul>
-            ${data.projectsWorked
-              .map(
-                (project) => `
-              <li>${formatText(project)}</li>
-            `
-              )
-              .join('')}
+            ${formatList(data.projectsWorked.map(project => formatText(escapeHtml(project))))}
           </ul>
         </div>
       `
