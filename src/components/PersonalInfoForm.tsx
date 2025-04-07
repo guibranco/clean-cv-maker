@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useForm, FormProvider } from 'react-hook-form';
 import { pdf } from '@react-pdf/renderer';
 import { CVDocument } from './CVDocument';
@@ -16,6 +15,9 @@ import { FormActions } from './form/FormActions';
 import { PreviewSection } from './form/PreviewSection';
 import { AutoSaveTooltip } from './form/AutoSaveTooltip';
 import { Switch } from './ui/Switch';
+import { useTranslation } from 'react-i18next';
+import { ChevronDown } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const personalInfoSchema = z.object({
   fullName: z.string().min(1, 'Full name is required'),
@@ -28,6 +30,15 @@ const personalInfoSchema = z.object({
   portfolioUrl: z.string().url('Invalid portfolio URL').optional().or(z.literal('')),
   willRelocate: z.boolean(),
   bio: z.string().min(1, 'Professional bio is required'),
+  experienceYears: z.array(z.object({
+    technology: z.string().min(1, 'Technology name is required'),
+    startDate: z.string().min(1, 'Start date is required'),
+  })).optional(),
+  projectsWorked: z.array(z.string()).optional(),
+  languages: z.array(z.object({
+    language: z.string().min(1, 'Language name is required'),
+    proficiency: z.number().min(0).max(5),
+  })).optional(),
   hasExperience: z.boolean().optional(),
   hasProjects: z.boolean().optional(),
   hasEducation: z.boolean().optional(),
@@ -59,7 +70,7 @@ const personalInfoSchema = z.object({
     startDate: z.string().min(1, 'Start date is required'),
     endDate: z.string().optional(),
     current: z.boolean(),
-    description: z.string().optional(),
+    topics: z.array(z.string()),
   })).optional(),
   projects: z.array(z.object({
     name: z.string().min(1, 'Project name is required'),
@@ -83,7 +94,7 @@ const personalInfoSchema = z.object({
     neverExpires: z.boolean(),
     credentialId: z.string().optional(),
     credentialUrl: z.string().url('Invalid credential URL').optional().or(z.literal('')),
-    description: z.string().optional(),
+    topics: z.array(z.string()),
     isPaid: z.boolean(),
   })).optional(),
 });
@@ -94,7 +105,64 @@ interface PersonalInfoFormProps {
   initialData?: PersonalInfoFormData;
 }
 
+interface CollapsibleSectionProps {
+  title: string;
+  enabled: boolean;
+  onToggle: (enabled: boolean) => void;
+  children: React.ReactNode;
+}
+
+function CollapsibleSection({ title, enabled, onToggle, children }: CollapsibleSectionProps) {
+  const [isExpanded, setIsExpanded] = useState(enabled);
+
+  useEffect(() => {
+    if (!enabled) {
+      setIsExpanded(false);
+    }
+  }, [enabled]);
+
+  return (
+    <div className="border dark:border-gray-700 rounded-lg overflow-hidden">
+      <div className="bg-gray-50 dark:bg-gray-800 p-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <Switch
+              id={`enable-${title.toLowerCase()}`}
+              checked={enabled}
+              onCheckedChange={onToggle}
+            />
+            <label
+              htmlFor={`enable-${title.toLowerCase()}`}
+              className="text-sm font-medium text-gray-900 dark:text-gray-100 cursor-pointer select-none"
+            >
+              {title}
+            </label>
+          </div>
+          {enabled && (
+            <button
+              type="button"
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            >
+              <ChevronDown className={cn(
+                "h-5 w-5 transition-transform duration-200",
+                isExpanded ? "transform rotate-180" : ""
+              )} />
+            </button>
+          )}
+        </div>
+      </div>
+      {enabled && isExpanded && (
+        <div className="p-4 bg-white dark:bg-gray-900">
+          {children}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
+  const { t } = useTranslation(['common']);
   const methods = useForm<PersonalInfoFormData>({
     resolver: zodResolver(personalInfoSchema),
     defaultValues: {
@@ -102,6 +170,9 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
       hasProjects: true,
       hasEducation: true,
       hasCertificates: false,
+      experienceYears: [{ technology: '', startDate: '' }],
+      projectsWorked: [''],
+      languages: [{ language: '', proficiency: 0 }],
       experiences: [
         {
           companyName: '',
@@ -121,7 +192,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
           startDate: '',
           endDate: '',
           current: false,
-          description: '',
+          topics: [''],
         },
       ],
       projects: [
@@ -142,6 +213,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
           issueDate: '',
           neverExpires: false,
           isPaid: true,
+          topics: [''],
         },
       ],
       ...initialData,
@@ -159,7 +231,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
   const hasEducation = watch('hasEducation');
   const hasCertificates = watch('hasCertificates');
 
-  const hasData = formData.fullName || formData.title || formData.bio ||
+  const hasData = formData.fullName || formData.title || formData.bio || 
     (formData.experiences?.some(exp => exp.companyName)) ||
     (formData.education?.some(edu => edu.institution)) ||
     (formData.projects?.some(proj => proj.name));
@@ -191,16 +263,16 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
     try {
       const doc = <CVDocument data={data} />;
       const blob = await pdf(doc).toBlob();
-
+      
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
       link.download = `${data.fullName.replace(/\s+/g, '-').toLowerCase()}-cv.pdf`;
-
+      
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-
+      
       URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Error generating PDF:', error);
@@ -218,7 +290,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
       console.error('Validation errors:', errorMessages);
       return;
     }
-
+    
     const versionId = saveVersion(formData, 'completed');
     if (versionId) {
       setLastSaveTime(Date.now());
@@ -262,7 +334,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
           startDate: '',
           endDate: '',
           current: false,
-          description: '',
+          topics: [''],
         },
       ]);
     }
@@ -299,6 +371,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
           issueDate: '',
           neverExpires: false,
           isPaid: true,
+          topics: [''],
         },
       ]);
     }
@@ -311,69 +384,37 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
           <div className="space-y-8">
             <PersonalInfoSection />
 
-            <div className="flex items-center space-x-4">
-              <Switch
-                id="hasExperience"
-                checked={hasExperience}
-                onCheckedChange={handleExperienceToggle}
-              />
-              <label
-                htmlFor="hasExperience"
-                className="text-sm font-medium text-gray-900 dark:text-gray-100 cursor-pointer select-none"
-              >
-                I have work experience
-              </label>
-            </div>
+            <CollapsibleSection
+              title={t('common:switches.experience')}
+              enabled={hasExperience}
+              onToggle={handleExperienceToggle}
+            >
+              <ExperienceForm />
+            </CollapsibleSection>
 
-            {hasExperience && <ExperienceForm />}
+            <CollapsibleSection
+              title={t('common:switches.education')}
+              enabled={hasEducation}
+              onToggle={handleEducationToggle}
+            >
+              <EducationForm />
+            </CollapsibleSection>
 
-            <div className="flex items-center space-x-4">
-              <Switch
-                id="hasEducation"
-                checked={hasEducation}
-                onCheckedChange={handleEducationToggle}
-              />
-              <label
-                htmlFor="hasEducation"
-                className="text-sm font-medium text-gray-900 dark:text-gray-100 cursor-pointer select-none"
-              >
-                I want to add education
-              </label>
-            </div>
+            <CollapsibleSection
+              title={t('common:switches.projects')}
+              enabled={hasProjects}
+              onToggle={handleProjectsToggle}
+            >
+              <ProjectsForm />
+            </CollapsibleSection>
 
-            {hasEducation && <EducationForm />}
-
-            <div className="flex items-center space-x-4">
-              <Switch
-                id="hasProjects"
-                checked={hasProjects}
-                onCheckedChange={handleProjectsToggle}
-              />
-              <label
-                htmlFor="hasProjects"
-                className="text-sm font-medium text-gray-900 dark:text-gray-100 cursor-pointer select-none"
-              >
-                I have projects to showcase
-              </label>
-            </div>
-
-            {hasProjects && <ProjectsForm />}
-
-            <div className="flex items-center space-x-4">
-              <Switch
-                id="hasCertificates"
-                checked={hasCertificates}
-                onCheckedChange={handleCertificatesToggle}
-              />
-              <label
-                htmlFor="hasCertificates"
-                className="text-sm font-medium text-gray-900 dark:text-gray-100 cursor-pointer select-none"
-              >
-                I have certifications to add
-              </label>
-            </div>
-
-            {hasCertificates && <CertificatesForm />}
+            <CollapsibleSection
+              title={t('common:switches.certificates')}
+              enabled={hasCertificates}
+              onToggle={handleCertificatesToggle}
+            >
+              <CertificatesForm />
+            </CollapsibleSection>
           </div>
 
           <FormActions

@@ -20,7 +20,7 @@ export function FormCheckbox({ name, label, tooltip }: FormCheckboxProps) {
         <input
           type="checkbox"
           {...register(name)}
-          className="h-4 w-4 rounded-sm border-gray-300 text-blue-600 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:checked:bg-blue-500"
+          className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:checked:bg-blue-500"
         />
         <span className="text-sm text-gray-700 dark:text-gray-200">{label}</span>
       </label>

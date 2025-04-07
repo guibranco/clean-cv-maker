@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from '../ui/Button';
 import { X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface RenameDialogProps {
   currentName: string;
@@ -10,6 +11,7 @@ interface RenameDialogProps {
 
 export function RenameDialog({ currentName, onRename, onClose }: RenameDialogProps) {
   const [newName, setNewName] = useState(currentName);
+  const { t } = useTranslation(['common']);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,29 +31,31 @@ export function RenameDialog({ currentName, onRename, onClose }: RenameDialogPro
           <X className="h-4 w-4" />
         </Button>
         
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Rename Version</h3>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+          {t('common:versionPanel.rename.title')}
+        </h3>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-              Version Name
+              {t('common:versionPanel.rename.label')}
             </label>
             <input
               type="text"
               value={newName}
               onChange={(e) => setNewName(e.target.value)}
-              className="w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-              placeholder="Enter version name"
+              className="w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              placeholder={t('common:versionPanel.rename.placeholder')}
               autoFocus
             />
           </div>
           
           <div className="flex justify-end gap-2">
             <Button type="button" variant="outline" onClick={onClose}>
-              Cancel
+              {t('common:actions.cancel')}
             </Button>
             <Button type="submit" disabled={!newName.trim()}>
-              Save
+              {t('common:actions.save')}
             </Button>
           </div>
         </form>

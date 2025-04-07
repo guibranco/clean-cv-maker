@@ -23,4 +23,30 @@ export const common = {
     repository: 'Repositório',
     copyright: 'Todos os direitos reservados.',
   },
+  versionPanel: {
+    title: 'Histórico de Versões',
+    noVersions: 'Nenhuma versão salva ainda.',
+    loadVersion: 'Carregar Versão',
+    status: {
+      draft: 'Rascunho',
+      completed: 'Concluído',
+    },
+    import: {
+      button: 'Importar Versão do Currículo',
+      invalidFormat: 'Formato de currículo inválido',
+      saveFailed: 'Falha ao salvar versão importada',
+      genericError: 'Falha ao importar versão do currículo',
+    },
+    rename: {
+      title: 'Renomear Versão',
+      label: 'Nome da Versão',
+      placeholder: 'Digite o nome da versão',
+    },
+  },
+  switches: {
+    experience: 'Tenho experiência profissional',
+    education: 'Quero adicionar formação acadêmica',
+    projects: 'Tenho projetos para mostrar',
+    certificates: 'Tenho certificações para adicionar',
+  },
 };

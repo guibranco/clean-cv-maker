@@ -3,6 +3,7 @@ import { Button } from '../ui/Button';
 import { Upload } from 'lucide-react';
 import { z } from 'zod';
 import { saveVersion } from '@/lib/versioning';
+import { useTranslation } from 'react-i18next';
 
 // Schema for validating imported JSON
 const importSchema = z.object({
@@ -51,6 +52,7 @@ interface ImportSectionProps {
 export function ImportSection({ onImportSuccess }: ImportSectionProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [importError, setImportError] = useState<string | null>(null);
+  const { t } = useTranslation(['common']);
 
   const handleImport = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -67,7 +69,7 @@ export function ImportSection({ onImportSuccess }: ImportSectionProps) {
         const validationResult = importSchema.safeParse(importedVersion);
         
         if (!validationResult.success) {
-          throw new Error('Invalid CV format: ' + validationResult.error.message);
+          throw new Error(t('common:versionPanel.import.invalidFormat'));
         }
 
         // Create a new version with the imported data
@@ -75,11 +77,11 @@ export function ImportSection({ onImportSuccess }: ImportSectionProps) {
         if (versionId) {
           onImportSuccess();
         } else {
-          throw new Error('Failed to save imported version');
+          throw new Error(t('common:versionPanel.import.saveFailed'));
         }
       } catch (error) {
         console.error('Failed to import CV version:', error);
-        setImportError(error instanceof Error ? error.message : 'Failed to import CV version');
+        setImportError(error instanceof Error ? error.message : t('common:versionPanel.import.genericError'));
       }
     };
     reader.readAsText(file);
@@ -99,7 +101,7 @@ export function ImportSection({ onImportSuccess }: ImportSectionProps) {
         onClick={handleImportClick}
       >
         <Upload className="h-4 w-4" />
-        Import CV Version
+        {t('common:versionPanel.import.button')}
       </Button>
       <input
         ref={fileInputRef}
@@ -107,7 +109,7 @@ export function ImportSection({ onImportSuccess }: ImportSectionProps) {
         accept=".json"
         onChange={handleImport}
         className="hidden"
-        aria-label="Import CV Version"
+        aria-label={t('common:versionPanel.import.button')}
       />
       {importError && (
         <p className="mt-2 text-sm text-red-600 dark:text-red-400">{importError}</p>

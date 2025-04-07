@@ -1,5 +1,6 @@
 import type { PersonalInfoFormData } from '@/components/PersonalInfoForm';
 import type { Experience } from '@/components/ExperienceForm';
+import { getProficiencyLabel } from '@/lib/utils';
 
 function isExperienceEmpty(experience: Experience): boolean {
   return !experience.companyName && !experience.roles.some(role => role.title || role.description);
@@ -14,7 +15,10 @@ function formatText(text: string): string {
   return text.replace(/\n/g, '<br>');
 }
 
-// SVG icons from Lucide (minimal versions)
+function formatList(text: string): string {
+  return text.split('\n').map(item => `<li>${item}</li>`).join('');
+}
+
 const icons = {
   github: '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>',
   linkedin: '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>',
@@ -28,10 +32,8 @@ export function generateHTML(data: PersonalInfoFormData) {
   try {
     const nonEmptyExperiences = data.experiences?.filter(exp => !isExperienceEmpty(exp)) || [];
 
-    // Create a new document
     const doc = document.implementation.createHTMLDocument('CV');
     
-    // Add styles
     const style = doc.createElement('style');
     style.textContent = `
       body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.5; max-width: 21cm; margin: 0 auto; padding: 2rem; }
@@ -52,10 +54,25 @@ export function generateHTML(data: PersonalInfoFormData) {
       .icon { display: inline-flex; align-items: center; }
       .icon svg { width: 1rem; height: 1rem; }
       .contact .icon svg { width: 0.75rem; height: 0.75rem; }
+      .social-links { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; }
+      .education { margin-bottom: 1.5rem; }
+      .education-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+      .institution { font-weight: bold; }
+      .degree { font-size: 0.9rem; color: #4B5563; margin-bottom: 0.5rem; }
+      .description { color: #4B5563; }
+      .certificate { margin-bottom: 1.5rem; }
+      .certificate-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+      .certificate-name { font-weight: bold; }
+      .certificate-details { font-size: 0.9rem; color: #6B7280; }
+      .language-section { margin-bottom: 1rem; }
+      .language-name { font-weight: bold; margin-bottom: 0.25rem; }
+      .proficiency-bar { display: flex; gap: 0.25rem; }
+      .proficiency-level { width: 1.25rem; height: 0.25rem; }
+      ul { margin: 0.5rem 0; padding-left: 1.5rem; }
+      li { margin-bottom: 0.25rem; }
     `;
     doc.head.appendChild(style);
 
-    // Create content
     const content = `
       <h1>${data.fullName}</h1>
       <h2>${data.title}</h2>
@@ -68,11 +85,9 @@ export function generateHTML(data: PersonalInfoFormData) {
       <div class="contact">
         <span class="icon">${icons.phone}</span> ${data.phone}
       </div>
-      <div class="contact">
+      <div class="social-links">
         ${data.githubUrl ? formatLink(data.githubUrl, 'GitHub', icons.github) : ''}
-        ${data.githubUrl && data.linkedinUrl ? ' • ' : ''}
         ${data.linkedinUrl ? formatLink(data.linkedinUrl, 'LinkedIn', icons.linkedin) : ''}
-        ${((data.githubUrl || data.linkedinUrl) && data.portfolioUrl) ? ' • ' : ''}
         ${data.portfolioUrl ? formatLink(data.portfolioUrl, 'Portfolio', icons.globe) : ''}
       </div>
 
@@ -81,13 +96,44 @@ export function generateHTML(data: PersonalInfoFormData) {
         <p>${formatText(data.bio)}</p>
       </div>
 
+      ${data.experienceYears && data.experienceYears.length > 0 ? `
+        <div class="section">
+          <h3 class="section-title">Experience (in years)</h3>
+          ${data.experienceYears.map(exp => `
+            <div class="description">
+              ${exp.technology}: ${calculateYearsOfExperience(exp.startDate)}+ years
+            </div>
+          `).join('')}
+        </div>
+      ` : ''}
+
+      ${data.projectsWorked && data.projectsWorked.length > 0 ? `
+        <div class="section">
+          <h3 class="section-title">Projects I Worked On</h3>
+          <ul>
+            ${data.projectsWorked.map(project => `
+              <li>${formatText(project)}</li>
+            `).join('')}
+          </ul>
+        </div>
+      ` : ''}
+
       ${data.hasExperience && nonEmptyExperiences.length > 0 ? `
         <div class="section">
           <h3 class="section-title">Work Experience</h3>
           ${nonEmptyExperiences.map(exp => `
             <div class="company">
               <div class="company-header">
-                <span class="company-name">${exp.companyName}</span>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  ${exp.companyLogoUrl ? `
+                    <img 
+                      src="${exp.companyLogoUrl}" 
+                      alt="${exp.companyName} logo" 
+                      style="width: 1.5rem; height: 1.5rem; object-fit: contain;"
+                    />
+                  ` : ''}
+                  <span class="company-name">${exp.companyName}</span>
+                </div>
                 <span class="company-dates">${exp.startDate} - ${exp.current ? 'Present' : exp.endDate}</span>
               </div>
               <div style="color: #6B7280; margin-bottom: 0.5rem;">
@@ -119,10 +165,92 @@ export function generateHTML(data: PersonalInfoFormData) {
           `).join('')}
         </div>
       ` : ''}
+
+      ${data.hasEducation && data.education && data.education.length > 0 ? `
+        <div class="section">
+          <h3 class="section-title">Education</h3>
+          ${data.education.map(edu => `
+            <div class="education">
+              <div class="education-header">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  ${edu.institutionLogo ? `
+                    <img 
+                      src="${edu.institutionLogo}" 
+                      alt="${edu.institution} logo" 
+                      style="width: 1.5rem; height: 1.5rem; object-fit: contain;"
+                    />
+                  ` : ''}
+                  <span class="institution">${edu.institution}</span>
+                </div>
+                <span class="dates">${edu.startDate} - ${edu.current ? 'Present' : edu.endDate}</span>
+              </div>
+              <div class="degree">${edu.degree}</div>
+              ${edu.description ? `
+                <ul class="description">
+                  ${formatList(edu.description)}
+                </ul>
+              ` : ''}
+            </div>
+          `).join('')}
+        </div>
+      ` : ''}
+
+      ${data.hasCertificates && data.certificates && data.certificates.length > 0 ? `
+        <div class="section">
+          <h3 class="section-title">Certifications</h3>
+          ${data.certificates.map(cert => `
+            <div class="certificate">
+              <div class="certificate-header">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  ${cert.issuerLogo ? `
+                    <img 
+                      src="${cert.issuerLogo}" 
+                      alt="${cert.issuer} logo" 
+                      style="width: 1.5rem; height: 1.5rem; object-fit: contain;"
+                    />
+                  ` : ''}
+                  <span class="certificate-name">${cert.name}</span>
+                </div>
+                <span class="certificate-details">
+                  ${cert.issueDate}${!cert.neverExpires && cert.expiryDate ? ` - ${cert.expiryDate}` : ''}
+                </span>
+              </div>
+              <div class="certificate-details">
+                ${cert.issuer}
+                ${cert.credentialId ? ` • ID: ${cert.credentialId}` : ''}
+                ${cert.credentialUrl ? ` • ${formatLink(cert.credentialUrl, 'View Credential')}` : ''}
+              </div>
+              ${cert.description ? `
+                <ul class="description">
+                  ${formatList(cert.description)}
+                </ul>
+              ` : ''}
+            </div>
+          `).join('')}
+        </div>
+      ` : ''}
+
+      ${data.languages && data.languages.length > 0 ? `
+        <div class="section">
+          <h3 class="section-title">Languages</h3>
+          ${data.languages.map(lang => `
+            <div class="language-section">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="language-name">${lang.language}</div>
+                <div style="color: #666; font-size: 0.875rem;">${getProficiencyLabel(lang.proficiency)}</div>
+              </div>
+              <div class="proficiency-bar">
+                ${[...Array(5)].map((_, i) => `
+                  <div class="proficiency-level" style="background-color: ${i < lang.proficiency ? '#2563eb' : '#e5e7eb'}"></div>
+                `).join('')}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      ` : ''}
     `;
     doc.body.innerHTML = content;
 
-    // Convert to blob and download
     const blob = new Blob([doc.documentElement.outerHTML], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');

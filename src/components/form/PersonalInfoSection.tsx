@@ -1,12 +1,15 @@
 import { useTranslation } from 'react-i18next';
 import { FormField } from './FormField';
 import { FormCheckbox } from './FormCheckbox';
+import { LanguagesSection } from './LanguagesSection';
+import { ExperienceYearsSection } from './ExperienceYearsSection';
+import { ProjectsWorkedSection } from './ProjectsWorkedSection';
 
 export function PersonalInfoSection() {
   const { t } = useTranslation(['form']);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-8">
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
         {t('form:sections.personalInfo.sectionTitle')}
       </h2>
@@ -126,6 +129,10 @@ export function PersonalInfoSection() {
           tips: t('form:sections.personalInfo.bio.tooltip.tips'),
         }}
       />
+
+      <ExperienceYearsSection />
+      <ProjectsWorkedSection />
+      <LanguagesSection />
     </div>
   );
 }
