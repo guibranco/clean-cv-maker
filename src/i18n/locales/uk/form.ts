@@ -1,7 +1,7 @@
 export const form = {
   sections: {
     personalInfo: {
-      title: 'Особиста інформація',
+      sectionTitle: 'Особиста інформація',
       fullName: {
         label: 'Повне ім\'я',
         placeholder: 'Введіть ваше повне ім\'я',
@@ -11,7 +11,7 @@ export const form = {
           tips: "Поради: Використовуйте ваше офіційне ім'я або послідовне професійне ім'я.",
         },
       },
-      title: {
+      professionalTitle: {
         label: 'Професійна посада',
         placeholder: 'наприклад, Старший розробник програмного забезпечення',
         tooltip: {
