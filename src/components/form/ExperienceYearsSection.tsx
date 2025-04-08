@@ -41,11 +41,11 @@ export function ExperienceYearsSection() {
         <Button
           type="button"
           variant="outline"
-          onClick={() => append({ id: Date.now().toString(), technology: '', startDate: '' })}
+          onClick={() => append({ technology: '', startDate: '' })}
           className="gap-2"
         >
           <Plus className="h-4 w-4" />
-          {t('common:experienceYears.addButton')}
+          Add Experience
         </Button>
 
         <DragDropContext onDragEnd={handleDragEnd}>
