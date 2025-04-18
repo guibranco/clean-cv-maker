@@ -35,6 +35,87 @@ Want to help improve translations? Check our [contribution guidelines](CONTRIBUT
 
 ---
 
+## 📁 Project structure
+
+```
+📂 src
+ ├── 📄 App.tsx
+ ├── 📄 index.css
+ ├── 📄 main.tsx
+ ├── 📄 vite-env.d.ts
+ │
+ ├── 📂 components
+ │   ├── 📄 CertificatesForm.tsx
+ │   ├── 📄 CVDocument.tsx
+ │   ├── 📄 CVPreview.tsx
+ │   ├── 📄 EducationForm.tsx
+ │   ├── 📄 ExperienceForm.tsx
+ │   ├── 📄 PersonalInfoForm.tsx
+ │   ├── 📄 ProjectsForm.tsx
+ │   ├── 📄 VersionPanel.tsx
+ │   │
+ │   ├── 📂 certificates
+ │   │   └── 📄 CertificateFields.tsx
+ │   │
+ │   ├── 📂 education
+ │   │   └── 📄 EducationFields.tsx
+ │   │
+ │   ├── 📂 experience
+ │   │   ├── 📄 ExperienceFields.tsx
+ │   │   ├── 📄 RoleFields.tsx
+ │   │   └── 📄 RolesSection.tsx
+ │   │
+ │   ├── 📂 form
+ │   │   ├── 📄 AutoSaveTooltip.tsx
+ │   │   ├── 📄 CollapsibleSection.tsx
+ │   │   ├── 📄 ExperienceYearsSection.tsx
+ │   │   ├── 📄 FormActions.tsx
+ │   │   ├── 📄 FormCheckbox.tsx
+ │   │   ├── 📄 FormField.tsx
+ │   │   ├── 📄 LanguagesSection.tsx
+ │   │   ├── 📄 PersonalInfoSection.tsx
+ │   │   ├── 📄 PreviewSection.tsx
+ │   │   └── 📄 ProjectsWorkedSection.tsx
+ │   │
+ │   ├── 📂 projects
+ │   │   ├── 📄 ProjectFields.tsx
+ │   │   └── 📄 TechStackSelect.tsx
+ │   │
+ │   ├── 📂 ui
+ │   │   ├── 📄 Button.tsx
+ │   │   ├── 📄 Collapsible.tsx
+ │   │   ├── 📄 Footer.tsx
+ │   │   ├── 📄 LanguageSelector.tsx
+ │   │   ├── 📄 Switch.tsx
+ │   │   ├── 📄 ThemeToggle.tsx
+ │   │   └── 📄 Tooltip.tsx
+ │   │
+ │   └── 📂 version
+ │       ├── 📄 ImportSection.tsx
+ │       ├── 📄 RenameDialog.tsx
+ │       └── 📄 VersionCard.tsx
+ │
+ ├── 📂 i18n
+ │   ├── 📄 index.ts
+ │   └── 📂 locales
+ │       ├── 📂 en, pt-BR, de, fr, etc.
+ │       └── 📄 common.ts, form.ts, certifications.ts, etc.
+ │
+ ├── 📂 lib
+ │   ├── 📄 html-generator.ts
+ │   ├── 📄 utils.ts
+ │   ├── 📄 versioning.ts
+ │   ├── 📂 hooks
+ │   │   └── 📄 useFormValidation.ts
+ │   └── 📂 schemas
+ │       └── 📄 personal-info.ts
+ │
+ └── 📂 styles
+     └── 📄 variables.css
+```
+
+---
+
 ## 📸 Preview
 
 ### 🌙 Dark Mode  
