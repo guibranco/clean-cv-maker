@@ -169,6 +169,11 @@ i18n
       }
     },
     fallbackLng: 'en',
+    detection: {
+      order: ['localStorage', 'navigator'],
+      lookupLocalStorage: 'i18nextLng',
+      caches: ['localStorage'],
+    },
     interpolation: {
       escapeValue: false,
     },

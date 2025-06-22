@@ -32,16 +32,6 @@ export function ProjectsWorkedSection() {
   return (
     <Collapsible title={title}>
       <div className="space-y-4">
-        <Button
-          type="button"
-          variant="outline"
-          onClick={() => append('')}
-          className="gap-2"
-        >
-          <Plus className="h-4 w-4" />
-          Add Project
-        </Button>
-
         <DragDropContext onDragEnd={handleDragEnd}>
           <Droppable droppableId="projects-worked-list">
             {(provided) => (
@@ -94,6 +84,16 @@ export function ProjectsWorkedSection() {
             )}
           </Droppable>
         </DragDropContext>
+
+        <Button
+          type="button"
+          variant="outline"
+          onClick={() => append('')}
+          className="w-full gap-2"
+        >
+          <Plus className="h-4 w-4" />
+          Add Project
+        </Button>
       </div>
     </Collapsible>
   );
