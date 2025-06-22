@@ -92,7 +92,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
   const hasEducation = watch('hasEducation');
   const hasCertificates = watch('hasCertificates');
 
-  const { showTooltip, tooltipMessage, showAutoSaveTooltip } = useFormValidation();
+  const { showTooltip, focusFirstInvalidField, tooltipMessage, showAutoSaveTooltip } = useFormValidation();
 
   const hasData = formData.fullName || formData.title || formData.bio || 
     (formData.experiences?.some(exp => exp.companyName)) ||
@@ -167,6 +167,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
     const result = await trigger();
     if (!result) {
       showTooltip('Please fill in all required fields before saving');
+      focusFirstInvalidField(errors);
       return;
     }
     
@@ -184,6 +185,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
       const result = await trigger();
       if (!result) {
         showTooltip('Please fill in all required fields before generating HTML');
+        focusFirstInvalidField(errors);
         return;
       }
       
@@ -286,39 +288,49 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
       <div className="space-y-8" onBlur={handleFieldBlur}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-8">
-            <PersonalInfoSection />
+            <div data-section="personalInfo">
+              <PersonalInfoSection />
+            </div>
 
-            <CollapsibleSection
-              title={t('common:switches.experience')}
-              enabled={hasExperience}
-              onToggle={handleExperienceToggle}
-            >
-              <ExperienceForm />
-            </CollapsibleSection>
+            <div data-section="experiences">
+              <CollapsibleSection
+                title={t('common:switches.experience')}
+                enabled={hasExperience}
+                onToggle={handleExperienceToggle}
+              >
+                <ExperienceForm />
+              </CollapsibleSection>
+            </div>
 
-            <CollapsibleSection
-              title={t('common:switches.education')}
-              enabled={hasEducation}
-              onToggle={handleEducationToggle}
-            >
-              <EducationForm />
-            </CollapsibleSection>
+            <div data-section="education">
+              <CollapsibleSection
+                title={t('common:switches.education')}
+                enabled={hasEducation}
+                onToggle={handleEducationToggle}
+              >
+                <EducationForm />
+              </CollapsibleSection>
+            </div>
 
-            <CollapsibleSection
-              title={t('common:switches.projects')}
-              enabled={hasProjects}
-              onToggle={handleProjectsToggle}
-            >
-              <ProjectsForm />
-            </CollapsibleSection>
+            <div data-section="projects">
+              <CollapsibleSection
+                title={t('common:switches.projects')}
+                enabled={hasProjects}
+                onToggle={handleProjectsToggle}
+              >
+                <ProjectsForm />
+              </CollapsibleSection>
+            </div>
 
-            <CollapsibleSection
-              title={t('common:switches.certificates')}
-              enabled={hasCertificates}
-              onToggle={handleCertificatesToggle}
-            >
-              <CertificatesForm />
-            </CollapsibleSection>
+            <div data-section="certificates">
+              <CollapsibleSection
+                title={t('common:switches.certificates')}
+                enabled={hasCertificates}
+                onToggle={handleCertificatesToggle}
+              >
+                <CertificatesForm />
+              </CollapsibleSection>
+            </div>
           </div>
 
           <FormActions
