@@ -85,13 +85,14 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
   const { handleSubmit, watch, reset, setValue, formState: { errors }, trigger } = methods;
   const [lastSaveTime, setLastSaveTime] = useState<number>(0);
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
+  const [isGeneratingHTML, setIsGeneratingHTML] = useState(false);
   const formData = watch();
   const hasExperience = watch('hasExperience');
   const hasProjects = watch('hasProjects');
   const hasEducation = watch('hasEducation');
   const hasCertificates = watch('hasCertificates');
 
-  const { showTooltip, formatValidationErrors, tooltipMessage, showAutoSaveTooltip } = useFormValidation();
+  const { showTooltip, focusFirstInvalidField, tooltipMessage, showAutoSaveTooltip } = useFormValidation();
 
   const hasData = formData.fullName || formData.title || formData.bio || 
     (formData.experiences?.some(exp => exp.companyName)) ||
@@ -152,6 +153,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
 
       const fileName = `${cleanData.fullName.replace(/\s+/g, '-').toLowerCase()}-cv.pdf`;
       downloadPDF(pdfBlob, fileName);
+      showTooltip('PDF CV generated successfully');
       
     } catch (error) {
       console.error('Error generating PDF:', error);
@@ -164,8 +166,8 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
   const handleSaveCompleted = async () => {
     const result = await trigger();
     if (!result) {
-      const errorMessage = formatValidationErrors(errors);
-      showTooltip(errorMessage);
+      showTooltip('Please fill in all required fields before saving');
+      focusFirstInvalidField(errors);
       return;
     }
     
@@ -177,13 +179,33 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
   };
 
   const handleGenerateHTML = async () => {
-    const result = await trigger();
-    if (!result) {
-      const errorMessage = formatValidationErrors(errors);
-      showTooltip(errorMessage);
-      return;
+    try {
+      setIsGeneratingHTML(true);
+      
+      const result = await trigger();
+      if (!result) {
+        showTooltip('Please fill in all required fields before generating HTML');
+        focusFirstInvalidField(errors);
+        return;
+      }
+      
+      // Clean up data based on switches
+      const cleanData = {
+        ...formData,
+        experiences: formData.hasExperience ? formData.experiences : undefined,
+        education: formData.hasEducation ? formData.education : undefined,
+        projects: formData.hasProjects ? formData.projects : undefined,
+        certificates: formData.hasCertificates ? formData.certificates : undefined,
+      };
+      
+      generateHTML(cleanData);
+      showTooltip('HTML CV generated successfully');
+    } catch (error) {
+      console.error('Error generating HTML:', error);
+      showTooltip('Failed to generate HTML CV. Please try again.');
+    } finally {
+      setIsGeneratingHTML(false);
     }
-    generateHTML(formData);
   };
 
   const handleExperienceToggle = (checked: boolean) => {
@@ -266,45 +288,56 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
       <div className="space-y-8" onBlur={handleFieldBlur}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-8">
-            <PersonalInfoSection />
+            <div data-section="personalInfo">
+              <PersonalInfoSection />
+            </div>
 
-            <CollapsibleSection
-              title={t('common:switches.experience')}
-              enabled={hasExperience}
-              onToggle={handleExperienceToggle}
-            >
-              <ExperienceForm />
-            </CollapsibleSection>
+            <div data-section="experiences">
+              <CollapsibleSection
+                title={t('common:switches.experience')}
+                enabled={hasExperience}
+                onToggle={handleExperienceToggle}
+              >
+                <ExperienceForm />
+              </CollapsibleSection>
+            </div>
 
-            <CollapsibleSection
-              title={t('common:switches.education')}
-              enabled={hasEducation}
-              onToggle={handleEducationToggle}
-            >
-              <EducationForm />
-            </CollapsibleSection>
+            <div data-section="education">
+              <CollapsibleSection
+                title={t('common:switches.education')}
+                enabled={hasEducation}
+                onToggle={handleEducationToggle}
+              >
+                <EducationForm />
+              </CollapsibleSection>
+            </div>
 
-            <CollapsibleSection
-              title={t('common:switches.projects')}
-              enabled={hasProjects}
-              onToggle={handleProjectsToggle}
-            >
-              <ProjectsForm />
-            </CollapsibleSection>
+            <div data-section="projects">
+              <CollapsibleSection
+                title={t('common:switches.projects')}
+                enabled={hasProjects}
+                onToggle={handleProjectsToggle}
+              >
+                <ProjectsForm />
+              </CollapsibleSection>
+            </div>
 
-            <CollapsibleSection
-              title={t('common:switches.certificates')}
-              enabled={hasCertificates}
-              onToggle={handleCertificatesToggle}
-            >
-              <CertificatesForm />
-            </CollapsibleSection>
+            <div data-section="certificates">
+              <CollapsibleSection
+                title={t('common:switches.certificates')}
+                enabled={hasCertificates}
+                onToggle={handleCertificatesToggle}
+              >
+                <CertificatesForm />
+              </CollapsibleSection>
+            </div>
           </div>
 
           <FormActions
             onSaveCompleted={handleSaveCompleted}
             onGenerateHTML={handleGenerateHTML}
             isGeneratingPDF={isGeneratingPDF}
+            isGeneratingHTML={isGeneratingHTML}
           />
         </form>
 
