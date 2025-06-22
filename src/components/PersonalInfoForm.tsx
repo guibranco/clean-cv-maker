@@ -92,7 +92,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
   const hasEducation = watch('hasEducation');
   const hasCertificates = watch('hasCertificates');
 
-  const { showTooltip, formatValidationErrors, tooltipMessage, showAutoSaveTooltip } = useFormValidation();
+  const { showTooltip, tooltipMessage, showAutoSaveTooltip } = useFormValidation();
 
   const hasData = formData.fullName || formData.title || formData.bio || 
     (formData.experiences?.some(exp => exp.companyName)) ||
@@ -153,6 +153,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
 
       const fileName = `${cleanData.fullName.replace(/\s+/g, '-').toLowerCase()}-cv.pdf`;
       downloadPDF(pdfBlob, fileName);
+      showTooltip('PDF CV generated successfully');
       
     } catch (error) {
       console.error('Error generating PDF:', error);
@@ -165,8 +166,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
   const handleSaveCompleted = async () => {
     const result = await trigger();
     if (!result) {
-      const errorMessage = formatValidationErrors(errors);
-      showTooltip(errorMessage);
+      showTooltip('Please fill in all required fields before saving');
       return;
     }
     
@@ -183,8 +183,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
       
       const result = await trigger();
       if (!result) {
-        const errorMessage = formatValidationErrors(errors);
-        showTooltip(errorMessage);
+        showTooltip('Please fill in all required fields before generating HTML');
         return;
       }
       
