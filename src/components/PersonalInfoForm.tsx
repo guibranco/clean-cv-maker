@@ -85,6 +85,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
   const { handleSubmit, watch, reset, setValue, formState: { errors }, trigger } = methods;
   const [lastSaveTime, setLastSaveTime] = useState<number>(0);
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
+  const [isGeneratingHTML, setIsGeneratingHTML] = useState(false);
   const formData = watch();
   const hasExperience = watch('hasExperience');
   const hasProjects = watch('hasProjects');
@@ -177,23 +178,33 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
   };
 
   const handleGenerateHTML = async () => {
-    const result = await trigger();
-    if (!result) {
-      const errorMessage = formatValidationErrors(errors);
-      showTooltip(errorMessage);
-      return;
+    try {
+      setIsGeneratingHTML(true);
+      
+      const result = await trigger();
+      if (!result) {
+        const errorMessage = formatValidationErrors(errors);
+        showTooltip(errorMessage);
+        return;
+      }
+      
+      // Clean up data based on switches
+      const cleanData = {
+        ...formData,
+        experiences: formData.hasExperience ? formData.experiences : undefined,
+        education: formData.hasEducation ? formData.education : undefined,
+        projects: formData.hasProjects ? formData.projects : undefined,
+        certificates: formData.hasCertificates ? formData.certificates : undefined,
+      };
+      
+      generateHTML(cleanData);
+      showTooltip('HTML CV generated successfully');
+    } catch (error) {
+      console.error('Error generating HTML:', error);
+      showTooltip('Failed to generate HTML CV. Please try again.');
+    } finally {
+      setIsGeneratingHTML(false);
     }
-    
-    // Clean up data based on switches
-    const cleanData = {
-      ...formData,
-      experiences: formData.hasExperience ? formData.experiences : undefined,
-      education: formData.hasEducation ? formData.education : undefined,
-      projects: formData.hasProjects ? formData.projects : undefined,
-      certificates: formData.hasCertificates ? formData.certificates : undefined,
-    };
-    
-    generateHTML(cleanData);
   };
 
   const handleExperienceToggle = (checked: boolean) => {
@@ -315,6 +326,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
             onSaveCompleted={handleSaveCompleted}
             onGenerateHTML={handleGenerateHTML}
             isGeneratingPDF={isGeneratingPDF}
+            isGeneratingHTML={isGeneratingHTML}
           />
         </form>
 
