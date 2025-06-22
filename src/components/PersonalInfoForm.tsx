@@ -82,8 +82,9 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
     mode: 'onChange',
   });
 
-  const { handleSubmit, watch, reset, setValue, formState: { errors } } = methods;
+  const { handleSubmit, watch, reset, setValue, formState: { errors }, trigger } = methods;
   const [lastSaveTime, setLastSaveTime] = useState<number>(0);
+  const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const formData = watch();
   const hasExperience = watch('hasExperience');
   const hasProjects = watch('hasProjects');
@@ -114,29 +115,54 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
     }
   };
 
+  const downloadPDF = (pdfBlob: Blob, fileName: string) => {
+    if (typeof window === 'undefined') return;
+    
+    const downloadUrl = window.URL.createObjectURL(pdfBlob);
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(downloadUrl);
+  };
+
   const onSubmit = async (data: PersonalInfoFormData) => {
     try {
-      const doc = <CVDocument data={data} />;
-      const blob = await pdf(doc).toBlob();
+      setIsGeneratingPDF(true);
       
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `${data.fullName.replace(/\s+/g, '-').toLowerCase()}-cv.pdf`;
+      // Clean up data based on switches
+      const cleanData = {
+        ...data,
+        experiences: data.hasExperience ? data.experiences : undefined,
+        education: data.hasEducation ? data.education : undefined,
+        projects: data.hasProjects ? data.projects : undefined,
+        certificates: data.hasCertificates ? data.certificates : undefined,
+      };
+
+      // Create PDF document
+      const document = <CVDocument data={cleanData} />;
       
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      // Generate PDF blob
+      const pdfBlob = await pdf(document).toBlob();
+      if (!pdfBlob) {
+        throw new Error('Failed to generate PDF blob');
+      }
+
+      const fileName = `${cleanData.fullName.replace(/\s+/g, '-').toLowerCase()}-cv.pdf`;
+      downloadPDF(pdfBlob, fileName);
       
-      URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Error generating PDF:', error);
-      alert('Failed to generate CV. Please try again.');
+      showTooltip('Failed to generate CV. Please try again.');
+    } finally {
+      setIsGeneratingPDF(false);
     }
   };
 
   const handleSaveCompleted = async () => {
-    const result = await methods.trigger();
+    const result = await trigger();
     if (!result) {
       const errorMessage = formatValidationErrors(errors);
       showTooltip(errorMessage);
@@ -151,7 +177,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
   };
 
   const handleGenerateHTML = async () => {
-    const result = await methods.trigger();
+    const result = await trigger();
     if (!result) {
       const errorMessage = formatValidationErrors(errors);
       showTooltip(errorMessage);
@@ -278,6 +304,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
           <FormActions
             onSaveCompleted={handleSaveCompleted}
             onGenerateHTML={handleGenerateHTML}
+            isGeneratingPDF={isGeneratingPDF}
           />
         </form>
 

@@ -38,16 +38,6 @@ export function ExperienceYearsSection() {
   return (
     <Collapsible title={title}>
       <div className="space-y-4">
-        <Button
-          type="button"
-          variant="outline"
-          onClick={() => append({ technology: '', startDate: '' })}
-          className="gap-2"
-        >
-          <Plus className="h-4 w-4" />
-          Add Experience
-        </Button>
-
         <DragDropContext onDragEnd={handleDragEnd}>
           <Droppable droppableId="experience-years-list">
             {(provided) => (
@@ -113,6 +103,16 @@ export function ExperienceYearsSection() {
             )}
           </Droppable>
         </DragDropContext>
+
+        <Button
+          type="button"
+          variant="outline"
+          onClick={() => append({ technology: '', startDate: '' })}
+          className="w-full gap-2"
+        >
+          <Plus className="h-4 w-4" />
+          Add Experience
+        </Button>
       </div>
     </Collapsible>
   );

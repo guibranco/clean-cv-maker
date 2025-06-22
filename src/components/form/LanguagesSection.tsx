@@ -43,16 +43,6 @@ export function LanguagesSection() {
   return (
     <Collapsible title={title}>
       <div className="space-y-4">
-        <Button
-          type="button"
-          variant="outline"
-          onClick={() => append({ id: Date.now().toString(), language: '', proficiency: 0 })}
-          className="gap-2"
-        >
-          <Plus className="h-4 w-4" />
-          Add Language
-        </Button>
-
         <DragDropContext onDragEnd={handleDragEnd}>
           <Droppable droppableId="languages-list">
             {(provided) => (
@@ -115,6 +105,16 @@ export function LanguagesSection() {
             )}
           </Droppable>
         </DragDropContext>
+
+        <Button
+          type="button"
+          variant="outline"
+          onClick={() => append({ language: '', proficiency: 0 })}
+          className="w-full gap-2"
+        >
+          <Plus className="h-4 w-4" />
+          Add Language
+        </Button>
       </div>
     </Collapsible>
   );
