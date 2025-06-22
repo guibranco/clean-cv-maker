@@ -1,22 +1,27 @@
-# Dependency directories
+# Dependencies
 node_modules/
+
+# Build outputs
 dist/
 build/
+coverage/
 
-# Logs
-*.log
+# Generated files
+*.min.js
+*.min.css
 
-# Environment files
-.env*
-
-# Cache directories
-.cache/
-.bolt/
-
-# Lock files
+# Package files
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
-# Generated files
-coverage/
+# Environment files
+.env*
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
