@@ -183,7 +183,17 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
       showTooltip(errorMessage);
       return;
     }
-    generateHTML(formData);
+    
+    // Clean up data based on switches
+    const cleanData = {
+      ...formData,
+      experiences: formData.hasExperience ? formData.experiences : undefined,
+      education: formData.hasEducation ? formData.education : undefined,
+      projects: formData.hasProjects ? formData.projects : undefined,
+      certificates: formData.hasCertificates ? formData.certificates : undefined,
+    };
+    
+    generateHTML(cleanData);
   };
 
   const handleExperienceToggle = (checked: boolean) => {
