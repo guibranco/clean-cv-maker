@@ -22,7 +22,7 @@
     "clsx": "^2.1.1",
     "i18next": "^25.3.2",
     "i18next-browser-languagedetector": "^8.2.0",
-    "lucide-react": "^0.525.0",
+    "lucide-react": "^0.526.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.61.1",
