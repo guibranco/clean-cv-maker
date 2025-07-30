@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",
-    "@hookform/resolvers": "^5.2.0",
+    "@hookform/resolvers": "^5.2.1",
     "@react-pdf/renderer": "^4.3.0",
     "@tailwindcss/postcss": "^4.1.11",
     "clsx": "^2.1.1",
