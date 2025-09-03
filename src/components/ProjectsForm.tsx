@@ -24,7 +24,11 @@ export interface ProjectsFormData {
 export function ProjectsForm() {
   const { control } = useFormContext();
 
-  const { fields: projects, append: appendProject, remove: removeProject } = useFieldArray({
+  const {
+    fields: projects,
+    append: appendProject,
+    remove: removeProject,
+  } = useFieldArray({
     control,
     name: 'projects',
   });

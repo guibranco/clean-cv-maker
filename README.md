@@ -11,25 +11,26 @@ Generate your CV with flexibility — export to:
 
 🗂️ **Version Management**  
 Craft and manage **multiple versions** of your CV effortlessly. Each version is saved locally using `localStorage` and supports two distinct stages:
+
 - **Draft** 📝: For ongoing edits and previews.
 - **Complete** ✅: Finalized versions ready for export.
 
 🌍 **Multilingual Support**  
 Clean CV Maker is designed with global users in mind. It currently includes support for the following languages:
 
-- 🇸🇦 **AR** (Arabic) — 🛠️ Needs improvements ![35% translated](https://progress-bar.xyz/35)  
-- 🇩🇪 **DE** (German) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45)  
-- 🇺🇸 **EN-US** (English - US) — ✅ Default language ![100% translated](https://progress-bar.xyz/100) 
-- 🇪🇸 **ES-ES** (Spanish - Spain) — 🛠️ Needs improvements ![65% translated](https://progress-bar.xyz/65) 
-- 🇫🇷 **FR** (French) — 🛠️ Needs improvements ![40% translated](https://progress-bar.xyz/40) 
-- 🇮🇳 **HI** (Hindi) — 🛠️ Needs improvements ![35% translated](https://progress-bar.xyz/35) 
-- 🇮🇹 **IT** (Italian) — 🛠️ Needs improvements ![40% translated](https://progress-bar.xyz/40) 
-- 🇯🇵 **JA** (Japanese) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45) 
-- 🇰🇷 **KO** (Korean) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45) 
-- 🇧🇷 **PT-BR** (Portuguese - Brazil) — 🛠️ Needs improvements ![85% translated](https://progress-bar.xyz/85) 
-- 🇷🇺 **RU** (Russian) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45) 
-- 🇺🇦 **UK** (Ukrainian) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45) 
-- 🇵🇰 **UR** (Urdu) — 🛠️ Needs improvements ![35% translated](https://progress-bar.xyz/35) 
+- 🇸🇦 **AR** (Arabic) — 🛠️ Needs improvements ![35% translated](https://progress-bar.xyz/35)
+- 🇩🇪 **DE** (German) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45)
+- 🇺🇸 **EN-US** (English - US) — ✅ Default language ![100% translated](https://progress-bar.xyz/100)
+- 🇪🇸 **ES-ES** (Spanish - Spain) — 🛠️ Needs improvements ![65% translated](https://progress-bar.xyz/65)
+- 🇫🇷 **FR** (French) — 🛠️ Needs improvements ![40% translated](https://progress-bar.xyz/40)
+- 🇮🇳 **HI** (Hindi) — 🛠️ Needs improvements ![35% translated](https://progress-bar.xyz/35)
+- 🇮🇹 **IT** (Italian) — 🛠️ Needs improvements ![40% translated](https://progress-bar.xyz/40)
+- 🇯🇵 **JA** (Japanese) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45)
+- 🇰🇷 **KO** (Korean) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45)
+- 🇧🇷 **PT-BR** (Portuguese - Brazil) — 🛠️ Needs improvements ![85% translated](https://progress-bar.xyz/85)
+- 🇷🇺 **RU** (Russian) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45)
+- 🇺🇦 **UK** (Ukrainian) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45)
+- 🇵🇰 **UR** (Urdu) — 🛠️ Needs improvements ![35% translated](https://progress-bar.xyz/35)
 
 Want to help improve translations? Check our [contribution guidelines](CONTRIBUTING.md) and help make Clean CV Maker more accessible to users worldwide!🌐✨
 
@@ -118,42 +119,47 @@ Want to help improve translations? Check our [contribution guidelines](CONTRIBUT
 
 ## 📸 Preview
 
-### 🌙 Dark Mode  
+### 🌙 Dark Mode
+
 ![Clean CV Maker – Dark Mode](clean-cv-maker-preview-dark.png)
 
-### ☀️ Light Mode  
+### ☀️ Light Mode
+
 ![Clean CV Maker – Light Mode](clean-cv-maker-preview-light.png)
 
 ---
 
 ## 🚀 Features
 
-- 📝 **Dynamic form** – Structured input for CV details.  
-- 🔗 **LinkedIn integration** – Fetch work experiences and certificates.  
-- 💾 **Data storage** – Save CVs in `localStorage` or sync with GitHub.  
-- 📄 **PDF generation** – Clean and customizable layouts.  
-- 🎨 **Minimalist design** – Powered by Tailwind CSS and Lucide icons.  
+- 📝 **Dynamic form** – Structured input for CV details.
+- 🔗 **LinkedIn integration** – Fetch work experiences and certificates.
+- 💾 **Data storage** – Save CVs in `localStorage` or sync with GitHub.
+- 📄 **PDF generation** – Clean and customizable layouts.
+- 🎨 **Minimalist design** – Powered by Tailwind CSS and Lucide icons.
 
 ---
 
 ## 🛠 Tech Stack
 
-- ⚛ **React (Vite)** – Fast and modern React development.  
-- 🎨 **Tailwind CSS** – Utility-first styling for a clean UI.  
-- 🖼 **Lucide Icons** – Simple, elegant icons.  
-- ⚡ **VITE SWC** – Lightning-fast builds and optimizations.  
+- ⚛ **React (Vite)** – Fast and modern React development.
+- 🎨 **Tailwind CSS** – Utility-first styling for a clean UI.
+- 🖼 **Lucide Icons** – Simple, elegant icons.
+- ⚡ **VITE SWC** – Lightning-fast builds and optimizations.
 
 ---
 
 ## 📌 Getting Started
 
-### ✅ Prerequisites  
-Ensure you have the following installed:  
-- **Node.js** (v18+ recommended)  
-- **pnpm** (or npm/yarn as alternatives)  
+### ✅ Prerequisites
 
-### 📥 Installation  
-Clone the repository and install dependencies:  
+Ensure you have the following installed:
+
+- **Node.js** (v18+ recommended)
+- **pnpm** (or npm/yarn as alternatives)
+
+### 📥 Installation
+
+Clone the repository and install dependencies:
 
 ```sh
 git clone https://github.com/guibranco/clean-cv-maker.git
@@ -161,15 +167,17 @@ cd clean-cv-maker
 pnpm install  # or npm install / yarn install
 ```
 
-### 🏃 Running the App  
-Start the development server:  
+### 🏃 Running the App
+
+Start the development server:
 
 ```sh
 pnpm dev  # or npm run dev / yarn dev
 ```
 
-### 📦 Building for Production  
-Generate optimized production files:  
+### 📦 Building for Production
+
+Generate optimized production files:
 
 ```sh
 pnpm build  # or npm run build / yarn build
@@ -181,10 +189,10 @@ pnpm build  # or npm run build / yarn build
 
 Contributions are welcome! Feel free to open issues or submit pull requests. If you’d like to improve the project, follow these steps:
 
-1. Fork the repository.  
-2. Create a new branch (`feature/your-feature`).  
-3. Make and commit your changes.  
-4. Push to your branch and submit a Pull Request.  
+1. Fork the repository.
+2. Create a new branch (`feature/your-feature`).
+3. Make and commit your changes.
+4. Push to your branch and submit a Pull Request.
 
 ---
 

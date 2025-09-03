@@ -29,9 +29,7 @@ export function Footer() {
                   <span className="text-xs text-gray-500 dark:text-gray-400">
                     {t('common:footer.developedBy')}
                   </span>
-                  <span className="font-medium">
-                    Guilherme Branco Stracini
-                  </span>
+                  <span className="font-medium">Guilherme Branco Stracini</span>
                 </div>
               </a>
             </div>

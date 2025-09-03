@@ -9,21 +9,67 @@ interface TechStackSelectProps {
 
 const TECH_STACK_OPTIONS = [
   // Languages
-  'JavaScript', 'TypeScript', 'Python', 'Java', 'C#', 'PHP', 'Ruby', 'Go', 'Rust', 'Swift',
+  'JavaScript',
+  'TypeScript',
+  'Python',
+  'Java',
+  'C#',
+  'PHP',
+  'Ruby',
+  'Go',
+  'Rust',
+  'Swift',
   // Frontend
-  'React', 'Vue', 'Angular', 'Svelte', 'Next.js', 'Nuxt.js', 'HTML', 'CSS', 'Sass', 'Tailwind CSS',
+  'React',
+  'Vue',
+  'Angular',
+  'Svelte',
+  'Next.js',
+  'Nuxt.js',
+  'HTML',
+  'CSS',
+  'Sass',
+  'Tailwind CSS',
   // Backend
-  'Node.js', 'Express', 'Django', 'Flask', 'Spring Boot', 'Laravel', 'Ruby on Rails', '.NET',
+  'Node.js',
+  'Express',
+  'Django',
+  'Flask',
+  'Spring Boot',
+  'Laravel',
+  'Ruby on Rails',
+  '.NET',
   // Databases
-  'PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'SQLite', 'Supabase',
+  'PostgreSQL',
+  'MySQL',
+  'MongoDB',
+  'Redis',
+  'SQLite',
+  'Supabase',
   // Cloud & DevOps
-  'AWS', 'Azure', 'Google Cloud', 'Docker', 'Kubernetes', 'CI/CD',
+  'AWS',
+  'Azure',
+  'Google Cloud',
+  'Docker',
+  'Kubernetes',
+  'CI/CD',
   // Testing
-  'Jest', 'Cypress', 'Playwright', 'Vitest',
+  'Jest',
+  'Cypress',
+  'Playwright',
+  'Vitest',
   // Mobile
-  'React Native', 'Flutter', 'iOS', 'Android',
+  'React Native',
+  'Flutter',
+  'iOS',
+  'Android',
   // Other
-  'GraphQL', 'REST API', 'WebSocket', 'WebRTC', 'OAuth', 'JWT',
+  'GraphQL',
+  'REST API',
+  'WebSocket',
+  'WebRTC',
+  'OAuth',
+  'JWT',
 ];
 
 export function TechStackSelect({ index }: TechStackSelectProps) {
@@ -33,7 +79,10 @@ export function TechStackSelect({ index }: TechStackSelectProps) {
 
   const toggleTech = (tech: string) => {
     if (selectedTech.includes(tech)) {
-      setValue(`projects.${index}.techStack`, selectedTech.filter(t => t !== tech));
+      setValue(
+        `projects.${index}.techStack`,
+        selectedTech.filter((t) => t !== tech)
+      );
     } else if (selectedTech.length < 10) {
       setValue(`projects.${index}.techStack`, [...selectedTech, tech]);
     }
@@ -56,18 +105,17 @@ export function TechStackSelect({ index }: TechStackSelectProps) {
   return (
     <div>
       <div className="flex items-center mb-2">
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Tech Stack</label>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+          Tech Stack
+        </label>
         <Tooltip
           content="The technologies used in this project."
           importance="Shows your technical expertise and project complexity."
           tips="Select up to 10 technologies. Add custom ones if needed."
         />
       </div>
-      <input
-        type="hidden"
-        {...register(`projects.${index}.techStack`)}
-      />
-      
+      <input type="hidden" {...register(`projects.${index}.techStack`)} />
+
       <div className="mb-4">
         <div className="flex gap-2">
           <input
@@ -107,9 +155,11 @@ export function TechStackSelect({ index }: TechStackSelectProps) {
       </div>
 
       <div className="mt-4">
-        <p className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Suggested technologies:</p>
+        <p className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+          Suggested technologies:
+        </p>
         <div className="flex flex-wrap gap-2">
-          {TECH_STACK_OPTIONS.filter(tech => !selectedTech.includes(tech)).map((tech) => (
+          {TECH_STACK_OPTIONS.filter((tech) => !selectedTech.includes(tech)).map((tech) => (
             <button
               key={tech}
               type="button"

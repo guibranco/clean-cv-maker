@@ -22,26 +22,32 @@ const importSchema = z.object({
     portfolioUrl: z.string().optional(),
     willRelocate: z.boolean(),
     bio: z.string(),
-    experiences: z.array(z.object({
-      companyName: z.string(),
-      companyLogoUrl: z.string().optional(),
-      companySize: z.string().optional(),
-      companyIndustry: z.string().optional(),
-      companyDescription: z.string().optional(),
-      contractType: z.enum(['', 'full-time', 'part-time', 'freelance']),
-      workSchema: z.enum(['', 'on-site', 'remote', 'hybrid']),
-      startDate: z.string(),
-      endDate: z.string().optional(),
-      current: z.boolean(),
-      roles: z.array(z.object({
-        title: z.string(),
-        startDate: z.string(),
-        endDate: z.string().optional(),
-        current: z.boolean(),
-        description: z.string(),
-        achievements: z.array(z.string()),
-      })),
-    })).optional(),
+    experiences: z
+      .array(
+        z.object({
+          companyName: z.string(),
+          companyLogoUrl: z.string().optional(),
+          companySize: z.string().optional(),
+          companyIndustry: z.string().optional(),
+          companyDescription: z.string().optional(),
+          contractType: z.enum(['', 'full-time', 'part-time', 'freelance']),
+          workSchema: z.enum(['', 'on-site', 'remote', 'hybrid']),
+          startDate: z.string(),
+          endDate: z.string().optional(),
+          current: z.boolean(),
+          roles: z.array(
+            z.object({
+              title: z.string(),
+              startDate: z.string(),
+              endDate: z.string().optional(),
+              current: z.boolean(),
+              description: z.string(),
+              achievements: z.array(z.string()),
+            })
+          ),
+        })
+      )
+      .optional(),
   }),
 });
 
@@ -64,10 +70,10 @@ export function ImportSection({ onImportSuccess }: ImportSectionProps) {
         setImportError(null);
         const content = e.target?.result as string;
         const importedVersion = JSON.parse(content);
-        
+
         // Validate the imported data structure
         const validationResult = importSchema.safeParse(importedVersion);
-        
+
         if (!validationResult.success) {
           throw new Error(t('common:versionPanel.import.invalidFormat'));
         }
@@ -81,7 +87,9 @@ export function ImportSection({ onImportSuccess }: ImportSectionProps) {
         }
       } catch (error) {
         console.error('Failed to import CV version:', error);
-        setImportError(error instanceof Error ? error.message : t('common:versionPanel.import.genericError'));
+        setImportError(
+          error instanceof Error ? error.message : t('common:versionPanel.import.genericError')
+        );
       }
     };
     reader.readAsText(file);
@@ -95,11 +103,7 @@ export function ImportSection({ onImportSuccess }: ImportSectionProps) {
 
   return (
     <div className="mb-4">
-      <Button
-        variant="outline"
-        className="w-full gap-2"
-        onClick={handleImportClick}
-      >
+      <Button variant="outline" className="w-full gap-2" onClick={handleImportClick}>
         <Upload className="h-4 w-4" />
         {t('common:versionPanel.import.button')}
       </Button>
@@ -111,9 +115,7 @@ export function ImportSection({ onImportSuccess }: ImportSectionProps) {
         className="hidden"
         aria-label={t('common:versionPanel.import.button')}
       />
-      {importError && (
-        <p className="mt-2 text-sm text-red-600 dark:text-red-400">{importError}</p>
-      )}
+      {importError && <p className="mt-2 text-sm text-red-600 dark:text-red-400">{importError}</p>}
     </div>
   );
 }

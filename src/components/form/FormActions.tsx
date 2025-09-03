@@ -8,15 +8,15 @@ interface FormActionsProps {
   isGeneratingHTML?: boolean;
 }
 
-export function FormActions({ onSaveCompleted, onGenerateHTML, isGeneratingPDF, isGeneratingHTML }: FormActionsProps) {
+export function FormActions({
+  onSaveCompleted,
+  onGenerateHTML,
+  isGeneratingPDF,
+  isGeneratingHTML,
+}: FormActionsProps) {
   return (
     <div className="flex justify-end space-x-4">
-      <Button
-        type="button"
-        onClick={onSaveCompleted}
-        variant="outline"
-        className="gap-2"
-      >
+      <Button type="button" onClick={onSaveCompleted} variant="outline" className="gap-2">
         <Check className="h-4 w-4" />
         Save Completed Version
       </Button>
@@ -30,11 +30,7 @@ export function FormActions({ onSaveCompleted, onGenerateHTML, isGeneratingPDF, 
         <FileText className="h-4 w-4" />
         {isGeneratingHTML ? 'Generating HTML...' : 'Download HTML'}
       </Button>
-      <Button 
-        type="submit" 
-        className="gap-2"
-        disabled={isGeneratingPDF}
-      >
+      <Button type="submit" className="gap-2" disabled={isGeneratingPDF}>
         <Download className="h-4 w-4" />
         {isGeneratingPDF ? 'Generating PDF...' : 'Download PDF'}
       </Button>

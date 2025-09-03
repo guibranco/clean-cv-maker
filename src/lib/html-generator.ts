@@ -141,7 +141,7 @@ export function generateHTML(data: PersonalInfoFormData) {
         <div class="section">
           <h3 class="section-title">Projects I Worked On</h3>
           <ul>
-            ${formatList(data.projectsWorked.map(project => formatText(escapeHtml(project))))}
+            ${formatList(data.projectsWorked.map((project) => formatText(escapeHtml(project))))}
           </ul>
         </div>
       `
@@ -262,7 +262,7 @@ export function generateHTML(data: PersonalInfoFormData) {
               ${
                 project.techStack.length > 0
                   ? `
-                <p class="description">Technologies: ${project.techStack.map(tech => escapeHtml(tech)).join(', ')}</p>
+                <p class="description">Technologies: ${project.techStack.map((tech) => escapeHtml(tech)).join(', ')}</p>
               `
                   : ''
               }
@@ -308,7 +308,7 @@ export function generateHTML(data: PersonalInfoFormData) {
                   ? `
                 <ul class="description">
 <ul class="description">
-  ${formatList(cert.topics.map(topic => escapeHtml(topic)))}
+  ${formatList(cert.topics.map((topic) => escapeHtml(topic)))}
 </ul>
                 </ul>
               `

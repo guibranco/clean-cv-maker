@@ -15,7 +15,7 @@ export function useFormValidation() {
     const findFirstErrorPath = (obj: Record<string, any>, path: string = ''): string | null => {
       for (const [key, value] of Object.entries(obj)) {
         const currentPath = path ? `${path}.${key}` : key;
-        
+
         if (value?.message) {
           return currentPath;
         } else if (value && typeof value === 'object' && !Array.isArray(value)) {

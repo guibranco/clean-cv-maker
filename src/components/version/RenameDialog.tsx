@@ -22,19 +22,14 @@ export function RenameDialog({ currentName, onRename, onClose }: RenameDialogPro
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-96 relative">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={onClose}
-          className="absolute right-4 top-4"
-        >
+        <Button variant="outline" size="sm" onClick={onClose} className="absolute right-4 top-4">
           <X className="h-4 w-4" />
         </Button>
-        
+
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
           {t('common:versionPanel.rename.title')}
         </h3>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
@@ -49,7 +44,7 @@ export function RenameDialog({ currentName, onRename, onClose }: RenameDialogPro
               autoFocus
             />
           </div>
-          
+
           <div className="flex justify-end gap-2">
             <Button type="button" variant="outline" onClick={onClose}>
               {t('common:actions.cancel')}

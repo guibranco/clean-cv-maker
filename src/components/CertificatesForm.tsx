@@ -23,7 +23,11 @@ export interface CertificatesFormData {
 export function CertificatesForm() {
   const { control } = useFormContext();
 
-  const { fields: certificates, append: appendCertificate, remove: removeCertificate } = useFieldArray({
+  const {
+    fields: certificates,
+    append: appendCertificate,
+    remove: removeCertificate,
+  } = useFieldArray({
     control,
     name: 'certificates',
   });

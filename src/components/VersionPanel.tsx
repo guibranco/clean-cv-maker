@@ -19,15 +19,21 @@ export function VersionPanel({ onVersionSelect, onClose }: VersionPanelProps) {
     setVersions(getVersions());
   }, []);
 
-  const handleDelete = useCallback((id: string) => {
-    deleteVersion(id);
-    refreshVersions();
-  }, [refreshVersions]);
+  const handleDelete = useCallback(
+    (id: string) => {
+      deleteVersion(id);
+      refreshVersions();
+    },
+    [refreshVersions]
+  );
 
-  const handleRename = useCallback((id: string, newName: string) => {
-    renameVersion(id, newName);
-    refreshVersions();
-  }, [refreshVersions]);
+  const handleRename = useCallback(
+    (id: string, newName: string) => {
+      renameVersion(id, newName);
+      refreshVersions();
+    },
+    [refreshVersions]
+  );
 
   const handleExport = (version: CVVersion) => {
     const blob = new Blob([JSON.stringify(version, null, 2)], { type: 'application/json' });

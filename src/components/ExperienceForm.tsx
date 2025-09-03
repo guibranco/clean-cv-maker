@@ -34,7 +34,11 @@ export interface ExperienceFormData {
 export function ExperienceForm() {
   const { control } = useFormContext();
 
-  const { fields: experiences, append: appendExperience, remove: removeExperience } = useFieldArray({
+  const {
+    fields: experiences,
+    append: appendExperience,
+    remove: removeExperience,
+  } = useFieldArray({
     control,
     name: 'experiences',
   });
@@ -53,7 +57,16 @@ export function ExperienceForm() {
               startDate: '',
               endDate: '',
               current: false,
-              roles: [{ title: '', startDate: '', endDate: '', current: false, description: '', achievements: [''] }],
+              roles: [
+                {
+                  title: '',
+                  startDate: '',
+                  endDate: '',
+                  current: false,
+                  description: '',
+                  achievements: [''],
+                },
+              ],
             })
           }
           className="gap-2"

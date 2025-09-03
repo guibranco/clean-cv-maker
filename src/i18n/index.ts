@@ -34,80 +34,80 @@ export const languages = [
     code: 'ar',
     name: 'العربية',
     flag: 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.1.0/flags/4x3/sa.svg',
-    dir: 'rtl'
+    dir: 'rtl',
   },
   {
     code: 'de',
     name: 'Deutsch',
     flag: 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.1.0/flags/4x3/de.svg',
-    dir: 'ltr'
+    dir: 'ltr',
   },
   {
     code: 'en',
     name: 'English',
     flag: 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.1.0/flags/4x3/us.svg',
-    dir: 'ltr'
+    dir: 'ltr',
   },
   {
     code: 'es',
     name: 'Español',
     flag: 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.1.0/flags/4x3/es.svg',
-    dir: 'ltr'
+    dir: 'ltr',
   },
   {
     code: 'fr',
     name: 'Français',
     flag: 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.1.0/flags/4x3/fr.svg',
-    dir: 'ltr'
+    dir: 'ltr',
   },
   {
     code: 'hi',
     name: 'हिन्दी',
     flag: 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.1.0/flags/4x3/in.svg',
-    dir: 'ltr'
+    dir: 'ltr',
   },
   {
     code: 'it',
     name: 'Italiano',
     flag: 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.1.0/flags/4x3/it.svg',
-    dir: 'ltr'
+    dir: 'ltr',
   },
   {
     code: 'ja',
     name: '日本語',
     flag: 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.1.0/flags/4x3/jp.svg',
-    dir: 'ltr'
+    dir: 'ltr',
   },
   {
     code: 'ko',
     name: '한국어',
     flag: 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.1.0/flags/4x3/kr.svg',
-    dir: 'ltr'
+    dir: 'ltr',
   },
   {
     code: 'pt-BR',
     name: 'Português',
     flag: 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.1.0/flags/4x3/br.svg',
-    dir: 'ltr'
+    dir: 'ltr',
   },
   {
     code: 'ru',
     name: 'Русский',
     flag: 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.1.0/flags/4x3/ru.svg',
-    dir: 'ltr'
+    dir: 'ltr',
   },
   {
     code: 'uk',
     name: 'Українська',
     flag: 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.1.0/flags/4x3/ua.svg',
-    dir: 'ltr'
+    dir: 'ltr',
   },
   {
     code: 'ur',
     name: 'اردو',
     flag: 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.1.0/flags/4x3/pk.svg',
-    dir: 'rtl'
-  }
+    dir: 'rtl',
+  },
 ];
 
 i18n
@@ -166,7 +166,7 @@ i18n
       uk: {
         common: commonUk,
         form: formUk,
-      }
+      },
     },
     fallbackLng: 'en',
     detection: {

@@ -18,8 +18,8 @@ export function VersionCard({ version, onSelect, onDelete, onExport, onRename }:
   const { t } = useTranslation(['common']);
 
   const getStatusColor = (status: CVVersion['status']) => {
-    return status === 'completed' 
-      ? 'bg-green-100 dark:bg-green-900/30' 
+    return status === 'completed'
+      ? 'bg-green-100 dark:bg-green-900/30'
       : 'bg-yellow-100 dark:bg-yellow-900/30';
   };
 
@@ -34,7 +34,9 @@ export function VersionCard({ version, onSelect, onDelete, onExport, onRename }:
 
   return (
     <>
-      <div className={`border dark:border-gray-700 rounded-lg p-3 hover:bg-opacity-80 transition-colors ${getStatusColor(version.status)}`}>
+      <div
+        className={`border dark:border-gray-700 rounded-lg p-3 hover:bg-opacity-80 transition-colors ${getStatusColor(version.status)}`}
+      >
         <div className="flex justify-between items-start mb-2">
           <div>
             <h3 className="font-medium text-gray-900 dark:text-white">{displayName}</h3>
@@ -70,12 +72,7 @@ export function VersionCard({ version, onSelect, onDelete, onExport, onRename }:
             </Button>
           </div>
         </div>
-        <Button
-          variant="outline"
-          size="sm"
-          className="w-full"
-          onClick={() => onSelect(version)}
-        >
+        <Button variant="outline" size="sm" className="w-full" onClick={() => onSelect(version)}>
           {t('common:versionPanel.loadVersion')}
         </Button>
       </div>

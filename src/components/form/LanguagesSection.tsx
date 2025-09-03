@@ -25,7 +25,9 @@ export function LanguagesSection() {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleDragEnd = (result: any) => {
-    if (!result.destination) { return; }
+    if (!result.destination) {
+      return;
+    }
     move(result.source.index, result.destination.index);
   };
 
@@ -46,19 +48,16 @@ export function LanguagesSection() {
         <DragDropContext onDragEnd={handleDragEnd}>
           <Droppable droppableId="languages-list">
             {(provided) => (
-              <div
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-                className="space-y-4"
-              >
+              <div {...provided.droppableProps} ref={provided.innerRef} className="space-y-4">
                 {fields.map((field, index) => (
                   <Draggable key={field.id} draggableId={field.id} index={index}>
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}
-                        className={`flex items-center gap-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border dark:border-gray-700 ${snapshot.isDragging ? 'opacity-50' : ''
-                          }`}
+                        className={`flex items-center gap-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border dark:border-gray-700 ${
+                          snapshot.isDragging ? 'opacity-50' : ''
+                        }`}
                       >
                         <div
                           {...provided.dragHandleProps}
@@ -77,7 +76,7 @@ export function LanguagesSection() {
                         <div className="flex-1">
                           <select
                             {...control.register(`languages.${index}.proficiency`, {
-                              valueAsNumber: true
+                              valueAsNumber: true,
                             })}
                             className="w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                           >

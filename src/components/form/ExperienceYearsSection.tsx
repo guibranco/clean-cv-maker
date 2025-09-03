@@ -20,7 +20,9 @@ export function ExperienceYearsSection() {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleDragEnd = (result: any) => {
-    if (!result.destination) { return; }
+    if (!result.destination) {
+      return;
+    }
     move(result.source.index, result.destination.index);
   };
 
@@ -41,11 +43,7 @@ export function ExperienceYearsSection() {
         <DragDropContext onDragEnd={handleDragEnd}>
           <Droppable droppableId="experience-years-list">
             {(provided) => (
-              <div
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-                className="space-y-4"
-              >
+              <div {...provided.droppableProps} ref={provided.innerRef} className="space-y-4">
                 {fields.map((field, index) => {
                   const startDate = control._formValues.experienceYears?.[index]?.startDate;
                   const yearsOfExperience = startDate ? calculateYearsOfExperience(startDate) : 0;
@@ -56,8 +54,9 @@ export function ExperienceYearsSection() {
                         <div
                           ref={provided.innerRef}
                           {...provided.draggableProps}
-                          className={`flex items-center gap-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border dark:border-gray-700 ${snapshot.isDragging ? 'opacity-50' : ''
-                            }`}
+                          className={`flex items-center gap-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border dark:border-gray-700 ${
+                            snapshot.isDragging ? 'opacity-50' : ''
+                          }`}
                         >
                           <div
                             {...provided.dragHandleProps}
