@@ -13,7 +13,11 @@ export function EducationFields({ index, onRemove }: EducationFieldsProps) {
   const { register, watch, control } = useFormContext();
   const current = watch(`education.${index}.current`);
 
-  const { fields: topics, append: appendTopic, remove: removeTopic } = useFieldArray({
+  const {
+    fields: topics,
+    append: appendTopic,
+    remove: removeTopic,
+  } = useFieldArray({
     control,
     name: `education.${index}.topics`,
   });
@@ -21,7 +25,9 @@ export function EducationFields({ index, onRemove }: EducationFieldsProps) {
   return (
     <div className="border dark:border-gray-700 rounded-lg p-6 space-y-6 bg-white dark:bg-gray-800">
       <div className="flex justify-between items-start">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Education {index + 1}</h3>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          Education {index + 1}
+        </h3>
         {onRemove && (
           <Button
             type="button"
@@ -41,9 +47,9 @@ export function EducationFields({ index, onRemove }: EducationFieldsProps) {
             label="Institution"
             required
             tooltip={{
-              content: "Name of the educational institution.",
-              importance: "Helps establish your academic background.",
-              tips: "Use the full, official name of the institution."
+              content: 'Name of the educational institution.',
+              importance: 'Helps establish your academic background.',
+              tips: 'Use the full, official name of the institution.',
             }}
           />
         </div>
@@ -55,8 +61,8 @@ export function EducationFields({ index, onRemove }: EducationFieldsProps) {
             type="url"
             tooltip={{
               content: "URL to the institution's logo.",
-              importance: "Adds visual recognition and professionalism to your education section.",
-              tips: "Use a high-quality, official logo. Ensure the URL is permanent and accessible."
+              importance: 'Adds visual recognition and professionalism to your education section.',
+              tips: 'Use a high-quality, official logo. Ensure the URL is permanent and accessible.',
             }}
           />
         </div>
@@ -67,9 +73,9 @@ export function EducationFields({ index, onRemove }: EducationFieldsProps) {
             label="Degree"
             required
             tooltip={{
-              content: "Your degree or certification.",
-              importance: "Specifies your level of education and field of study.",
-              tips: "Include both the type (e.g., Bachelor of Science) and field (e.g., Computer Science)."
+              content: 'Your degree or certification.',
+              importance: 'Specifies your level of education and field of study.',
+              tips: 'Include both the type (e.g., Bachelor of Science) and field (e.g., Computer Science).',
             }}
           />
         </div>
@@ -80,15 +86,17 @@ export function EducationFields({ index, onRemove }: EducationFieldsProps) {
           type="month"
           required
           tooltip={{
-            content: "When you started your studies.",
-            importance: "Shows the timeline of your education.",
-            tips: "Use the actual start date of your program."
+            content: 'When you started your studies.',
+            importance: 'Shows the timeline of your education.',
+            tips: 'Use the actual start date of your program.',
           }}
         />
 
         <div className="space-y-2">
           <div className="flex items-center">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">End Date</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+              End Date
+            </label>
             <Tooltip
               content="When you completed or expect to complete your studies."
               importance="Shows your education timeline and current status."
@@ -116,7 +124,9 @@ export function EducationFields({ index, onRemove }: EducationFieldsProps) {
         <div className="sm:col-span-2 space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-200">Topics & Skills Learned</h4>
+              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-200">
+                Topics & Skills Learned
+              </h4>
               <Tooltip
                 content="Key topics, courses, and skills learned during your education."
                 importance="Helps recruiters understand the specific knowledge and skills you gained."

@@ -14,7 +14,9 @@ export function ExperienceFields({ index, onRemove }: ExperienceFieldsProps) {
   return (
     <div className="border dark:border-gray-700 rounded-lg p-6 space-y-6 bg-white dark:bg-gray-800">
       <div className="flex justify-between items-start">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Experience {index + 1}</h3>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          Experience {index + 1}
+        </h3>
         {onRemove && (
           <Button
             type="button"
@@ -30,7 +32,9 @@ export function ExperienceFields({ index, onRemove }: ExperienceFieldsProps) {
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div>
           <div className="flex items-center">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Company Name *</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+              Company Name *
+            </label>
             <Tooltip
               content="The name of the company where you worked."
               importance="This is a key field for ATS systems and helps recruiters verify your employment history."
@@ -47,7 +51,9 @@ export function ExperienceFields({ index, onRemove }: ExperienceFieldsProps) {
 
         <div>
           <div className="flex items-center">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Company Logo URL</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+              Company Logo URL
+            </label>
             <Tooltip
               content="A URL to the company's logo image."
               importance="Adding visual elements can make your CV more engaging and memorable."
@@ -63,7 +69,9 @@ export function ExperienceFields({ index, onRemove }: ExperienceFieldsProps) {
 
         <div>
           <div className="flex items-center">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Company Size</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+              Company Size
+            </label>
             <Tooltip
               content="The approximate size of the company in terms of employees."
               importance="Helps recruiters understand the scale of organizations you've worked with."
@@ -80,7 +88,9 @@ export function ExperienceFields({ index, onRemove }: ExperienceFieldsProps) {
 
         <div>
           <div className="flex items-center">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Industry</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+              Industry
+            </label>
             <Tooltip
               content="The primary industry or sector of the company."
               importance="Shows your experience across different industries and helps with industry-specific job matching."
@@ -96,7 +106,9 @@ export function ExperienceFields({ index, onRemove }: ExperienceFieldsProps) {
 
         <div className="sm:col-span-2">
           <div className="flex items-center">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Company Description</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+              Company Description
+            </label>
             <Tooltip
               content="A brief description of what the company does."
               importance="Provides context about your work environment and helps recruiters understand the company's focus."
@@ -112,7 +124,9 @@ export function ExperienceFields({ index, onRemove }: ExperienceFieldsProps) {
 
         <div>
           <div className="flex items-center">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Contract Type</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+              Contract Type
+            </label>
             <Tooltip
               content="The type of employment contract you had."
               importance="Clarifies your employment status and helps match you with similar opportunities."
@@ -132,7 +146,9 @@ export function ExperienceFields({ index, onRemove }: ExperienceFieldsProps) {
 
         <div>
           <div className="flex items-center">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Work Schema</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+              Work Schema
+            </label>
             <Tooltip
               content="How you performed your work (on-site, remote, or hybrid)."
               importance="Work location flexibility is increasingly important to both employers and employees."
@@ -152,7 +168,9 @@ export function ExperienceFields({ index, onRemove }: ExperienceFieldsProps) {
 
         <div>
           <div className="flex items-center">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Start Date</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+              Start Date
+            </label>
             <Tooltip
               content="When you started working at this company."
               importance="Shows your career progression and helps verify employment duration."
@@ -168,7 +186,9 @@ export function ExperienceFields({ index, onRemove }: ExperienceFieldsProps) {
 
         <div className="space-y-2">
           <div className="flex items-center">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">End Date</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+              End Date
+            </label>
             <Tooltip
               content="When you finished working at this company."
               importance="Completes your employment timeline and shows job stability."

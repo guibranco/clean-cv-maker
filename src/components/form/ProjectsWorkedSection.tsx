@@ -14,7 +14,9 @@ export function ProjectsWorkedSection() {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleDragEnd = (result: any) => {
-    if (!result.destination) { return; }
+    if (!result.destination) {
+      return;
+    }
     move(result.source.index, result.destination.index);
   };
 
@@ -35,23 +37,16 @@ export function ProjectsWorkedSection() {
         <DragDropContext onDragEnd={handleDragEnd}>
           <Droppable droppableId="projects-worked-list">
             {(provided) => (
-              <div
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-                className="space-y-4"
-              >
+              <div {...provided.droppableProps} ref={provided.innerRef} className="space-y-4">
                 {fields.map((field, index) => (
-                  <Draggable
-                    key={field.id}
-                    draggableId={field.id}
-                    index={index}
-                  >
+                  <Draggable key={field.id} draggableId={field.id} index={index}>
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}
-                        className={`flex items-center gap-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border dark:border-gray-700 ${snapshot.isDragging ? 'opacity-50' : ''
-                          }`}
+                        className={`flex items-center gap-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border dark:border-gray-700 ${
+                          snapshot.isDragging ? 'opacity-50' : ''
+                        }`}
                       >
                         <div
                           {...provided.dragHandleProps}
@@ -85,12 +80,7 @@ export function ProjectsWorkedSection() {
           </Droppable>
         </DragDropContext>
 
-        <Button
-          type="button"
-          variant="outline"
-          onClick={() => append('')}
-          className="w-full gap-2"
-        >
+        <Button type="button" variant="outline" onClick={() => append('')} className="w-full gap-2">
           <Plus className="h-4 w-4" />
           Add Project
         </Button>

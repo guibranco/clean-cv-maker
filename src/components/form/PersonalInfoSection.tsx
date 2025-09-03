@@ -13,7 +13,7 @@ export function PersonalInfoSection() {
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
         {t('form:sections.personalInfo.sectionTitle')}
       </h2>
-      
+
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FormField
           name="fullName"

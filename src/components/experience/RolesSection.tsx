@@ -10,7 +10,11 @@ interface RolesSectionProps {
 export function RolesSection({ experienceIndex }: RolesSectionProps) {
   const { control } = useFormContext();
 
-  const { fields: roles, append: appendRole, remove: removeRole } = useFieldArray({
+  const {
+    fields: roles,
+    append: appendRole,
+    remove: removeRole,
+  } = useFieldArray({
     control,
     name: `experiences.${experienceIndex}.roles` as const,
   });

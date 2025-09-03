@@ -20,7 +20,11 @@ export interface EducationFormData {
 export function EducationForm() {
   const { control } = useFormContext();
 
-  const { fields: education, append: appendEducation, remove: removeEducation } = useFieldArray({
+  const {
+    fields: education,
+    append: appendEducation,
+    remove: removeEducation,
+  } = useFieldArray({
     control,
     name: 'education',
   });

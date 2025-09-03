@@ -1,5 +1,19 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet, Link, Image, Svg, Path, Circle, Line, Polyline, Rect } from '@react-pdf/renderer';
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  Link,
+  Image,
+  Svg,
+  Path,
+  Circle,
+  Line,
+  Polyline,
+  Rect,
+} from '@react-pdf/renderer';
 import type { PersonalInfoFormData } from './PersonalInfoForm';
 import { getProficiencyLabel, calculateYearsOfExperience } from '@/lib/utils';
 
@@ -202,22 +216,24 @@ export function CVDocument({ data }: CVDocumentProps) {
         <View style={styles.header}>
           <Text style={styles.name}>{data.fullName}</Text>
           <Text style={styles.title}>{data.title}</Text>
-          
+
           <View style={styles.contact}>
             <MapPinIcon />
-            <Text>{data.location} {data.willRelocate ? '• Available for relocation' : ''}</Text>
+            <Text>
+              {data.location} {data.willRelocate ? '• Available for relocation' : ''}
+            </Text>
           </View>
-          
+
           <View style={styles.contact}>
             <MailIcon />
             <Link src={`mailto:${data.email}`}>{data.email}</Link>
           </View>
-          
+
           <View style={styles.contact}>
             <PhoneIcon />
             <Text>{data.phone}</Text>
           </View>
-          
+
           <View style={styles.links}>
             {data.githubUrl && (
               <Link src={data.githubUrl} style={styles.link}>
@@ -279,12 +295,7 @@ export function CVDocument({ data }: CVDocumentProps) {
               <View key={index} style={styles.experienceItem}>
                 <View style={styles.companyHeader}>
                   <View style={styles.headerWithLogo}>
-                    {exp.companyLogoUrl && (
-                      <Image
-                        src={exp.companyLogoUrl}
-                        style={styles.logo}
-                      />
-                    )}
+                    {exp.companyLogoUrl && <Image src={exp.companyLogoUrl} style={styles.logo} />}
                     <Text style={styles.companyName}>{exp.companyName}</Text>
                   </View>
                   <Text style={styles.dates}>
@@ -296,8 +307,10 @@ export function CVDocument({ data }: CVDocumentProps) {
                     exp.contractType && exp.contractType.replace('-', ' '),
                     exp.workSchema && exp.workSchema.replace('-', ' '),
                     exp.companySize,
-                    exp.companyIndustry
-                  ].filter(Boolean).join(' • ')}
+                    exp.companyIndustry,
+                  ]
+                    .filter(Boolean)
+                    .join(' • ')}
                 </Text>
                 {exp.companyDescription && (
                   <Text style={styles.description}>{exp.companyDescription}</Text>
@@ -332,12 +345,7 @@ export function CVDocument({ data }: CVDocumentProps) {
               <View key={index} style={styles.experienceItem}>
                 <View style={styles.companyHeader}>
                   <View style={styles.headerWithLogo}>
-                    {edu.institutionLogo && (
-                      <Image
-                        src={edu.institutionLogo}
-                        style={styles.logo}
-                      />
-                    )}
+                    {edu.institutionLogo && <Image src={edu.institutionLogo} style={styles.logo} />}
                     <Text style={styles.companyName}>{edu.institution}</Text>
                   </View>
                   <Text style={styles.dates}>
@@ -364,12 +372,7 @@ export function CVDocument({ data }: CVDocumentProps) {
               <View key={index} style={styles.experienceItem}>
                 <View style={styles.companyHeader}>
                   <View style={styles.headerWithLogo}>
-                    {project.icon && (
-                      <Image
-                        src={project.icon}
-                        style={styles.projectIcon}
-                      />
-                    )}
+                    {project.icon && <Image src={project.icon} style={styles.projectIcon} />}
                     <Text style={styles.companyName}>{project.name}</Text>
                   </View>
                   <Text style={styles.dates}>{project.startDate}</Text>
@@ -408,12 +411,7 @@ export function CVDocument({ data }: CVDocumentProps) {
               <View key={index} style={styles.experienceItem}>
                 <View style={styles.companyHeader}>
                   <View style={styles.headerWithLogo}>
-                    {cert.issuerLogo && (
-                      <Image
-                        src={cert.issuerLogo}
-                        style={styles.logo}
-                      />
-                    )}
+                    {cert.issuerLogo && <Image src={cert.issuerLogo} style={styles.logo} />}
                     <Text style={styles.companyName}>{cert.name}</Text>
                   </View>
                   <Text style={styles.dates}>

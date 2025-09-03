@@ -39,9 +39,9 @@ export function ProjectFields({ index, onRemove }: ProjectFieldsProps) {
             label="Project Name"
             required
             tooltip={{
-              content: "The name of your project.",
-              importance: "Makes your project easily identifiable and memorable.",
-              tips: "Use a clear, descriptive name that reflects the project's purpose."
+              content: 'The name of your project.',
+              importance: 'Makes your project easily identifiable and memorable.',
+              tips: "Use a clear, descriptive name that reflects the project's purpose.",
             }}
           />
         </div>
@@ -53,8 +53,8 @@ export function ProjectFields({ index, onRemove }: ProjectFieldsProps) {
             type="url"
             tooltip={{
               content: "URL to the project's icon or logo.",
-              importance: "Visual representation helps make your project stand out.",
-              tips: "Use a square image with a clear background. SVG or PNG formats work best."
+              importance: 'Visual representation helps make your project stand out.',
+              tips: 'Use a square image with a clear background. SVG or PNG formats work best.',
             }}
           />
         </div>
@@ -66,9 +66,9 @@ export function ProjectFields({ index, onRemove }: ProjectFieldsProps) {
             textarea
             required
             tooltip={{
-              content: "A brief description of what your project does.",
+              content: 'A brief description of what your project does.',
               importance: "Helps readers quickly understand your project's purpose and value.",
-              tips: "Focus on the problem it solves and key features. Keep it concise but informative."
+              tips: 'Focus on the problem it solves and key features. Keep it concise but informative.',
             }}
           />
         </div>
@@ -78,9 +78,9 @@ export function ProjectFields({ index, onRemove }: ProjectFieldsProps) {
             name={`projects.${index}.isSourceOpen`}
             label="Source code is open"
             tooltip={{
-              content: "Indicate if the source code is publicly available.",
-              importance: "Open source projects demonstrate transparency and collaboration skills.",
-              tips: "If open source, ensure the repository is well-documented and maintained."
+              content: 'Indicate if the source code is publicly available.',
+              importance: 'Open source projects demonstrate transparency and collaboration skills.',
+              tips: 'If open source, ensure the repository is well-documented and maintained.',
             }}
           />
         </div>
@@ -94,8 +94,8 @@ export function ProjectFields({ index, onRemove }: ProjectFieldsProps) {
               required
               tooltip={{
                 content: "Link to your project's source code repository.",
-                importance: "Allows others to review your code and implementation.",
-                tips: "Usually a GitHub, GitLab, or Bitbucket repository URL."
+                importance: 'Allows others to review your code and implementation.',
+                tips: 'Usually a GitHub, GitLab, or Bitbucket repository URL.',
               }}
             />
           </div>
@@ -107,8 +107,8 @@ export function ProjectFields({ index, onRemove }: ProjectFieldsProps) {
             label="Demo available"
             tooltip={{
               content: "Indicate if there's a live demo of your project.",
-              importance: "Live demos help showcase your project in action.",
-              tips: "Consider setting up a demo if possible, it greatly enhances project presentation."
+              importance: 'Live demos help showcase your project in action.',
+              tips: 'Consider setting up a demo if possible, it greatly enhances project presentation.',
             }}
           />
         </div>
@@ -121,9 +121,9 @@ export function ProjectFields({ index, onRemove }: ProjectFieldsProps) {
               type="url"
               required
               tooltip={{
-                content: "Link to a live demo of your project.",
-                importance: "Allows others to try your project immediately.",
-                tips: "Ensure the demo is stable and represents your project well."
+                content: 'Link to a live demo of your project.',
+                importance: 'Allows others to try your project immediately.',
+                tips: 'Ensure the demo is stable and represents your project well.',
               }}
             />
           </div>
@@ -135,8 +135,8 @@ export function ProjectFields({ index, onRemove }: ProjectFieldsProps) {
             label="Documentation available"
             tooltip={{
               content: "Indicate if there's documentation for your project.",
-              importance: "Good documentation shows attention to detail and project maturity.",
-              tips: "Even basic documentation is better than none."
+              importance: 'Good documentation shows attention to detail and project maturity.',
+              tips: 'Even basic documentation is better than none.',
             }}
           />
         </div>
@@ -150,8 +150,8 @@ export function ProjectFields({ index, onRemove }: ProjectFieldsProps) {
               required
               tooltip={{
                 content: "Link to your project's documentation.",
-                importance: "Helps others understand how to use your project.",
-                tips: "Consider using platforms like ReadTheDocs or GitHub Pages."
+                importance: 'Helps others understand how to use your project.',
+                tips: 'Consider using platforms like ReadTheDocs or GitHub Pages.',
               }}
             />
           </div>
@@ -164,9 +164,9 @@ export function ProjectFields({ index, onRemove }: ProjectFieldsProps) {
             type="month"
             required
             tooltip={{
-              content: "When you started working on this project.",
-              importance: "Shows project timeline and your experience progression.",
-              tips: "Use the month when you made your first significant contribution."
+              content: 'When you started working on this project.',
+              importance: 'Shows project timeline and your experience progression.',
+              tips: 'Use the month when you made your first significant contribution.',
             }}
           />
         </div>

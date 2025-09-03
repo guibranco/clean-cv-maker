@@ -24,7 +24,10 @@ export function generateVersionName(data: PersonalInfoFormData): string {
   return `${date} - ${name}`;
 }
 
-export function saveVersion(data: PersonalInfoFormData, status: 'draft' | 'completed'): string | null {
+export function saveVersion(
+  data: PersonalInfoFormData,
+  status: 'draft' | 'completed'
+): string | null {
   // Prevent saving if full name is empty
   if (!data.fullName?.trim()) {
     return null;
@@ -32,27 +35,27 @@ export function saveVersion(data: PersonalInfoFormData, status: 'draft' | 'compl
 
   const versions = getVersions();
   const currentId = localStorage.getItem(CURRENT_VERSION_KEY);
-  
+
   if (status === 'completed') {
     // Remove all drafts when saving a completed version
-    const filteredVersions = versions.filter(v => v.status === 'completed');
+    const filteredVersions = versions.filter((v) => v.status === 'completed');
     localStorage.setItem(STORAGE_KEY, JSON.stringify(filteredVersions));
   } else if (status === 'draft' && currentId) {
     // Update existing draft
-    const versionIndex = versions.findIndex(v => v.id === currentId && v.status === 'draft');
+    const versionIndex = versions.findIndex((v) => v.id === currentId && v.status === 'draft');
     if (versionIndex !== -1) {
       versions[versionIndex] = {
         ...versions[versionIndex],
         name: generateVersionName(data),
         timestamp: Date.now(),
         data,
-        status: 'draft'
+        status: 'draft',
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(versions));
       return currentId;
     }
   }
-  
+
   // Create new version
   const id = crypto.randomUUID();
   const version: CVVersion = {
@@ -60,9 +63,9 @@ export function saveVersion(data: PersonalInfoFormData, status: 'draft' | 'compl
     name: generateVersionName(data),
     timestamp: Date.now(),
     data,
-    status
+    status,
   };
-  
+
   versions.push(version);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(versions));
   localStorage.setItem(CURRENT_VERSION_KEY, id);
@@ -76,7 +79,7 @@ export function getVersions(): CVVersion[] {
 }
 
 export function getVersion(id: string): CVVersion | undefined {
-  return getVersions().find(v => v.id === id);
+  return getVersions().find((v) => v.id === id);
 }
 
 export function getCurrentVersion(): CVVersion | undefined {
@@ -92,9 +95,9 @@ export function getCurrentVersion(): CVVersion | undefined {
 }
 
 export function deleteVersion(id: string): void {
-  const versions = getVersions().filter(v => v.id !== id);
+  const versions = getVersions().filter((v) => v.id !== id);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(versions));
-  
+
   const currentId = localStorage.getItem(CURRENT_VERSION_KEY);
   if (currentId === id) {
     localStorage.removeItem(CURRENT_VERSION_KEY);
@@ -103,7 +106,7 @@ export function deleteVersion(id: string): void {
 
 export function renameVersion(id: string, displayName: string): void {
   const versions = getVersions();
-  const versionIndex = versions.findIndex(v => v.id === id);
+  const versionIndex = versions.findIndex((v) => v.id === id);
   if (versionIndex !== -1) {
     versions[versionIndex] = {
       ...versions[versionIndex],

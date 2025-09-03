@@ -42,7 +42,16 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
           startDate: '',
           endDate: '',
           current: false,
-          roles: [{ title: '', startDate: '', endDate: '', current: false, description: '', achievements: [''] }],
+          roles: [
+            {
+              title: '',
+              startDate: '',
+              endDate: '',
+              current: false,
+              description: '',
+              achievements: [''],
+            },
+          ],
         },
       ],
       education: [
@@ -82,7 +91,14 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
     mode: 'onChange',
   });
 
-  const { handleSubmit, watch, reset, setValue, formState: { errors }, trigger } = methods;
+  const {
+    handleSubmit,
+    watch,
+    reset,
+    setValue,
+    formState: { errors },
+    trigger,
+  } = methods;
   const [lastSaveTime, setLastSaveTime] = useState<number>(0);
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const [isGeneratingHTML, setIsGeneratingHTML] = useState(false);
@@ -92,12 +108,16 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
   const hasEducation = watch('hasEducation');
   const hasCertificates = watch('hasCertificates');
 
-  const { showTooltip, focusFirstInvalidField, tooltipMessage, showAutoSaveTooltip } = useFormValidation();
+  const { showTooltip, focusFirstInvalidField, tooltipMessage, showAutoSaveTooltip } =
+    useFormValidation();
 
-  const hasData = formData.fullName || formData.title || formData.bio || 
-    (formData.experiences?.some(exp => exp.companyName)) ||
-    (formData.education?.some(edu => edu.institution)) ||
-    (formData.projects?.some(proj => proj.name));
+  const hasData =
+    formData.fullName ||
+    formData.title ||
+    formData.bio ||
+    formData.experiences?.some((exp) => exp.companyName) ||
+    formData.education?.some((edu) => edu.institution) ||
+    formData.projects?.some((proj) => proj.name);
 
   useEffect(() => {
     if (initialData) {
@@ -118,7 +138,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
 
   const downloadPDF = (pdfBlob: Blob, fileName: string) => {
     if (typeof window === 'undefined') return;
-    
+
     const downloadUrl = window.URL.createObjectURL(pdfBlob);
     const link = document.createElement('a');
     link.href = downloadUrl;
@@ -132,7 +152,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
   const onSubmit = async (data: PersonalInfoFormData) => {
     try {
       setIsGeneratingPDF(true);
-      
+
       // Clean up data based on switches
       const cleanData = {
         ...data,
@@ -144,7 +164,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
 
       // Create PDF document
       const document = <CVDocument data={cleanData} />;
-      
+
       // Generate PDF blob
       const pdfBlob = await pdf(document).toBlob();
       if (!pdfBlob) {
@@ -154,7 +174,6 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
       const fileName = `${cleanData.fullName.replace(/\s+/g, '-').toLowerCase()}-cv.pdf`;
       downloadPDF(pdfBlob, fileName);
       showTooltip('PDF CV generated successfully');
-      
     } catch (error) {
       console.error('Error generating PDF:', error);
       showTooltip('Failed to generate CV. Please try again.');
@@ -170,7 +189,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
       focusFirstInvalidField(errors);
       return;
     }
-    
+
     const versionId = saveVersion(formData, 'completed');
     if (versionId) {
       setLastSaveTime(Date.now());
@@ -181,14 +200,14 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
   const handleGenerateHTML = async () => {
     try {
       setIsGeneratingHTML(true);
-      
+
       const result = await trigger();
       if (!result) {
         showTooltip('Please fill in all required fields before generating HTML');
         focusFirstInvalidField(errors);
         return;
       }
-      
+
       // Clean up data based on switches
       const cleanData = {
         ...formData,
@@ -197,7 +216,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
         projects: formData.hasProjects ? formData.projects : undefined,
         certificates: formData.hasCertificates ? formData.certificates : undefined,
       };
-      
+
       generateHTML(cleanData);
       showTooltip('HTML CV generated successfully');
     } catch (error) {
@@ -221,7 +240,16 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
           startDate: '',
           endDate: '',
           current: false,
-          roles: [{ title: '', startDate: '', endDate: '', current: false, description: '', achievements: [''] }],
+          roles: [
+            {
+              title: '',
+              startDate: '',
+              endDate: '',
+              current: false,
+              description: '',
+              achievements: [''],
+            },
+          ],
         },
       ]);
     }
@@ -343,10 +371,7 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
 
         {hasData && <PreviewSection data={formData} />}
 
-        <AutoSaveTooltip
-          show={showAutoSaveTooltip}
-          message={tooltipMessage}
-        />
+        <AutoSaveTooltip show={showAutoSaveTooltip} message={tooltipMessage} />
       </div>
     </FormProvider>
   );

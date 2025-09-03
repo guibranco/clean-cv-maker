@@ -10,7 +10,12 @@ interface CollapsibleSectionProps {
   children: React.ReactNode;
 }
 
-export function CollapsibleSection({ title, enabled, onToggle, children }: CollapsibleSectionProps) {
+export function CollapsibleSection({
+  title,
+  enabled,
+  onToggle,
+  children,
+}: CollapsibleSectionProps) {
   const [isExpanded, setIsExpanded] = useState(enabled);
 
   useEffect(() => {
@@ -42,19 +47,17 @@ export function CollapsibleSection({ title, enabled, onToggle, children }: Colla
               onClick={() => setIsExpanded(!isExpanded)}
               className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
             >
-              <ChevronDown className={cn(
-                "h-5 w-5 transition-transform duration-200",
-                isExpanded ? "transform rotate-180" : ""
-              )} />
+              <ChevronDown
+                className={cn(
+                  'h-5 w-5 transition-transform duration-200',
+                  isExpanded ? 'transform rotate-180' : ''
+                )}
+              />
             </button>
           )}
         </div>
       </div>
-      {enabled && isExpanded && (
-        <div className="p-4 bg-white dark:bg-gray-900">
-          {children}
-        </div>
-      )}
+      {enabled && isExpanded && <div className="p-4 bg-white dark:bg-gray-900">{children}</div>}
     </div>
   );
 }

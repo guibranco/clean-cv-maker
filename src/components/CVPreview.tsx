@@ -15,7 +15,7 @@ export function CVPreview({ data }: CVPreviewProps) {
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{data.fullName}</h1>
         <h2 className="text-xl text-gray-600 dark:text-gray-300 mb-4">{data.title}</h2>
-        
+
         <div className="space-y-2 text-gray-600 dark:text-gray-300">
           <div className="flex items-center gap-2">
             <MapPin className="w-4 h-4" />
@@ -25,28 +25,48 @@ export function CVPreview({ data }: CVPreviewProps) {
           </div>
           <div className="flex items-center gap-2">
             <Mail className="w-4 h-4" />
-            <a href={`mailto:${data.email}`} className="hover:text-blue-600 dark:hover:text-blue-400">{data.email}</a>
+            <a
+              href={`mailto:${data.email}`}
+              className="hover:text-blue-600 dark:hover:text-blue-400"
+            >
+              {data.email}
+            </a>
           </div>
           <div className="flex items-center gap-2">
             <Phone className="w-4 h-4" />
             <span>{data.phone}</span>
           </div>
-          
+
           <div className="flex gap-4 mt-2">
             {data.githubUrl && (
-              <a href={data.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400">
+              <a
+                href={data.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400"
+              >
                 <Github className="w-4 h-4" />
                 GitHub
               </a>
             )}
             {data.linkedinUrl && (
-              <a href={data.linkedinUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400">
+              <a
+                href={data.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400"
+              >
                 <Linkedin className="w-4 h-4" />
                 LinkedIn
               </a>
             )}
             {data.portfolioUrl && (
-              <a href={data.portfolioUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400">
+              <a
+                href={data.portfolioUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400"
+              >
                 <Globe className="w-4 h-4" />
                 Portfolio
               </a>
@@ -70,7 +90,8 @@ export function CVPreview({ data }: CVPreviewProps) {
           <ul className="list-none space-y-2">
             {data.experienceYears.map((exp, index) => (
               <li key={index} className="text-gray-700 dark:text-gray-300">
-                {exp.technology}: {calculateYearsOfExperience(exp.startDate)}+ {t('common:cv.years')}
+                {exp.technology}: {calculateYearsOfExperience(exp.startDate)}+{' '}
+                {t('common:cv.years')}
               </li>
             ))}
           </ul>
@@ -84,7 +105,9 @@ export function CVPreview({ data }: CVPreviewProps) {
           </h3>
           <ul className="list-disc list-inside space-y-2">
             {data.projectsWorked.map((project, index) => (
-              <li key={index} className="text-gray-700 dark:text-gray-300">{project}</li>
+              <li key={index} className="text-gray-700 dark:text-gray-300">
+                {project}
+              </li>
             ))}
           </ul>
         </div>
@@ -105,8 +128,10 @@ export function CVPreview({ data }: CVPreviewProps) {
                       exp.contractType && exp.contractType.replace('-', ' '),
                       exp.workSchema && exp.workSchema.replace('-', ' '),
                       exp.companySize,
-                      exp.companyIndustry
-                    ].filter(Boolean).join(' • ')}
+                      exp.companyIndustry,
+                    ]
+                      .filter(Boolean)
+                      .join(' • ')}
                   </div>
                 </div>
                 <span className="text-sm text-gray-600 dark:text-gray-400">
@@ -128,7 +153,9 @@ export function CVPreview({ data }: CVPreviewProps) {
                   {role.achievements.filter(Boolean).length > 0 && (
                     <ul className="list-disc list-inside space-y-1">
                       {role.achievements.filter(Boolean).map((achievement, i) => (
-                        <li key={i} className="text-gray-700 dark:text-gray-300">{achievement}</li>
+                        <li key={i} className="text-gray-700 dark:text-gray-300">
+                          {achievement}
+                        </li>
                       ))}
                     </ul>
                   )}
@@ -158,7 +185,9 @@ export function CVPreview({ data }: CVPreviewProps) {
               {edu.topics.filter(Boolean).length > 0 && (
                 <ul className="list-disc list-inside space-y-1">
                   {edu.topics.filter(Boolean).map((topic, i) => (
-                    <li key={i} className="text-gray-700 dark:text-gray-300">{topic}</li>
+                    <li key={i} className="text-gray-700 dark:text-gray-300">
+                      {topic}
+                    </li>
                   ))}
                 </ul>
               )}
@@ -180,7 +209,8 @@ export function CVPreview({ data }: CVPreviewProps) {
                   <div className="text-gray-700 dark:text-gray-300">{cert.issuer}</div>
                 </div>
                 <span className="text-sm text-gray-600 dark:text-gray-400">
-                  {cert.issueDate}{cert.neverExpires ? '' : ` - ${cert.expiryDate || 'No expiry date'}`}
+                  {cert.issueDate}
+                  {cert.neverExpires ? '' : ` - ${cert.expiryDate || 'No expiry date'}`}
                 </span>
               </div>
               {cert.credentialUrl && (
@@ -197,7 +227,9 @@ rer"
               {cert.topics.filter(Boolean).length > 0 && (
                 <ul className="list-disc list-inside space-y-1 mt-2">
                   {cert.topics.filter(Boolean).map((topic, i) => (
-                    <li key={i} className="text-gray-700 dark:text-gray-300">{topic}</li>
+                    <li key={i} className="text-gray-700 dark:text-gray-300">
+                      {topic}
+                    </li>
                   ))}
                 </ul>
               )}

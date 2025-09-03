@@ -6,8 +6,10 @@ export function ThemeToggle() {
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('theme');
-      return savedTheme === 'dark' ||
-        (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      return (
+        savedTheme === 'dark' ||
+        (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      );
     }
     return false;
   });
@@ -47,11 +49,7 @@ export function ThemeToggle() {
       onClick={toggleTheme}
       className="fixed bottom-4 left-4 z-50 bg-white dark:bg-gray-800"
     >
-      {isDark ? (
-        <Sun className="h-4 w-4" />
-      ) : (
-        <Moon className="h-4 w-4" />
-      )}
+      {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
     </Button>
   );
 }

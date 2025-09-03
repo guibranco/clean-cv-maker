@@ -14,16 +14,13 @@ export function LanguageSelector() {
     i18n.changeLanguage(languageCode);
     setIsOpen(false);
     // Update document direction for RTL languages
-    document.documentElement.dir = languages.find((lang) => lang.code === languageCode)?.dir || 'ltr';
+    document.documentElement.dir =
+      languages.find((lang) => lang.code === languageCode)?.dir || 'ltr';
   };
 
   return (
     <div className="relative">
-      <Button
-        variant="outline"
-        onClick={() => setIsOpen(!isOpen)}
-        className="gap-2"
-      >
+      <Button variant="outline" onClick={() => setIsOpen(!isOpen)} className="gap-2">
         <img
           src={currentLanguage.flag}
           alt={`${currentLanguage.name} flag`}

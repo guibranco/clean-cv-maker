@@ -27,7 +27,10 @@ export function FormField({
   tooltip,
   ...props
 }: FormFieldProps) {
-  const { register, formState: { errors } } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
   const error = errors[name];
 
   const inputClassName = cn(
@@ -44,27 +47,18 @@ export function FormField({
   return (
     <div>
       <div className="flex items-center">
-        <label htmlFor={name} className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+        <label
+          htmlFor={name}
+          className="block text-sm font-medium text-gray-700 dark:text-gray-200"
+        >
           {label} {required && '*'}
         </label>
         {tooltip && <Tooltip {...tooltip} />}
       </div>
       {textarea ? (
-        <textarea
-          id={name}
-          {...register(name)}
-          rows={rows}
-          className={inputClassName}
-          {...props}
-        />
+        <textarea id={name} {...register(name)} rows={rows} className={inputClassName} {...props} />
       ) : (
-        <input
-          type={type}
-          id={name}
-          {...register(name)}
-          className={inputClassName}
-          {...props}
-        />
+        <input type={type} id={name} {...register(name)} className={inputClassName} {...props} />
       )}
       {error && (
         <p className="mt-1 text-sm text-red-600 dark:text-red-400">{error.message as string}</p>

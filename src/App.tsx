@@ -17,7 +17,10 @@ function App() {
 
   useEffect(() => {
     // Set initial theme
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    if (
+      localStorage.theme === 'dark' ||
+      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
@@ -25,7 +28,7 @@ function App() {
 
     const params = new URLSearchParams(window.location.search);
     const versionId = params.get('version');
-    
+
     if (versionId) {
       const version = getVersion(versionId);
       if (version) {
@@ -33,7 +36,7 @@ function App() {
         return;
       }
     }
-    
+
     // Load the current/latest version if no specific version is requested
     const currentVersion = getCurrentVersion();
     if (currentVersion) {
