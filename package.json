@@ -18,7 +18,7 @@
     "@hello-pangea/dnd": "^18.0.1",
     "@hookform/resolvers": "^5.2.2",
     "@react-pdf/renderer": "^4.3.1",
-    "@tailwindcss/postcss": "^4.1.13",
+    "@tailwindcss/postcss": "^4.1.14",
     "clsx": "^2.1.1",
     "i18next": "^25.5.3",
     "i18next-browser-languagedetector": "^8.2.0",
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.37.0",
-    "@tailwindcss/postcss": "^4.1.13",
+    "@tailwindcss/postcss": "^4.1.14",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
