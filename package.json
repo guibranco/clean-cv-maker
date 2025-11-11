@@ -55,7 +55,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/container-queries": "^0.1.1",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.46.3",
+    "typescript-eslint": "^8.46.4",
     "vite": "^7.2.2",
     "vitest": "^4.0.5"
   }
