@@ -39,7 +39,7 @@
     "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react-swc": "^4.2.2",
-    "@vitest/coverage-v8": "^4.0.16",
+    "@vitest/coverage-v8": "^4.0.17",
     "@vitest/ui": "^4.0.10",
     "eslint": "^9.39.2",
     "eslint-plugin-react-hooks": "^7.0.1",
