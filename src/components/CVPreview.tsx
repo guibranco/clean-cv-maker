@@ -1,7 +1,7 @@
 import { type PersonalInfoFormData } from './PersonalInfoForm';
 import { Mail, Phone, MapPin, Globe } from 'lucide-react';
 import { GitHubIcon } from '@/components/icons/GitHubIcon';
-import { LinkedinIcon } from '@/components/icons/LinkedinIcon';
+import { LinkedInIcon } from '@/components/icons/LinkedInIcon';
 import { getProficiencyLabel, calculateYearsOfExperience } from '@/lib/utils';
 import { useTranslation } from 'react-i18next';
 
@@ -58,7 +58,7 @@ export function CVPreview({ data }: CVPreviewProps) {
                 rel="noopener noreferrer"
                 className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400"
               >
-                <LinkedinIcon className="w-4 h-4" />
+                <LinkedInIcon className="w-4 h-4" />
                 LinkedIn
               </a>
             )}
