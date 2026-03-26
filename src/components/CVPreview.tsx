@@ -1,5 +1,6 @@
 import { type PersonalInfoFormData } from './PersonalInfoForm';
-import { Mail, Phone, MapPin, Globe, Github, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, Globe } from 'lucide-react';
+import { GitHubIcon } from '@/components/icons/GitHubIcon';
 import { getProficiencyLabel, calculateYearsOfExperience } from '@/lib/utils';
 import { useTranslation } from 'react-i18next';
 
@@ -45,7 +46,7 @@ export function CVPreview({ data }: CVPreviewProps) {
                 rel="noopener noreferrer"
                 className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400"
               >
-                <Github className="w-4 h-4" />
+                <GitHubIcon className="w-4 h-4" />
                 GitHub
               </a>
             )}
