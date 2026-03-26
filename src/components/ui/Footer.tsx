@@ -1,4 +1,4 @@
-import { Github } from 'lucide-react';
+import { GitHubIcon } from '@/components/icons/GitHubIcon';
 import { useTranslation } from 'react-i18next';
 
 export function Footer() {
@@ -41,7 +41,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors group"
               >
-                <Github className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                <GitHubIcon className="w-6 h-6 group-hover:scale-110 transition-transform" />
                 <div className="flex flex-col items-start">
                   <span className="text-xs text-gray-500 dark:text-gray-400">
                     {t('common:footer.repository')}
