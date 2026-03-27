@@ -28,13 +28,13 @@ jobs:
           fetch-depth: 0
 
       - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v4.2.0
+        uses: gittools/actions/gitversion/setup@v4.3.3
         with:
           versionSpec: "6.x"
 
       - name: Determine Version
         id: gitversion
-        uses: gittools/actions/gitversion/execute@v4.2.0
+        uses: gittools/actions/gitversion/execute@v4.3.3
 
       - name: Set up Node.js
         uses: actions/setup-node@v6
@@ -85,7 +85,7 @@ jobs:
           path: './dist'
           
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
   
   create_release:
     name: Create release
@@ -96,7 +96,7 @@ jobs:
 
     steps:
       - name: Create Release
-        uses: ncipollo/release-action@v1.20.0
+        uses: ncipollo/release-action@v1.21.0
         with:
           skipIfReleaseExists: true
           allowUpdates: false
