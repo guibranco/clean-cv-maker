@@ -26,7 +26,7 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.6",
     "react-hook-form": "^7.71.1",
-    "react-i18next": "^16.5.4",
+    "react-i18next": "^17.0.7",
     "tailwind-merge": "^3.6.0",
     "zod": "^4.4.3"
   },
@@ -55,7 +55,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/container-queries": "^0.1.1",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.56.1",
+    "typescript-eslint": "^8.59.3",
     "vite": "^7.3.3",
     "vitest": "^4.0.10"
   }
