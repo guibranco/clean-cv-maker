@@ -29,7 +29,7 @@ export function CVPreview({ data }: CVPreviewProps) {
             <Mail className="w-4 h-4" />
             <a
               href={`mailto:${data.email}`}
-              className="hover:text-blue-600 dark:hover:text-blue-400"
+              className="hover:text-green-600 dark:hover:text-green-400"
             >
               {data.email}
             </a>
@@ -45,7 +45,7 @@ export function CVPreview({ data }: CVPreviewProps) {
                 href={data.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400"
+                className="flex items-center gap-1 hover:text-green-600 dark:hover:text-green-400"
               >
                 <GitHubIcon className="w-4 h-4" />
                 GitHub
@@ -56,7 +56,7 @@ export function CVPreview({ data }: CVPreviewProps) {
                 href={data.linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400"
+                className="flex items-center gap-1 hover:text-green-600 dark:hover:text-green-400"
               >
                 <LinkedInIcon className="w-4 h-4" />
                 LinkedIn
@@ -67,7 +67,7 @@ export function CVPreview({ data }: CVPreviewProps) {
                 href={data.portfolioUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400"
+                className="flex items-center gap-1 hover:text-green-600 dark:hover:text-green-400"
               >
                 <Globe className="w-4 h-4" />
                 Portfolio
@@ -221,7 +221,7 @@ export function CVPreview({ data }: CVPreviewProps) {
                   target="_blank"
                   rel="noopener norefer
 rer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline text-sm"
+                  className="text-green-600 dark:text-green-400 hover:underline text-sm"
                 >
                   View Credential
                 </a>
@@ -260,7 +260,7 @@ rer"
                       key={i}
                       className={`h-1 w-6 rounded-full ${
                         i < lang.proficiency
-                          ? 'bg-blue-600 dark:bg-blue-500'
+                          ? 'bg-green-600 dark:bg-green-500'
                           : 'bg-gray-200 dark:bg-gray-700'
                       }`}
                     />

@@ -58,13 +58,14 @@ function App() {
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <GraduationCap className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+              <GraduationCap className="h-8 w-8 text-green-600 dark:text-green-400" />
               <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {t('common:title')}
               </h1>
             </div>
             <div className="flex items-center space-x-4">
               <LanguageSelector />
+              <ThemeToggle />
               <Button
                 variant="outline"
                 onClick={() => setShowVersions(!showVersions)}
@@ -92,7 +93,6 @@ function App() {
           onClose={() => setShowVersions(false)}
         />
       )}
-      <ThemeToggle />
       <Footer />
     </div>
   );

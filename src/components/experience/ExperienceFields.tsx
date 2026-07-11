@@ -44,7 +44,7 @@ export function ExperienceFields({ index, onRemove }: ExperienceFieldsProps) {
           <input
             type="text"
             {...register(`experiences.${index}.companyName` as const)}
-            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-green-500 focus:outline-hidden focus:ring-1 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
             required
           />
         </div>
@@ -63,7 +63,7 @@ export function ExperienceFields({ index, onRemove }: ExperienceFieldsProps) {
           <input
             type="url"
             {...register(`experiences.${index}.companyLogoUrl` as const)}
-            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-green-500 focus:outline-hidden focus:ring-1 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
           />
         </div>
 
@@ -81,7 +81,7 @@ export function ExperienceFields({ index, onRemove }: ExperienceFieldsProps) {
           <input
             type="text"
             {...register(`experiences.${index}.companySize` as const)}
-            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-green-500 focus:outline-hidden focus:ring-1 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
             placeholder="e.g., 1-10, 11-50, 51-200, 201-500, 500+"
           />
         </div>
@@ -100,7 +100,7 @@ export function ExperienceFields({ index, onRemove }: ExperienceFieldsProps) {
           <input
             type="text"
             {...register(`experiences.${index}.companyIndustry` as const)}
-            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-green-500 focus:outline-hidden focus:ring-1 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
           />
         </div>
 
@@ -118,7 +118,7 @@ export function ExperienceFields({ index, onRemove }: ExperienceFieldsProps) {
           <textarea
             {...register(`experiences.${index}.companyDescription` as const)}
             rows={3}
-            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-green-500 focus:outline-hidden focus:ring-1 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
           />
         </div>
 
@@ -135,7 +135,7 @@ export function ExperienceFields({ index, onRemove }: ExperienceFieldsProps) {
           </div>
           <select
             {...register(`experiences.${index}.contractType` as const)}
-            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-green-500 focus:outline-hidden focus:ring-1 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
           >
             <option value="">Select contract type</option>
             <option value="full-time">Full Time</option>
@@ -157,7 +157,7 @@ export function ExperienceFields({ index, onRemove }: ExperienceFieldsProps) {
           </div>
           <select
             {...register(`experiences.${index}.workSchema` as const)}
-            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-green-500 focus:outline-hidden focus:ring-1 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
           >
             <option value="">Select work schema</option>
             <option value="on-site">On Site</option>
@@ -180,7 +180,7 @@ export function ExperienceFields({ index, onRemove }: ExperienceFieldsProps) {
           <input
             type="month"
             {...register(`experiences.${index}.startDate` as const)}
-            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-green-500 focus:outline-hidden focus:ring-1 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
           />
         </div>
 
@@ -200,13 +200,13 @@ export function ExperienceFields({ index, onRemove }: ExperienceFieldsProps) {
               type="month"
               {...register(`experiences.${index}.endDate` as const)}
               disabled={watch(`experiences.${index}.current`)}
-              className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-800"
+              className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-green-500 focus:outline-hidden focus:ring-1 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-800"
             />
             <label className="flex items-center space-x-2">
               <input
                 type="checkbox"
                 {...register(`experiences.${index}.current` as const)}
-                className="h-4 w-4 rounded-sm border-gray-300 text-blue-600 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:checked:bg-blue-500"
+                className="h-4 w-4 rounded-sm border-gray-300 text-green-600 focus:ring-green-500 dark:border-gray-600 dark:bg-gray-700 dark:checked:bg-green-500"
               />
               <span className="text-sm text-gray-700 dark:text-gray-200">Current</span>
             </label>

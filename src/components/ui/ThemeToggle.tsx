@@ -47,7 +47,7 @@ export function ThemeToggle() {
       variant="outline"
       size="sm"
       onClick={toggleTheme}
-      className="fixed bottom-4 left-4 z-50 bg-white dark:bg-gray-800"
+      className="bg-white dark:bg-gray-800"
     >
       {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
     </Button>

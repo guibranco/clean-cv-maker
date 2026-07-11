@@ -169,6 +169,8 @@ i18n
       },
     },
     fallbackLng: 'en',
+    supportedLngs: languages.map((lang) => lang.code),
+    nonExplicitSupportedLngs: true,
     detection: {
       order: ['localStorage', 'navigator'],
       lookupLocalStorage: 'i18nextLng',
@@ -178,5 +180,10 @@ i18n
       escapeValue: false,
     },
   });
+
+i18n.on('languageChanged', (lng) => {
+  document.documentElement.lang = lng;
+  document.documentElement.dir = languages.find((lang) => lang.code === lng)?.dir || 'ltr';
+});
 
 export default i18n;

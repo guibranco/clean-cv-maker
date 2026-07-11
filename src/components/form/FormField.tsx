@@ -38,7 +38,7 @@ export function FormField({
     'bg-white dark:bg-gray-700 dark:text-white',
     error
       ? 'border-red-300 focus:border-red-500 focus:ring-red-500 dark:border-red-500'
-      : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:focus:border-blue-400 dark:focus:ring-blue-400',
+      : 'border-gray-300 focus:border-green-500 focus:ring-green-500 dark:border-gray-600 dark:focus:border-green-400 dark:focus:ring-green-400',
     'disabled:bg-gray-100 dark:disabled:bg-gray-800',
     'placeholder-gray-400 dark:placeholder-gray-500',
     className

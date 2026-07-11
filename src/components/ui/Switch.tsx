@@ -28,7 +28,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
             'after:content-[""] after:absolute after:top-[2px] after:left-[2px]',
             'after:bg-white after:border after:border-gray-300 dark:after:border-gray-600 after:rounded-full',
             'after:h-5 after:w-5 after:transition-all',
-            checked && 'bg-blue-600 dark:bg-blue-500 after:translate-x-full after:border-white',
+            checked && 'bg-green-600 dark:bg-green-500 after:translate-x-full after:border-white',
             className
           )}
         />
