@@ -182,8 +182,13 @@ i18n
   });
 
 i18n.on('languageChanged', (lng) => {
-  document.documentElement.lang = lng;
-  document.documentElement.dir = languages.find((lang) => lang.code === lng)?.dir || 'ltr';
+  const resolved = i18n.resolvedLanguage ?? lng;
+  const baseCode = resolved.split('-')[0];
+  const match =
+    languages.find((lang) => lang.code === resolved) ??
+    languages.find((lang) => lang.code.split('-')[0] === baseCode);
+  document.documentElement.lang = resolved;
+  document.documentElement.dir = match?.dir || 'ltr';
 });
 
 export default i18n;
