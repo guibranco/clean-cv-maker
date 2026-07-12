@@ -12,7 +12,20 @@ import { useTranslation } from 'react-i18next';
 
 function App() {
   const [showVersions, setShowVersions] = useState(false);
-  const [initialData, setInitialData] = useState<CVVersion['data'] | undefined>();
+  const [initialData, setInitialData] = useState<CVVersion['data'] | undefined>(() => {
+    const params = new URLSearchParams(window.location.search);
+    const versionId = params.get('version');
+
+    if (versionId) {
+      const version = getVersion(versionId);
+      if (version) {
+        return version.data;
+      }
+    }
+
+    // Load the current/latest version if no specific version is requested
+    return getCurrentVersion()?.data;
+  });
   const { t } = useTranslation(['common']);
 
   useEffect(() => {
@@ -24,23 +37,6 @@ function App() {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
-    }
-
-    const params = new URLSearchParams(window.location.search);
-    const versionId = params.get('version');
-
-    if (versionId) {
-      const version = getVersion(versionId);
-      if (version) {
-        setInitialData(version.data);
-        return;
-      }
-    }
-
-    // Load the current/latest version if no specific version is requested
-    const currentVersion = getCurrentVersion();
-    if (currentVersion) {
-      setInitialData(currentVersion.data);
     }
   }, []);
 
