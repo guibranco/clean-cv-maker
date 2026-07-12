@@ -169,6 +169,8 @@ i18n
       },
     },
     fallbackLng: 'en',
+    supportedLngs: languages.map((lang) => lang.code),
+    nonExplicitSupportedLngs: true,
     detection: {
       order: ['localStorage', 'navigator'],
       lookupLocalStorage: 'i18nextLng',
@@ -178,5 +180,15 @@ i18n
       escapeValue: false,
     },
   });
+
+i18n.on('languageChanged', (lng) => {
+  const resolved = i18n.resolvedLanguage ?? lng;
+  const baseCode = resolved.split('-')[0];
+  const match =
+    languages.find((lang) => lang.code === resolved) ??
+    languages.find((lang) => lang.code.split('-')[0] === baseCode);
+  document.documentElement.lang = resolved;
+  document.documentElement.dir = match?.dir || 'ltr';
+});
 
 export default i18n;

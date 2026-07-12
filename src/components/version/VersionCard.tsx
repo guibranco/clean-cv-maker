@@ -58,7 +58,7 @@ export function VersionCard({ version, onSelect, onDelete, onExport, onRename }:
               variant="outline"
               size="sm"
               onClick={() => onExport(version)}
-              className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+              className="text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300"
             >
               <Download className="h-4 w-4" />
             </Button>

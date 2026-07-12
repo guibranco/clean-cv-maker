@@ -13,9 +13,6 @@ export function LanguageSelector() {
   const handleLanguageChange = (languageCode: string) => {
     i18n.changeLanguage(languageCode);
     setIsOpen(false);
-    // Update document direction for RTL languages
-    document.documentElement.dir =
-      languages.find((lang) => lang.code === languageCode)?.dir || 'ltr';
   };
 
   return (
@@ -39,7 +36,7 @@ export function LanguageSelector() {
                 onClick={() => handleLanguageChange(language.code)}
                 className={`flex w-full items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 ${
                   language.code === currentLanguage.code
-                    ? 'bg-gray-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400'
+                    ? 'bg-gray-50 dark:bg-gray-700 text-green-600 dark:text-green-400'
                     : 'text-gray-700 dark:text-gray-200'
                 }`}
               >

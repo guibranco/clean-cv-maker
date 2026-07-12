@@ -32,7 +32,7 @@ export function Tooltip({ content, importance, tips }: TooltipProps) {
         <div className="absolute left-6 top-0 z-10 w-72 rounded-lg bg-gray-900 dark:bg-gray-800 px-4 py-3 text-sm text-white shadow-lg">
           <p className="mb-2">{content}</p>
           {importance && (
-            <p className="mb-2 text-blue-300">
+            <p className="mb-2 text-amber-300">
               <strong>{t('common:tooltip.importance')}</strong> {importance}
             </p>
           )}

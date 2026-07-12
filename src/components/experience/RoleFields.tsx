@@ -52,7 +52,7 @@ export function RoleFields({ experienceIndex, roleIndex, onRemove }: RoleFieldsP
           <input
             type="text"
             {...register(`experiences.${experienceIndex}.roles.${roleIndex}.title` as const)}
-            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-green-500 focus:outline-hidden focus:ring-1 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
           />
         </div>
 
@@ -70,7 +70,7 @@ export function RoleFields({ experienceIndex, roleIndex, onRemove }: RoleFieldsP
           <input
             type="month"
             {...register(`experiences.${experienceIndex}.roles.${roleIndex}.startDate` as const)}
-            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-green-500 focus:outline-hidden focus:ring-1 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
           />
         </div>
 
@@ -90,13 +90,13 @@ export function RoleFields({ experienceIndex, roleIndex, onRemove }: RoleFieldsP
               type="month"
               {...register(`experiences.${experienceIndex}.roles.${roleIndex}.endDate` as const)}
               disabled={watch(`experiences.${experienceIndex}.roles.${roleIndex}.current`)}
-              className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-800"
+              className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-green-500 focus:outline-hidden focus:ring-1 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-800"
             />
             <label className="flex items-center space-x-2">
               <input
                 type="checkbox"
                 {...register(`experiences.${experienceIndex}.roles.${roleIndex}.current` as const)}
-                className="h-4 w-4 rounded-sm border-gray-300 text-blue-600 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:checked:bg-blue-500"
+                className="h-4 w-4 rounded-sm border-gray-300 text-green-600 focus:ring-green-500 dark:border-gray-600 dark:bg-gray-700 dark:checked:bg-green-500"
               />
               <span className="text-sm text-gray-700 dark:text-gray-200">Current</span>
             </label>
@@ -117,7 +117,7 @@ export function RoleFields({ experienceIndex, roleIndex, onRemove }: RoleFieldsP
           <textarea
             {...register(`experiences.${experienceIndex}.roles.${roleIndex}.description` as const)}
             rows={2}
-            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-green-500 focus:outline-hidden focus:ring-1 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
           />
         </div>
 
@@ -153,7 +153,7 @@ export function RoleFields({ experienceIndex, roleIndex, onRemove }: RoleFieldsP
                   `experiences.${experienceIndex}.roles.${roleIndex}.achievements.${achievementIndex}` as const
                 )}
                 placeholder={`Achievement ${achievementIndex + 1}`}
-                className="flex-1 rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+                className="flex-1 rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 shadow-xs focus:border-green-500 focus:outline-hidden focus:ring-1 focus:ring-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
               />
               <Button
                 type="button"

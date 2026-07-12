@@ -12,7 +12,20 @@ import { useTranslation } from 'react-i18next';
 
 function App() {
   const [showVersions, setShowVersions] = useState(false);
-  const [initialData, setInitialData] = useState<CVVersion['data'] | undefined>();
+  const [initialData, setInitialData] = useState<CVVersion['data'] | undefined>(() => {
+    const params = new URLSearchParams(window.location.search);
+    const versionId = params.get('version');
+
+    if (versionId) {
+      const version = getVersion(versionId);
+      if (version) {
+        return version.data;
+      }
+    }
+
+    // Load the current/latest version if no specific version is requested
+    return getCurrentVersion()?.data;
+  });
   const { t } = useTranslation(['common']);
 
   useEffect(() => {
@@ -24,23 +37,6 @@ function App() {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
-    }
-
-    const params = new URLSearchParams(window.location.search);
-    const versionId = params.get('version');
-
-    if (versionId) {
-      const version = getVersion(versionId);
-      if (version) {
-        setInitialData(version.data);
-        return;
-      }
-    }
-
-    // Load the current/latest version if no specific version is requested
-    const currentVersion = getCurrentVersion();
-    if (currentVersion) {
-      setInitialData(currentVersion.data);
     }
   }, []);
 
@@ -58,13 +54,14 @@ function App() {
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <GraduationCap className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+              <GraduationCap className="h-8 w-8 text-green-600 dark:text-green-400" />
               <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {t('common:title')}
               </h1>
             </div>
             <div className="flex items-center space-x-4">
               <LanguageSelector />
+              <ThemeToggle />
               <Button
                 variant="outline"
                 onClick={() => setShowVersions(!showVersions)}
@@ -92,7 +89,6 @@ function App() {
           onClose={() => setShowVersions(false)}
         />
       )}
-      <ThemeToggle />
       <Footer />
     </div>
   );
