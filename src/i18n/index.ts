@@ -28,6 +28,8 @@ import { common as commonRu } from './locales/ru/common';
 import { form as formRu } from './locales/ru/form';
 import { common as commonUk } from './locales/uk/common';
 import { form as formUk } from './locales/uk/form';
+import { common as commonZhCn } from './locales/zh-CN/common';
+import { form as formZhCn } from './locales/zh-CN/form';
 
 export const languages = [
   {
@@ -108,6 +110,12 @@ export const languages = [
     flag: 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.1.0/flags/4x3/pk.svg',
     dir: 'rtl',
   },
+  {
+    code: 'zh-CN',
+    name: '简体中文',
+    flag: 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.1.0/flags/4x3/cn.svg',
+    dir: 'ltr',
+  },
 ];
 
 i18n
@@ -166,6 +174,10 @@ i18n
       uk: {
         common: commonUk,
         form: formUk,
+      },
+      'zh-CN': {
+        common: commonZhCn,
+        form: formZhCn,
       },
     },
     fallbackLng: 'en',
