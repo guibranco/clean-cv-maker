@@ -51,7 +51,7 @@ export const workExperience = {
     options: {
       fullTime: 'Повна зайнятість',
       partTime: 'Часткова зайнятість',
-      freelance: 'Фриланс',
+      freelance: 'Фріланс',
     },
     tooltip: {
       content: 'Тип трудового договору, який ви мали.',
