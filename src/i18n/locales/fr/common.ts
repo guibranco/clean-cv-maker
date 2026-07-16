@@ -70,7 +70,7 @@ export const common = {
     present: 'Présent',
     noExpiryDate: "Pas de date d'expiration",
     viewCredential: 'Voir le Justificatif',
-    availableForRelocation: 'Disponible pour une Relocalisation',
+    availableForRelocation: 'Disponible pour une relocalisation',
     proficiencyLevels: {
       0: 'Aucune compétence',
       1: 'Notions élémentaires',
