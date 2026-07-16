@@ -25,7 +25,7 @@ export const form = {
       },
       location: {
         label: 'Местоположение',
-        placeholder: 'например, Нью-Йорк, США',
+        placeholder: 'например, Москва, Россия',
         tooltip: {
           content: 'Ваш текущий город и страна/регион.',
           importance:
@@ -36,7 +36,7 @@ export const form = {
       },
       email: {
         label: 'Электронная почта',
-        placeholder: 'your.name@example.com',
+        placeholder: 'ваше.имя@пример.com',
         tooltip: {
           content: 'Ваш профессиональный адрес электронной почты.',
           importance:
@@ -47,18 +47,18 @@ export const form = {
       },
       phone: {
         label: 'Телефон',
-        placeholder: '+1 (555) 555-5555',
+        placeholder: '+7 900 123-45-67',
         tooltip: {
           content: 'Ваш контактный номер телефона.',
           importance:
             'Почему это важно: Это вторичный, но важный способ связи. Некоторые рекрутеры предпочитают звонить для первичного отбора.',
           tips:
-            'Советы: Указывайте код страны для международных заявок. Форматируйте последовательно (например, +1-555-555-5555).',
+            'Советы: Указывайте код страны для международных заявок. Форматируйте последовательно (например, +7 900 123-45-67).',
         },
       },
       githubUrl: {
         label: 'Ссылка на GitHub',
-        placeholder: 'https://github.com/username',
+        placeholder: 'https://github.com/polzovatel',
         tooltip: {
           content: 'Ссылка на ваш профиль GitHub.',
           importance:
@@ -69,7 +69,7 @@ export const form = {
       },
       linkedinUrl: {
         label: 'Ссылка на LinkedIn',
-        placeholder: 'https://linkedin.com/in/username',
+        placeholder: 'https://linkedin.com/in/polzovatel',
         tooltip: {
           content: 'Ссылка на ваш профиль LinkedIn.',
           importance:
@@ -80,7 +80,7 @@ export const form = {
       },
       portfolioUrl: {
         label: 'Ссылка на портфолио',
-        placeholder: 'https://your-portfolio.com',
+        placeholder: 'https://vashe-portfolio.ru',
         tooltip: {
           content: 'Ссылка на ваш личный сайт или портфолио.',
           importance:
