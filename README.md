@@ -16,23 +16,26 @@ Craft and manage **multiple versions** of your CV effortlessly. Each version is 
 - **Complete** ✅: Finalized versions ready for export.
 
 🌍 **Multilingual Support**  
-Clean CV Maker is designed with global users in mind. It currently includes support for the following languages:
+Clean CV Maker is designed with global users in mind. It currently includes support for the following languages (all `common` and `form` strings — the namespaces the app actually renders — are fully translated):
 
-- 🇸🇦 **AR** (Arabic) — 🛠️ Needs improvements ![35% translated](https://progress-bar.xyz/35)
-- 🇩🇪 **DE** (German) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45)
+- 🇸🇦 **AR** (Arabic) — ✅ ![100% translated](https://progress-bar.xyz/100)
+- 🇩🇪 **DE** (German) — ✅ ![100% translated](https://progress-bar.xyz/100)
 - 🇺🇸 **EN-US** (English - US) — ✅ Default language ![100% translated](https://progress-bar.xyz/100)
-- 🇪🇸 **ES-ES** (Spanish - Spain) — 🛠️ Needs improvements ![65% translated](https://progress-bar.xyz/65)
-- 🇫🇷 **FR** (French) — 🛠️ Needs improvements ![40% translated](https://progress-bar.xyz/40)
-- 🇮🇳 **HI** (Hindi) — 🛠️ Needs improvements ![35% translated](https://progress-bar.xyz/35)
-- 🇮🇹 **IT** (Italian) — 🛠️ Needs improvements ![40% translated](https://progress-bar.xyz/40)
-- 🇯🇵 **JA** (Japanese) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45)
-- 🇰🇷 **KO** (Korean) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45)
-- 🇧🇷 **PT-BR** (Portuguese - Brazil) — 🛠️ Needs improvements ![85% translated](https://progress-bar.xyz/85)
-- 🇷🇺 **RU** (Russian) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45)
-- 🇺🇦 **UK** (Ukrainian) — 🛠️ Needs improvements ![45% translated](https://progress-bar.xyz/45)
-- 🇵🇰 **UR** (Urdu) — 🛠️ Needs improvements ![35% translated](https://progress-bar.xyz/35)
+- 🇪🇸 **ES-ES** (Spanish - Spain) — ✅ ![100% translated](https://progress-bar.xyz/100)
+- 🇫🇷 **FR** (French) — ✅ ![100% translated](https://progress-bar.xyz/100)
+- 🇮🇳 **HI** (Hindi) — ✅ ![100% translated](https://progress-bar.xyz/100)
+- 🇮🇹 **IT** (Italian) — ✅ ![100% translated](https://progress-bar.xyz/100)
+- 🇯🇵 **JA** (Japanese) — ✅ ![100% translated](https://progress-bar.xyz/100)
+- 🇰🇷 **KO** (Korean) — ✅ ![100% translated](https://progress-bar.xyz/100)
+- 🇧🇷 **PT-BR** (Portuguese - Brazil) — ✅ ![100% translated](https://progress-bar.xyz/100)
+- 🇷🇺 **RU** (Russian) — ✅ ![100% translated](https://progress-bar.xyz/100)
+- 🇺🇦 **UK** (Ukrainian) — ✅ ![100% translated](https://progress-bar.xyz/100)
+- 🇵🇰 **UR** (Urdu) — ✅ ![100% translated](https://progress-bar.xyz/100)
+- 🇨🇳 **ZH-CN** (Chinese - Simplified) — ✅ ![100% translated](https://progress-bar.xyz/100)
 
 Want to help improve translations? Check our [contribution guidelines](CONTRIBUTING.md) and help make Clean CV Maker more accessible to users worldwide!🌐✨
+
+> **Note for maintainers:** every locale also has `certifications.ts`, `education.ts`, `projects.ts`, and `work-experience.ts` files with full translations, but these namespaces aren't imported into `src/i18n/index.ts` or consumed by any component yet — the app currently only loads `common` and `form`. Wire them up (or remove them) as part of a future i18n cleanup. Separately, `pt-BR/form.ts` has 22 extra keys (`experienceYears`, `projectsWorked`, `languages` sub-sections) that don't exist in the English source and aren't referenced by any component either — worth reconciling once that content is either wired in or dropped.
 
 ---
 

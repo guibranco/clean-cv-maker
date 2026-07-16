@@ -12,11 +12,18 @@ export const common = {
     add: 'Añadir',
     remove: 'Eliminar',
     history: 'Historial de versiones',
+    saveCompleted: 'Guardar Versión Completada',
+    downloadHTML: 'Descargar HTML',
+    downloadPDF: 'Descargar PDF',
   },
   messages: {
     saved: 'Cambios guardados correctamente',
     error: 'Se ha producido un error',
     confirmDelete: '¿Está seguro de que desea eliminar este elemento?',
+  },
+  tooltip: {
+    importance: 'Por qué importa:',
+    tips: 'Consejos:',
   },
   footer: {
     developedBy: 'Desarrollado por',
@@ -48,5 +55,29 @@ export const common = {
     education: 'Quiero añadir educación',
     projects: 'Tengo proyectos para mostrar',
     certificates: 'Tengo certificaciones para añadir',
+  },
+  cv: {
+    sections: {
+      summary: 'Resumen Profesional',
+      experienceYears: 'Experiencia (en años)',
+      projectsWorked: 'Proyectos en los que Trabajé',
+      workExperience: 'Experiencia Laboral',
+      education: 'Educación',
+      certifications: 'Certificaciones',
+      languages: 'Idiomas',
+    },
+    years: 'años',
+    present: 'Presente',
+    noExpiryDate: 'Sin fecha de caducidad',
+    viewCredential: 'Ver Credencial',
+    availableForRelocation: 'Disponible para reubicación',
+    proficiencyLevels: {
+      0: 'Sin Conocimiento',
+      1: 'Conocimiento Elemental',
+      2: 'Conocimiento Laboral Limitado',
+      3: 'Conocimiento Laboral Profesional',
+      4: 'Conocimiento Profesional Completo',
+      5: 'Nativo / Bilingüe',
+    },
   },
 };
