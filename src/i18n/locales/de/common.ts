@@ -1,6 +1,8 @@
 export const common = {
   title: 'Lebenslauf-Generator',
   languageSelector: 'Sprache auswählen',
+  banner:
+    'Clean CV Maker wurde in erster Linie für IT-Fachleute entwickelt, kann aber für jede Branche verwendet und angepasst werden.',
   actions: {
     save: 'Speichern',
     download: 'Herunterladen',

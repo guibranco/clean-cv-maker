@@ -1,6 +1,8 @@
 export const common = {
   title: 'सीवी मेकर',
   languageSelector: 'भाषा चुनें',
+  banner:
+    'Clean CV Maker मुख्य रूप से IT पेशेवरों के लिए डिज़ाइन किया गया है, लेकिन इसे किसी भी उद्योग के लिए उपयोग और अनुकूलित किया जा सकता है।',
   actions: {
     save: 'सहेजें',
     download: 'डाउनलोड करें',
