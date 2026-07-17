@@ -181,8 +181,13 @@ i18n
       },
     },
     fallbackLng: 'en',
+    // supportedLngs alone already does correct fuzzy matching for
+    // unregistered regional variants (e.g. en-GB -> en, pt-PT -> pt-BR).
+    // nonExplicitSupportedLngs must NOT be combined with it: together they
+    // break resolution for our own registered hyphenated codes (pt-BR,
+    // zh-CN), which end up falling back to English despite being an exact
+    // supportedLngs match.
     supportedLngs: languages.map((lang) => lang.code),
-    nonExplicitSupportedLngs: true,
     detection: {
       order: ['localStorage', 'navigator'],
       lookupLocalStorage: 'i18nextLng',
@@ -191,16 +196,39 @@ i18n
     interpolation: {
       escapeValue: false,
     },
-  });
+  })
+  .then(() => applyDocumentLanguage());
 
-i18n.on('languageChanged', (lng) => {
-  const resolved = i18n.resolvedLanguage ?? lng;
+/**
+ * Resolves the active i18next language to an entry in `languages`, even when
+ * the detected/active tag (e.g. "en-GB") isn't an exact match for any
+ * registered code (e.g. "en") - falling back to the base language code, then
+ * to English, rather than an arbitrary array position.
+ */
+export function resolveCurrentLanguage(lng?: string) {
+  const resolved = lng ?? i18n.resolvedLanguage ?? i18n.language;
   const baseCode = resolved.split('-')[0];
-  const match =
+  return (
     languages.find((lang) => lang.code === resolved) ??
-    languages.find((lang) => lang.code.split('-')[0] === baseCode);
+    languages.find((lang) => lang.code.split('-')[0] === baseCode) ??
+    languages.find((lang) => lang.code === 'en') ??
+    languages[0]
+  );
+}
+
+/**
+ * Syncs <html lang>/<html dir> to the resolved language. Called once after
+ * init (the "languageChanged" event doesn't fire for the language i18next
+ * resolves to during its own initialization) and again on every subsequent
+ * language switch.
+ */
+function applyDocumentLanguage(lng?: string) {
+  const resolved = lng ?? i18n.resolvedLanguage ?? i18n.language;
+  const match = resolveCurrentLanguage(resolved);
   document.documentElement.lang = resolved;
   document.documentElement.dir = match?.dir || 'ltr';
-});
+}
+
+i18n.on('languageChanged', (lng) => applyDocumentLanguage(lng));
 
 export default i18n;
