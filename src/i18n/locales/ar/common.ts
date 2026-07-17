@@ -1,6 +1,8 @@
 export const common = {
   title: 'منشئ السيرة الذاتية',
   languageSelector: 'اختر اللغة',
+  banner:
+    'تم تصميم Clean CV Maker بشكل أساسي للمحترفين في مجال تقنية المعلومات، ولكن يمكن استخدامه وتكييفه لأي مجال آخر.',
   actions: {
     save: 'حفظ',
     download: 'تحميل',

@@ -1,6 +1,8 @@
 export const common = {
   title: '이력서 메이커',
   languageSelector: '언어 선택',
+  banner:
+    'Clean CV Maker는 주로 IT 전문가를 위해 설계되었지만, 모든 업종에 맞게 사용 및 조정할 수 있습니다.',
   actions: {
     save: '저장',
     download: '다운로드',

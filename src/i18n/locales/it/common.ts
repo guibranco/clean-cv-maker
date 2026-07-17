@@ -1,6 +1,8 @@
 export const common = {
   title: 'Creatore di CV',
   languageSelector: 'Seleziona Lingua',
+  banner:
+    'Clean CV Maker è progettato principalmente per i professionisti IT, ma può essere utilizzato e adattato per qualsiasi settore.',
   actions: {
     save: 'Salva',
     download: 'Scarica',

@@ -1,6 +1,8 @@
 export const common = {
   title: '履歴書メーカー',
   languageSelector: '言語を選択',
+  banner:
+    'Clean CV Makerは主にIT専門家向けに設計されていますが、あらゆる業界で使用・適応することができます。',
   actions: {
     save: '保存',
     download: 'ダウンロード',

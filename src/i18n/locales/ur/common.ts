@@ -1,6 +1,8 @@
 export const common = {
   title: 'سی وی میکر',
   languageSelector: 'زبان منتخب کریں',
+  banner:
+    'Clean CV Maker بنیادی طور پر آئی ٹی پیشہ ور افراد کے لیے ڈیزائن کیا گیا ہے، لیکن اسے کسی بھی شعبے کے لیے استعمال اور ڈھالا جا سکتا ہے۔',
   actions: {
     save: 'محفوظ کریں',
     download: 'ڈاؤن لوڈ کریں',

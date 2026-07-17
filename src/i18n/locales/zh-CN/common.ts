@@ -1,6 +1,7 @@
 export const common = {
   title: '简历制作工具',
   languageSelector: '选择语言',
+  banner: 'Clean CV Maker 主要为 IT 专业人士设计，但也可用于并适配任何行业。',
   actions: {
     save: '保存',
     download: '下载',
