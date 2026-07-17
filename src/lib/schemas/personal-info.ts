@@ -116,7 +116,7 @@ export const personalInfoSchema = z
             experienceSchema.parse(exp);
           } catch (error) {
             if (error instanceof z.ZodError) {
-              error.errors.forEach((err) => {
+              error.issues.forEach((err) => {
                 ctx.addIssue({
                   ...err,
                   path: ['experiences', index, ...(err.path || [])],
@@ -143,7 +143,7 @@ export const personalInfoSchema = z
             educationSchema.parse(edu);
           } catch (error) {
             if (error instanceof z.ZodError) {
-              error.errors.forEach((err) => {
+              error.issues.forEach((err) => {
                 ctx.addIssue({
                   ...err,
                   path: ['education', index, ...(err.path || [])],
@@ -169,7 +169,7 @@ export const personalInfoSchema = z
             projectSchema.parse(proj);
           } catch (error) {
             if (error instanceof z.ZodError) {
-              error.errors.forEach((err) => {
+              error.issues.forEach((err) => {
                 ctx.addIssue({
                   ...err,
                   path: ['projects', index, ...(err.path || [])],
@@ -196,7 +196,7 @@ export const personalInfoSchema = z
             certificateSchema.parse(cert);
           } catch (error) {
             if (error instanceof z.ZodError) {
-              error.errors.forEach((err) => {
+              error.issues.forEach((err) => {
                 ctx.addIssue({
                   ...err,
                   path: ['certificates', index, ...(err.path || [])],

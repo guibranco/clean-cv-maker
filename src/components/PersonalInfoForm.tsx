@@ -34,58 +34,13 @@ export function PersonalInfoForm({ initialData }: PersonalInfoFormProps) {
       experienceYears: [],
       projectsWorked: [],
       languages: [],
-      experiences: [
-        {
-          companyName: '',
-          contractType: '',
-          workSchema: '',
-          startDate: '',
-          endDate: '',
-          current: false,
-          roles: [
-            {
-              title: '',
-              startDate: '',
-              endDate: '',
-              current: false,
-              description: '',
-              achievements: [''],
-            },
-          ],
-        },
-      ],
-      education: [
-        {
-          institution: '',
-          institutionLogo: '',
-          degree: '',
-          startDate: '',
-          endDate: '',
-          current: false,
-          topics: [''],
-        },
-      ],
-      projects: [
-        {
-          name: '',
-          description: '',
-          isSourceOpen: true,
-          hasDemoAvailable: true,
-          hasDocumentation: false,
-          startDate: '',
-          techStack: [],
-        },
-      ],
-      certificates: [
-        {
-          name: '',
-          issuer: '',
-          issueDate: '',
-          neverExpires: false,
-          isPaid: true,
-          topics: [''],
-        },
-      ],
+      // experiences/education/projects/certificates intentionally start
+      // undefined (matching hasExperience/hasEducation/hasProjects/
+      // hasCertificates all defaulting to false): the schema validates
+      // whatever is in these arrays even while their section is disabled
+      // and hidden, so a non-empty placeholder here would permanently fail
+      // validation for every new user. The corresponding handleXToggle
+      // already seeds a fresh placeholder entry once a section is enabled.
       ...initialData,
     },
     mode: 'onChange',

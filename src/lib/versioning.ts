@@ -36,11 +36,7 @@ export function saveVersion(
   const versions = getVersions();
   const currentId = localStorage.getItem(CURRENT_VERSION_KEY);
 
-  if (status === 'completed') {
-    // Remove all drafts when saving a completed version
-    const filteredVersions = versions.filter((v) => v.status === 'completed');
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(filteredVersions));
-  } else if (status === 'draft' && currentId) {
+  if (status === 'draft' && currentId) {
     // Update existing draft
     const versionIndex = versions.findIndex((v) => v.id === currentId && v.status === 'draft');
     if (versionIndex !== -1) {
@@ -56,6 +52,10 @@ export function saveVersion(
     }
   }
 
+  // Remove all drafts when saving a completed version
+  const remainingVersions =
+    status === 'completed' ? versions.filter((v) => v.status === 'completed') : versions;
+
   // Create new version
   const id = crypto.randomUUID();
   const version: CVVersion = {
@@ -66,8 +66,8 @@ export function saveVersion(
     status,
   };
 
-  versions.push(version);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(versions));
+  remainingVersions.push(version);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(remainingVersions));
   localStorage.setItem(CURRENT_VERSION_KEY, id);
   return id;
 }
