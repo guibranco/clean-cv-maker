@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { languages } from '@/i18n';
+import { languages, resolveCurrentLanguage } from '@/i18n';
 import { Button } from './Button';
 import { ChevronDown } from 'lucide-react';
 
@@ -8,7 +8,7 @@ export function LanguageSelector() {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
-  const currentLanguage = languages.find((lang) => lang.code === i18n.language) || languages[0];
+  const currentLanguage = resolveCurrentLanguage(i18n.resolvedLanguage ?? i18n.language);
 
   const handleLanguageChange = (languageCode: string) => {
     i18n.changeLanguage(languageCode);

@@ -198,6 +198,62 @@ export function CVPreview({ data }: CVPreviewProps) {
         </div>
       )}
 
+      {data.hasProjects && data.projects && data.projects.length > 0 && (
+        <div className="mb-8">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 border-b border-gray-200 dark:border-gray-700 pb-2">
+            Projects
+          </h3>
+          {data.projects.map((project, index) => (
+            <div key={index} className="mb-6">
+              <div className="flex justify-between items-start mb-2">
+                <h4 className="text-gray-900 dark:text-white font-medium">{project.name}</h4>
+                <span className="text-sm text-gray-600 dark:text-gray-400">
+                  {project.startDate}
+                </span>
+              </div>
+              <p className="text-gray-700 dark:text-gray-300 mb-2">{project.description}</p>
+              {project.techStack.length > 0 && (
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                  Technologies: {project.techStack.join(', ')}
+                </p>
+              )}
+              <div className="flex gap-4 text-sm">
+                {project.sourceCodeUrl && project.isSourceOpen && (
+                  <a
+                    href={project.sourceCodeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-green-600 dark:text-green-400 hover:underline"
+                  >
+                    Source Code
+                  </a>
+                )}
+                {project.demoUrl && project.hasDemoAvailable && (
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-green-600 dark:text-green-400 hover:underline"
+                  >
+                    Live Demo
+                  </a>
+                )}
+                {project.documentationUrl && project.hasDocumentation && (
+                  <a
+                    href={project.documentationUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-green-600 dark:text-green-400 hover:underline"
+                  >
+                    Documentation
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
       {data.hasCertificates && data.certificates && data.certificates.length > 0 && (
         <div className="mb-8">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 border-b border-gray-200 dark:border-gray-700 pb-2">

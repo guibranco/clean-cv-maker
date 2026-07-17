@@ -6,6 +6,7 @@ import { Button } from './components/ui/Button';
 import { ThemeToggle } from './components/ui/ThemeToggle';
 import { LanguageSelector } from './components/ui/LanguageSelector';
 import { Footer } from './components/ui/Footer';
+import { Banner } from './components/ui/Banner';
 import { getVersion, getCurrentVersion } from './lib/versioning';
 import type { CVVersion } from './lib/versioning';
 import { useTranslation } from 'react-i18next';
@@ -50,6 +51,7 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
+      <Banner />
       <header className="bg-white shadow-sm dark:bg-gray-800">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
