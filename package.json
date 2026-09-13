@@ -30,7 +30,7 @@
     "react-dom": "^19.3.0",
     "react-hook-form": "^7.88.0",
     "react-i18next": "^17.0.13",
-    "tailwind-merge": "^3.6.0",
+    "tailwind-merge": "^3.7.0",
     "zod": "^4.6.2"
   },
   "devDependencies": {
