@@ -29,7 +29,7 @@
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-hook-form": "^7.91.0",
-    "react-i18next": "^17.1.8",
+    "react-i18next": "^17.1.9",
     "tailwind-merge": "^3.7.0",
     "zod": "^4.6.7"
   },
